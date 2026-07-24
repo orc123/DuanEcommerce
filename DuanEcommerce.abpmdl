@@ -1,0 +1,114 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "5.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.Account": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.Identity": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "10.5.0",
+      "isInstalled": true,
+      "creationTime": "07/24/2026 03:00:39 +00:00"
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "DuanEcommerce.Application": {
+      "path": "src/DuanEcommerce.Application/DuanEcommerce.Application.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.Application.Tests": {
+      "path": "test/DuanEcommerce.Application.Tests/DuanEcommerce.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "DuanEcommerce.Domain.Shared": {
+      "path": "src/DuanEcommerce.Domain.Shared/DuanEcommerce.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.Application.Contracts": {
+      "path": "src/DuanEcommerce.Application.Contracts/DuanEcommerce.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.HttpApi": {
+      "path": "src/DuanEcommerce.HttpApi/DuanEcommerce.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.HttpApi.Client": {
+      "path": "src/DuanEcommerce.HttpApi.Client/DuanEcommerce.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.EntityFrameworkCore.Tests": {
+      "path": "test/DuanEcommerce.EntityFrameworkCore.Tests/DuanEcommerce.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "DuanEcommerce.EntityFrameworkCore": {
+      "path": "src/DuanEcommerce.EntityFrameworkCore/DuanEcommerce.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.TestBase": {
+      "path": "test/DuanEcommerce.TestBase/DuanEcommerce.TestBase.abppkg",
+      "folder": "test"
+    },
+    "DuanEcommerce.Domain.Tests": {
+      "path": "test/DuanEcommerce.Domain.Tests/DuanEcommerce.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "DuanEcommerce.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/DuanEcommerce.HttpApi.Client.ConsoleTestApp/DuanEcommerce.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "DuanEcommerce.DbMigrator": {
+      "path": "src/DuanEcommerce.DbMigrator/DuanEcommerce.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.HttpApi.Host": {
+      "path": "src/DuanEcommerce.HttpApi.Host/DuanEcommerce.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "DuanEcommerce.Domain": {
+      "path": "src/DuanEcommerce.Domain/DuanEcommerce.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace DuanEcommerce.Migrations
 {
     [DbContext(typeof(DuanEcommerceDbContext))]
-    [Migration("20260724030309_Initial")]
+    [Migration("20260724064444_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

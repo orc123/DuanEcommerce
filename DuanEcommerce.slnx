@@ -1,5 +1,12 @@
 <Solution>
     <Folder Name="/src/" />
+    <Folder Name="/src/admin/">
+        <Project Path="src/DuanEcommerce.Admin.Application.Contracts/DuanEcommerce.Admin.Application.Contracts.csproj" />
+        <Project Path="src/DuanEcommerce.Admin.Application/DuanEcommerce.Admin.Application.csproj" />
+        <Project Path="src/DuanEcommerce.Admin.HttpApi.Client/DuanEcommerce.Admin.HttpApi.Client.csproj" />
+        <Project Path="src/DuanEcommerce.Admin.HttpApi.Host/DuanEcommerce.Admin.HttpApi.Host.csproj" />
+        <Project Path="src/DuanEcommerce.Admin.HttpApi/DuanEcommerce.Admin.HttpApi.csproj" />
+    </Folder>
     <Folder Name="/src/common/" />
     <Folder Name="/src/common/domain/">
         <Project Path="src/DuanEcommerce.Domain.Shared/DuanEcommerce.Domain.Shared.csproj" />
@@ -9,16 +16,23 @@
         <Project Path="src/DuanEcommerce.DbMigrator/DuanEcommerce.DbMigrator.csproj" />
         <Project Path="src/DuanEcommerce.EntityFrameworkCore/DuanEcommerce.EntityFrameworkCore.csproj" />
     </Folder>
-    <Folder Name="/src/web/">
+    <Folder Name="/src/public/">
         <Project Path="src/DuanEcommerce.Application.Contracts/DuanEcommerce.Application.Contracts.csproj" />
         <Project Path="src/DuanEcommerce.Application/DuanEcommerce.Application.csproj" />
         <Project Path="src/DuanEcommerce.HttpApi.Client/DuanEcommerce.HttpApi.Client.csproj" />
         <Project Path="src/DuanEcommerce.HttpApi.Host/DuanEcommerce.HttpApi.Host.csproj" />
         <Project Path="src/DuanEcommerce.HttpApi/DuanEcommerce.HttpApi.csproj" />
     </Folder>
-    <Folder Name="/test/">
+    <Folder Name="/test/" />
+    <Folder Name="/test/admin/">
+        <Project Path="test/DuanEcommerce.Admin.Application.Tests/DuanEcommerce.Admin.Application.Tests.csproj" />
+        <Project Path="test/DuanEcommerce.Admin.HttpApi.Client.ConsoleTestApp/DuanEcommerce.Admin.HttpApi.Client.ConsoleTestApp.csproj" />
+    </Folder>
+    <Folder Name="/test/public/">
         <Project Path="test/DuanEcommerce.Application.Tests/DuanEcommerce.Application.Tests.csproj" />
         <Project Path="test/DuanEcommerce.Domain.Tests/DuanEcommerce.Domain.Tests.csproj" />
+    </Folder>
+    <Folder Name="/test/shared/">
         <Project Path="test/DuanEcommerce.EntityFrameworkCore.Tests/DuanEcommerce.EntityFrameworkCore.Tests.csproj" />
         <Project Path="test/DuanEcommerce.HttpApi.Client.ConsoleTestApp/DuanEcommerce.HttpApi.Client.ConsoleTestApp.csproj" />
         <Project Path="test/DuanEcommerce.TestBase/DuanEcommerce.TestBase.csproj" />

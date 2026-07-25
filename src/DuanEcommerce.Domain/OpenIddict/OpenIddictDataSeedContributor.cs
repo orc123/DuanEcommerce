@@ -42,6 +42,13 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
             DisplayName = "DuanEcommerce API", 
             Resources = { "DuanEcommerce" }
         });
+
+        await CreateScopesAsync(new OpenIddictScopeDescriptor
+        {
+            Name = "DuanEcommerce.Admin",
+            DisplayName = "DuanEcommerce Admin API",
+            Resources = { "DuanEcommerce" }
+        });
     }
 
     private async Task CreateApplicationsAsync()
@@ -58,26 +65,23 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
         var configurationSection = Configuration.GetSection("OpenIddict:Applications");
 
 
-        // Console Test / Angular Client
+        // Admin Client
         
-        var appClientId = configurationSection["DuanEcommerce_App:ClientId"];
+        var appClientId = configurationSection["DuanEcommerce_Web:ClientId"];
         if (!appClientId.IsNullOrWhiteSpace())
         {
-            var appClientRootUrl = configurationSection["DuanEcommerce_App:RootUrl"]?.TrimEnd('/');
+            var appClientRootUrl = configurationSection["DuanEcommerce_Web:RootUrl"]?.TrimEnd('/');
             await CreateOrUpdateApplicationAsync(
                 applicationType: OpenIddictConstants.ApplicationTypes.Web,
                 name: appClientId!,
                 type: OpenIddictConstants.ClientTypes.Public,
                 consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: "Console Test / Angular Application",
+                displayName: "Admin Application",
                 secret: null,
                 grantTypes: new List<string> {
-                    OpenIddictConstants.GrantTypes.AuthorizationCode,
+                    OpenIddictConstants.GrantTypes.Implicit,
                     OpenIddictConstants.GrantTypes.Password,
-                    OpenIddictConstants.GrantTypes.ClientCredentials,
-                    OpenIddictConstants.GrantTypes.RefreshToken,
-                    "LinkLogin",
-                    "Impersonation"
+                    OpenIddictConstants.GrantTypes.RefreshToken
                 },
                 scopes: commonScopes,
                 redirectUris: new List<string> { appClientRootUrl },
@@ -87,17 +91,12 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
             );
         }
 
-        
-        
-
-
-
 
         // Swagger Client
-        var swaggerClientId = configurationSection["DuanEcommerce_Swagger:ClientId"];
+        var swaggerClientId = configurationSection["DuanEcommerce_Admin:ClientId"];
         if (!swaggerClientId.IsNullOrWhiteSpace())
         {
-            var swaggerRootUrl = configurationSection["DuanEcommerce_Swagger:RootUrl"]?.TrimEnd('/');
+            var swaggerRootUrl = configurationSection["DuanEcommerce_Admin:RootUrl"]?.TrimEnd('/');
 
             await CreateOrUpdateApplicationAsync(
                 applicationType: OpenIddictConstants.ApplicationTypes.Web,
@@ -106,7 +105,10 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
                 consentType: OpenIddictConstants.ConsentTypes.Implicit,
                 displayName: "Swagger Application",
                 secret: null,
-                grantTypes: new List<string> { OpenIddictConstants.GrantTypes.AuthorizationCode, },
+                grantTypes: new List<string> {
+                    OpenIddictConstants.GrantTypes.AuthorizationCode,
+                    OpenIddictConstants.GrantTypes.Implicit
+                },
                 scopes: commonScopes,
                 redirectUris: new List<string> { $"{swaggerRootUrl}/swagger/oauth2-redirect.html" },
                 clientUri: swaggerRootUrl.EnsureEndsWith('/') + "swagger",

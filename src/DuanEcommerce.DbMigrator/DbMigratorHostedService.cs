@@ -7,6 +7,7 @@ using DuanEcommerce.Data;
 using Serilog;
 using Volo.Abp;
 using Volo.Abp.Data;
+using DuanEcommerce.Seeding;
 
 namespace DuanEcommerce.DbMigrator;
 
@@ -37,6 +38,11 @@ public class DbMigratorHostedService : IHostedService
                 .ServiceProvider
                 .GetRequiredService<DuanEcommerceDbMigrationService>()
                 .MigrateAsync();
+
+            await application
+               .ServiceProvider
+               .GetRequiredService<IdentityDataSeeder>()
+               .SeedAsync("admin@gmail.com", "Abcd@1234$");
 
             await application.ShutdownAsync();
 

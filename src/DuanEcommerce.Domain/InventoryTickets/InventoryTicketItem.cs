@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Volo.Abp.Domain.Entities;
 
 namespace DuanEcommerce.InventoryTickets;
 
-public class InventoryTicketItem
+public class InventoryTicketItem : Entity<Guid>
 {
     public Guid TicketId { get; set; }
     public Guid ProductId { get; set; }

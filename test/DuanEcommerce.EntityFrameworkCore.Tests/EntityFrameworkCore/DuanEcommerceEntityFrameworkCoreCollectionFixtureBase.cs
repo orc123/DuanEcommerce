@@ -1,5 +1,4 @@
-﻿using DuanEcommerce.EntityFrameworkCore;
-using Xunit;
+﻿using Xunit;
 
 namespace DuanEcommerce.EntityFrameworkCore;
 

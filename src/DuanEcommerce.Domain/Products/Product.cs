@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace DuanEcommerce.Products;
@@ -10,6 +8,7 @@ public class Product : AuditedAggregateRoot<Guid>
     public Guid ManufacturerId { get; set; }
     public string Name { get; set; }
     public string Code { get; set; }
+    public string Slug { get; set; }
     public ProductType ProductType { get; set; }
     public string SKU { get; set; }
     public int SortOrder { get; set; }

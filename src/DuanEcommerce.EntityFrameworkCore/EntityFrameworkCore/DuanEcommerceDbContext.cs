@@ -14,6 +14,14 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using DuanEcommerce.ProductAttributes;
+using DuanEcommerce.Inventories;
+using DuanEcommerce.InventoryTickets;
+using DuanEcommerce.Manufacturers;
+using DuanEcommerce.Orders;
+using DuanEcommerce.ProductCategories;
+using DuanEcommerce.Products;
+using DuanEcommerce.Promotions;
 
 namespace DuanEcommerce.EntityFrameworkCore;
 
@@ -55,6 +63,20 @@ public class DuanEcommerceDbContext :
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
+    // Ecommerce
+
+    public DbSet<ProductAttribute> ProductAttributes { get; set; }
+    public DbSet<Inventory> Inventories { get; set; }
+    public DbSet<InventoryTicket> InventoryTickets { get; set; }
+    public DbSet<InventoryTicketItem> InventoryTicketItems { get; set; }
+    public DbSet<Manufacturer> Manufacturers { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<OrderTransaction> OrderTransactions { get; set; }
+    public DbSet<ProductCategory> ProductCategories { get; set; }
+    public DbSet<Product> Products { get; set; }
+
+
     #endregion
 
     public DuanEcommerceDbContext(DbContextOptions<DuanEcommerceDbContext> options)
@@ -81,11 +103,301 @@ public class DuanEcommerceDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(DuanEcommerceConsts.DbTablePrefix + "YourEntities", DuanEcommerceConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.Entity<Inventory>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "Inventories");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.SKU)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.StockQuantity)
+                .IsRequired();
+        });
+
+
+        builder.Entity<InventoryTicket>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "InventoryTickets");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+        });
+
+        builder.Entity<InventoryTicketItem>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "InventoryTicketItems");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.SKU)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.BatchNumber)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        builder.Entity<Manufacturer>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "Manufacturers");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.Slug)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.CoverPicture)
+                .HasMaxLength(250);
+        });
+
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "Orders");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.CustomerName)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            b.Property(x => x.CustomerAddress)
+                .HasMaxLength(250)
+                .IsRequired();
+
+            b.Property(x => x.CustomerPhoneNumber)
+                .HasMaxLength(250)
+                .IsRequired();
+        });
+
+        builder.Entity<OrderItem>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "OrderItems");
+            b.ConfigureByConvention();
+            b.HasKey(x => new { x.ProductId, x.OrderId});
+            b.Property(x => x.SKU)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+        });
+
+        builder.Entity<OrderTransaction>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "OrderTransactions");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+            b.Property(x => x.Note)
+               .HasMaxLength(500);
+        });
+
+        builder.Entity<ProductAttribute>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductAttribute");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.Label)
+               .HasMaxLength(50)
+               .IsRequired();
+        });
+
+        builder.Entity<ProductCategory>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductCategories");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.Slug)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.CoverPicture)
+                .HasMaxLength(250);
+
+            b.Property(x => x.SeoMetaDescription)
+                .HasMaxLength(250);
+        });
+
+        builder.Entity<ProductAttributeDateTime>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductAttributeDateTimes");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
+        builder.Entity<ProductAttributeDecimal>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductAttributeDecimals");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
+        builder.Entity<ProductAttributeInt>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductAttributeInts");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
+        builder.Entity<ProductAttributeText>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductAttributeTexts");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Value)
+                .HasMaxLength(500);
+        });
+        builder.Entity<ProductAttributeVarchar>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductAttributeVarchars");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Value)
+               .HasMaxLength(500);
+        });
+
+        builder.Entity<Product>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "Products");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            b.Property(x => x.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.Slug)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.SKU)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .IsRequired();
+
+            b.Property(x => x.ThumbnailPicture)
+                .HasMaxLength(250);
+
+            b.Property(x => x.SeoMetaDescription)
+                .HasMaxLength(250);
+        });
+
+        builder.Entity<ProductLink>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductLinks");
+            b.ConfigureByConvention();
+            b.HasKey(x => new { x.ProductId, x.LinkedProductId});
+        });
+
+        builder.Entity<ProductReview>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductReviews");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Title)
+                .HasMaxLength(250)
+                .IsRequired();
+        });
+
+        builder.Entity<ProductTag>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "ProductTags");
+            b.ConfigureByConvention();
+            b.HasKey(x => new { x.ProductId, x.TagId });
+        });
+        builder.Entity<Tag>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "Tags");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(x => x.Id)
+               .HasMaxLength(50)
+               .IsRequired();
+            b.Property(x => x.Name)
+              .HasMaxLength(50)
+              .IsRequired();
+        });
+
+        builder.Entity<PromotionCategory>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "PromotionCategories");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
+
+        builder.Entity<Promotion>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "Promotions");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+
+            b.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            b.Property(x => x.CouponCode)
+               .HasMaxLength(50)
+               .IsUnicode(false)
+               .IsRequired();
+        });
+
+        builder.Entity<PromotionManufacturer>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "PromotionManufacturers");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
+        builder.Entity<PromotionProduct>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "PromotionProducts");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
+        builder.Entity<PromotionUsageHistory>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "PromotionUsageHistories");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+        });
     }
 }

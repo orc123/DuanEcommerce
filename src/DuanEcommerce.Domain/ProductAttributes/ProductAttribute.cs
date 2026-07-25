@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace DuanEcommerce.Attributes;
+namespace DuanEcommerce.ProductAttributes;
 
-public class Attribute : CreationAuditedAggregateRoot<Guid>
+public class ProductAttribute : CreationAuditedAggregateRoot<Guid>
 {
     public string Code { get; set; }
     public AttributeType DataType { get; set; }

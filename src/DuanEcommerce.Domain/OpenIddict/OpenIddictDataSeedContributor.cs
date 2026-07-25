@@ -58,9 +58,16 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
             OpenIddictConstants.Permissions.Scopes.Email,
             OpenIddictConstants.Permissions.Scopes.Phone,
             OpenIddictConstants.Permissions.Scopes.Profile,
-            OpenIddictConstants.Permissions.Scopes.Roles,
-            "DuanEcommerce"
+            OpenIddictConstants.Permissions.Scopes.Roles
         };
+
+        var adminScopes = new List<string>();
+        adminScopes.AddRange(commonScopes);
+        adminScopes.Add("DuanEcommerce.Admin");
+
+        var clientScopes = new List<string>();
+        clientScopes.AddRange(commonScopes);
+        clientScopes.Add("DuanEcommerce");
 
         var configurationSection = Configuration.GetSection("OpenIddict:Applications");
 
@@ -79,11 +86,12 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
                 displayName: "Admin Application",
                 secret: null,
                 grantTypes: new List<string> {
+                    OpenIddictConstants.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.GrantTypes.Implicit,
                     OpenIddictConstants.GrantTypes.Password,
                     OpenIddictConstants.GrantTypes.RefreshToken
                 },
-                scopes: commonScopes,
+                scopes: adminScopes,
                 redirectUris: new List<string> { appClientRootUrl },
                 postLogoutRedirectUris: new List<string> { appClientRootUrl },
                 clientUri: appClientRootUrl,
@@ -109,13 +117,38 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
                     OpenIddictConstants.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.GrantTypes.Implicit
                 },
-                scopes: commonScopes,
+                scopes: adminScopes,
                 redirectUris: new List<string> { $"{swaggerRootUrl}/swagger/oauth2-redirect.html" },
                 clientUri: swaggerRootUrl.EnsureEndsWith('/') + "swagger",
                 logoUri: "/images/clients/swagger.svg"
             );
         }
 
+        // Web App
+        var appWebClientId = configurationSection["DuanEcommerce_Web_Client:ClientId"];
+        if (!appWebClientId.IsNullOrWhiteSpace())
+        {
+            var appClientRootUrl = configurationSection["DuanEcommerce_Web_Client:RootUrl"]?.TrimEnd('/');
+            await CreateOrUpdateApplicationAsync(
+                applicationType: OpenIddictConstants.ApplicationTypes.Web,
+                name: appWebClientId!,
+                type: OpenIddictConstants.ClientTypes.Public,
+                consentType: OpenIddictConstants.ConsentTypes.Implicit,
+                displayName: "Client Application",
+                secret: null,
+                grantTypes: new List<string> {
+                    OpenIddictConstants.GrantTypes.AuthorizationCode,
+                    OpenIddictConstants.GrantTypes.Implicit,
+                    OpenIddictConstants.GrantTypes.Password,
+                    OpenIddictConstants.GrantTypes.RefreshToken
+                },
+                scopes: clientScopes,
+                redirectUris: new List<string> { appClientRootUrl },
+                postLogoutRedirectUris: new List<string> { appClientRootUrl },
+                clientUri: appClientRootUrl,
+                logoUri: "/images/clients/angular.svg"
+            );
+        }
 
     }
 }

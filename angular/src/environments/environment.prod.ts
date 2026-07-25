@@ -3,9 +3,9 @@ import { Environment } from '@abp/ng.core';
 const baseUrl = 'http://localhost:4200';
 
 const oAuthConfig = {
-  issuer: 'https://localhost:44351/',
+  issuer: 'https://localhost:5001/',
   redirectUri: baseUrl,
-  clientId: 'DuanEcommerce_App',
+  clientId: 'DuanEcommerce_Web',
   responseType: 'code',
   scope: 'offline_access DuanEcommerce',
   requireHttps: true,
@@ -20,7 +20,7 @@ export const environment = {
   oAuthConfig,
   apis: {
     default: {
-      url: 'https://localhost:44351',
+      url: 'https://localhost:5001',
       rootNamespace: 'DuanEcommerce',
     },
     AbpAccountPublic: {
@@ -30,6 +30,6 @@ export const environment = {
   },
   remoteEnv: {
     url: '/getEnvConfig',
-    mergeStrategy: 'deepmerge'
-  }
+    mergeStrategy: 'deepmerge',
+  },
 } as Environment;

@@ -281,3 +281,4 @@ src/DuanEcommerce.Blazor.Server.Tiered/Logs/*
 # IdentityServer temp files
 tempkey.rsa
 tempkey.jwk
+/src/DuanEcommerce.Admin.HttpApi.Host/Logs/logs.txt

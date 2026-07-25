@@ -1,5 +1,5 @@
-using DuanEcommerce.EntityFrameworkCore;
 using DuanEcommerce.Admin.HealthChecks;
+using DuanEcommerce.EntityFrameworkCore;
 using DuanEcommerce.MultiTenancy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -13,6 +13,7 @@ using Microsoft.OpenApi;
 using OpenIddict.Server.AspNetCore;
 using OpenIddict.Validation.AspNetCore;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
@@ -61,7 +62,7 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
         {
             builder.AddValidation(options =>
             {
-                options.AddAudiences("DuanEcommerce.Admin");
+                options.AddAudiences("DuanEcommerce", "DuanEcommerce.Admin");
                 options.UseLocalServer();
                 options.UseAspNetCore();
             });
@@ -214,11 +215,13 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
 
     private static void ConfigureSwagger(ServiceConfigurationContext context, IConfiguration configuration)
     {
-        context.Services.AddAbpSwaggerGenWithOidc(
+        context.Services.AddAbpSwaggerGenWithOAuth(
             configuration["AuthServer:Authority"]!,
-            ["DuanEcommerce.Admin"],
-            [AbpSwaggerOidcFlows.AuthorizationCode],
-            null,
+            new Dictionary<string, string>
+            {
+                { "DuanEcommerce.Admin", "DuanEcommerce Admin API" }
+            },
+
             options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "DuanEcommerce Admin API", Version = "v1" });
@@ -298,6 +301,8 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
 
             var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
             options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
+            options.OAuthScopes("DuanEcommerce.Admin");
+            options.OAuthUsePkce();
         });
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();

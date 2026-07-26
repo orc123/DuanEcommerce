@@ -27,7 +27,10 @@ export const appConfig: ApplicationConfig = {
     FOOTER_PROVIDER,
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: Aura,
+        options: {
+          darkModeSelector: '.app-dark'
+        }
       }
     }),
     provideAnimations(),

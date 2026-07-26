@@ -57,17 +57,17 @@ export class LayoutService {
     constructor() {
         effect(() => {
             const config = this.layoutConfig();
-
-            if (!this.initialized || !config) {
-                this.initialized = true;
-                return;
-            }
-
             this.handleDarkModeTransition(config);
         });
     }
 
     private handleDarkModeTransition(config: LayoutConfig): void {
+        if (!this.initialized) {
+            this.initialized = true;
+            this.toggleDarkMode(config);
+            return;
+        }
+
         const supportsViewTransition = 'startViewTransition' in document;
 
         if (supportsViewTransition) {

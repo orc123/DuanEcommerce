@@ -10,6 +10,8 @@ import { registerLocaleForEsBuild } from '@abp/ng.core/locale';
 import { provideThemeLeptonX } from '@abp/ng.theme.lepton-x';
 import { provideSideMenuLayout } from '@abp/ng.theme.lepton-x/layouts';
 import { provideLogo, withEnvironmentOptions } from "@abp/ng.theme.shared";
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
 import { ApplicationConfig } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -23,6 +25,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(APP_ROUTES),
     APP_ROUTE_PROVIDER,
     FOOTER_PROVIDER,
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    }),
     provideAnimations(),
     provideAbpCore(
       withOptions({

@@ -4,12 +4,15 @@
       <div class="card h-lg-100 w-100 overflow-hidden getting-started-hero-card">
         <div class="card-body">
           <div class="starting-content pe-5">
-            @if(!hasLoggedIn){
+            @if (!hasLoggedIn) {
               <h3>Welcome</h3>
               <p class="lead text-muted mb-2">
-              {{ '::LongWelcomeMessage' | abpLocalization }}
+                {{ '::LongWelcomeMessage' | abpLocalization }}
               </p>
-              <a (click)="login()" class="btn btn-primary mb-4"><i class="fa-solid fa-right-to-bracket me-1"></i><span>{{ 'AbpAccount::Login' | abpLocalization }}</span></a>
+              <a (click)="login()" class="btn btn-primary mb-4"
+                ><i class="fa-solid fa-right-to-bracket me-1"></i
+                ><span>{{ 'AbpAccount::Login' | abpLocalization }}</span></a
+              >
             }
 
             <h4>Getting Started</h4>
@@ -19,7 +22,7 @@
             </p>
             <a
               href="https://abp.io/docs/latest/get-started"
-              class="btn  btn-brand mb-4"
+              class="btn btn-brand mb-4"
               target="_blank"
             >
               Getting Started
@@ -29,7 +32,12 @@
             <p class="text-muted mb-2">
               Learn how to build an ABP based web application named Acme.BookStore.
             </p>
-            <a href="https://abp.io/docs/latest/tutorials/book-store" class="btn btn-primary soft mb-4" target="_blank">Explore Tutorial</a>
+            <a
+              href="https://abp.io/docs/latest/tutorials/book-store"
+              class="btn btn-primary soft mb-4"
+              target="_blank"
+              >Explore Tutorial</a
+            >
           </div>
           <img class="card-bg-image" src="assets/images/getting-started/bg-01.png" />
         </div>
@@ -42,14 +50,10 @@
             <div class="card-body pb-0">
               <div class="abp-support abp-logo mb-2"></div>
               <p class="text-muted mb-2">
-                You can check for similar problems and solutions, or open a new topic to discuss your
-                specific issue.
+                You can check for similar problems and solutions, or open a new topic to discuss
+                your specific issue.
               </p>
-              <a
-                class="btn btn-brand soft"
-                href="https://abp.io/support/questions"
-                target="_blank"
-              >
+              <a class="btn btn-brand soft" href="https://abp.io/support/questions" target="_blank">
                 Visit Support
               </a>
               <img src="assets/images/getting-started/img-support.png" />
@@ -64,16 +68,10 @@
                 You can find content on .NET development, cross-platform, ASP.NET application
                 templates, ABP-related news, and more.
               </p>
-              <a
-                class="btn btn-brand soft"
-                href="https://abp.io/blog"
-                target="_blank"
-              >
+              <a class="btn btn-brand soft" href="https://abp.io/blog" target="_blank">
                 Visit Blog
               </a>
-              <img style="margin-bottom: -24px"
-                src="assets/images/getting-started/img-blog.png"
-              />
+              <img style="margin-bottom: -24px" src="assets/images/getting-started/img-blog.png" />
             </div>
           </div>
         </div>
@@ -87,14 +85,10 @@
             A unique community platform for <span class="fw-bold">ABP Lovers!</span>
           </p>
           <p class="text-muted mb-2">
-            Explore all ABP users' experiences with the ABP Framework, discover articles and videos on
-            how to use ABP, and join raffles for a chance to win surprise gifts!
+            Explore all ABP users' experiences with the ABP Framework, discover articles and videos
+            on how to use ABP, and join raffles for a chance to win surprise gifts!
           </p>
-          <a
-            class="btn btn-brand soft mb-3"
-            href="https://abp.io/community/"
-            target="_blank"
-          >
+          <a class="btn btn-brand soft mb-3" href="https://abp.io/community/" target="_blank">
             Join ABP Community
           </a>
         </div>

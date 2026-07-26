@@ -420,7 +420,7 @@
   optionalDependencies:
     lmdb "3.5.1"
 
-"@angular/cdk@^21.0.0":
+"@angular/cdk@^21.0.0", "@angular/cdk@~21.2.0":
   version "21.2.14"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-21.2.14.tgz#26872a5b2ad5ced498f7e1c1e5a3180bf8026a45"
   integrity sha512-806REq/CLf37nEhmmd8Q+ILN8z/RVG2vk2n8YZ/4TdHpcBCi5ux4AxLbpMmduLwGPOzPagJ6ggRzE5fnX0rmcQ==
@@ -1424,6 +1424,16 @@
   dependencies:
     tslib "^2.0.0"
 
+"@noble/ed25519@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@noble/ed25519/-/ed25519-2.3.0.tgz#df0dbe424cfd7da4968b956b819c15db5fbe7f21"
+  integrity sha512-M7dvXL2B92/M7dw9+gzuydL8qn/jiqNHaoR3Q+cb1q1GHV7uwE17WCyFMG+Y+TZb5izcaXk5TdJRrDUxHXL78A==
+
+"@noble/hashes@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-2.2.0.tgz#22da1d16a469954fce877055d559900a6c73b63b"
+  integrity sha512-IYqDGiTXab6FniAgnSdZwgWbomxpy9FtYvLKs7wCUs2a8RkITG+DFGO1DM9cr+E3/RgADRpFjrKVaJ1z6sjtEg==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1623,6 +1633,46 @@
   version "2.11.8"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
+
+"@primeui/license-manager@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@primeui/license-manager/-/license-manager-1.0.0.tgz#f57a8984f8999e6fb82168366fc6bcd9ed279953"
+  integrity sha512-89J7r8cclEqoHVwjOX1adPcB/blFSocpzuYlzmd+6r0gxzg2Vd4jM54TKXt9/qwAT/kOv4vYnHKZ6hcP2GFtfA==
+  dependencies:
+    "@noble/ed25519" "2.3.0"
+    "@noble/hashes" "2.2.0"
+
+"@primeuix/styled@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@primeuix/styled/-/styled-0.3.2.tgz#a6093e81a66fc78b915b5e8d998cc73c2c47a1dc"
+  integrity sha512-ColZes0+/WKqH4ob2x8DyNYf1NENpe5ZguOvx5yCLxaP8EIMVhLjWLO/3umJiDnQU4XXMLkn2mMHHw+fhTX/mw==
+  dependencies:
+    "@primeuix/utils" "^0.3.2"
+
+"@primeuix/styled@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@primeuix/styled/-/styled-1.0.0.tgz#61ce5d9b8b0d3c96774cc7c5b59178cadaafa28b"
+  integrity sha512-6SXoeQWwKswSqTv1ygaXNfY7otHo6Rb9mxbKJK5WF8adWlZ6CtwmlNfIP+p8cH/zGccsei/5Bu7IetXlMoZGjQ==
+  dependencies:
+    "@primeui/license-manager" "^1.0.0"
+    "@primeuix/utils" "^0.8.0"
+
+"@primeuix/themes@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@primeuix/themes/-/themes-3.0.0.tgz#ab1a11efd14574dd92ae8076b7a30740202c5707"
+  integrity sha512-lNMOhorzu4vHRKbTDIU2/raS7/Z6Oyq2WXGfFDVhOwAIVDF4e7hCX75jlgfC7bo4D0Bl5f+oW5HPGZpG52r6lw==
+  dependencies:
+    "@primeuix/styled" "^1.0.0"
+
+"@primeuix/utils@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@primeuix/utils/-/utils-0.3.2.tgz#dbf92f6b5e18abe214f592a0b51bf4ca02a1f808"
+  integrity sha512-B+nphqTQeq+i6JuICLdVWnDMjONome2sNz0xI65qIOyeB4EF12CoKRiCsxuZ5uKAkHi/0d1LqlQ9mIWRSdkavw==
+
+"@primeuix/utils@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@primeuix/utils/-/utils-0.8.0.tgz#8c8c961d78f590b9c48a979e47fc5562b00e6f0a"
+  integrity sha512-dZSMKU2XJ7W7VDLuFMS/o4k+QYw4SYIpqSNhR/jdasMaaXl8eq0Gt7fTzTwwq7hgfmfOsI6V5xtzUUIvybOJ/w==
 
 "@rolldown/binding-android-arm64@1.0.0-rc.4":
   version "1.0.0-rc.4"
@@ -4580,6 +4630,30 @@ prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
+
+primeflex@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-4.0.0.tgz#660d9d8494ce8d51bae89db0cc8b47fceda51035"
+  integrity sha512-UOEZCRjR36+sm5bUpDhS1xbA068l9VC6y1aTNVqQPtXuKIdPTqAWHRUxj3mKAoPrQ9W373ooJJMgNVXfiaw04g==
+
+primeicons@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-8.0.0.tgz#413bbcef56480beb8f96a5628f1de695011375c8"
+  integrity sha512-eZGk+Mgb4fE+LkJi9LvllbnB4RVUF9kzmnLVnT3ZMY6stqKVh7TUJ0mFoMNIEgTnJSvhaGcJotDiSvtVvkHd7g==
+
+primeng@^19.0.0:
+  version "19.1.4"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-19.1.4.tgz#17cc602e947d930aafcd3626b3cc1188e0080f53"
+  integrity sha512-l5l8SHTxopxxyyXZx1BvbQ11P7ndLv2Qp8H5k2/+OCi65jTZn4xmtrBDGDs7k2K5UMHSqAnGjBgtpbckyqQETg==
+  dependencies:
+    "@primeuix/styled" "^0.3.2"
+    "@primeuix/utils" "^0.3.2"
+    tslib "^2.3.0"
+
+prismjs@1.30.0:
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.30.0.tgz#d9709969d9d4e16403f6f348c63553b19f0975a9"
+  integrity sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==
 
 proc-log@^6.0.0, proc-log@^6.1.0:
   version "6.1.0"

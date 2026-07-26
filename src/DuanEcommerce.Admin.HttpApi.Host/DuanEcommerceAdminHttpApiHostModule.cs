@@ -302,7 +302,7 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
             var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
             options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
             options.OAuthScopes("DuanEcommerce.Admin");
-            options.OAuthUsePkce();
+            //options.OAuthUsePkce();
         });
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();

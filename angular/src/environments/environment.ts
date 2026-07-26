@@ -9,6 +9,7 @@ const oAuthConfig = {
   responseType: 'code',
   scope: 'offline_access DuanEcommerce.Admin',
   requireHttps: true,
+  dummyClientSecret: '1q2w3e*',
 };
 
 export const environment = {

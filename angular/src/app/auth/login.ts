@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Component, inject, OnDestroy } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { AppFloatingConfigurator } from '../layout/component/app.floatingconfigurator';
+import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../shared/services/auth.service';
+import { LoginRequestDto } from '../shared/models/login-request.dto';
+import { LoginResponseDto } from '../shared/models/login-response.dto';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../shared/constants/keys.cont';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +27,20 @@ import { AppFloatingConfigurator } from '../layout/component/app.floatingconfigu
     CheckboxModule,
     InputTextModule,
     PasswordModule,
-    FormsModule,
     RouterModule,
     RippleModule,
     AppFloatingConfigurator,
+    ReactiveFormsModule,
   ],
   template: `
     <app-floating-configurator />
-    <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen p-3">
-      <div class="flex flex-column align-items-center justify-content-center w-full" style="max-width: 450px;">
+    <div
+      class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen p-3"
+    >
+      <div
+        class="flex flex-column align-items-center justify-content-center w-full"
+        style="max-width: 450px;"
+      >
         <div class="surface-card p-5 sm:p-7 shadow-2 border-round-3xl w-full border-1 border-200">
           <div class="text-center mb-5">
             <svg
@@ -44,45 +60,98 @@ import { AppFloatingConfigurator } from '../layout/component/app.floatingconfigu
             <span class="text-600 font-medium">Vui lòng đăng nhập để tiếp tục</span>
           </div>
 
-          <div>
-            <label for="email1" class="block text-900 text-sm font-semibold mb-2">Email / Tên đăng nhập</label>
+          <form [formGroup]="loginForm">
+            <label for="email1" class="block text-900 text-sm font-semibold mb-2"
+              >Email / Tên đăng nhập</label
+            >
             <input
               pInputText
               id="email1"
               type="text"
               placeholder="Nhập email hoặc tên đăng nhập"
               class="w-full mb-4 p-3"
-              [(ngModel)]="email"
+              formControlName="username"
             />
 
-            <label for="password1" class="block text-900 text-sm font-semibold mb-2">Mật khẩu</label>
+            <label for="password1" class="block text-900 text-sm font-semibold mb-2"
+              >Mật khẩu</label
+            >
             <p-password
               id="password1"
-              [(ngModel)]="password"
               placeholder="Nhập mật khẩu"
               [toggleMask]="true"
               styleClass="w-full mb-4"
               [inputStyle]="{ width: '100%', padding: '0.75rem' }"
               [feedback]="false"
+              formControlName="password"
             ></p-password>
 
             <div class="flex align-items-center justify-content-between mb-5">
               <div class="flex align-items-center">
-                <p-checkbox [(ngModel)]="checked" id="rememberme1" [binary]="true" class="mr-2"></p-checkbox>
-                <label for="rememberme1" class="text-sm cursor-pointer select-none">Ghi nhớ đăng nhập</label>
+                <p-checkbox id="rememberme1" [binary]="true" class="mr-2"></p-checkbox>
+                <label for="rememberme1" class="text-sm cursor-pointer select-none"
+                  >Ghi nhớ đăng nhập</label
+                >
               </div>
-              <a class="font-medium text-sm no-underline cursor-pointer text-primary hover:underline">Quên mật khẩu?</a>
+              <a
+                class="font-medium text-sm no-underline cursor-pointer text-primary hover:underline"
+                >Quên mật khẩu?</a
+              >
             </div>
 
-            <p-button label="Đăng Nhập" styleClass="w-full p-3 font-semibold text-lg" routerLink="/"></p-button>
-          </div>
+            <p-button
+              label="Đăng Nhập"
+              styleClass="w-full p-3 font-semibold text-lg"
+              (onClick)="onLogin()"
+            ></p-button>
+          </form>
         </div>
       </div>
     </div>
   `,
 })
-export class Login {
+export class Login implements OnDestroy {
+  private ngUnsubscribe = new Subject<void>();
+
+  fb = inject(FormBuilder);
+  authService = inject(AuthService);
+  router = inject(Router);
+
   email: string = '';
   password: string = '';
   checked: boolean = false;
+  loginForm: FormGroup = this.fb.group({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
+
+  onLogin() {
+    var request: LoginRequestDto = {
+      username: this.loginForm.controls['username'].value,
+      password: this.loginForm.controls['password'].value,
+    };
+    debugger;
+    this.authService
+      .login(request)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: res => {
+          localStorage.setItem(ACCESS_TOKEN, res.access_token);
+          localStorage.setItem(REFRESH_TOKEN, res.refresh_token);
+          this.router.navigate(['']);
+        },
+        error: err => {
+          console.error('Lỗi đăng nhập:', err);
+          alert(
+            err?.error?.error_description ||
+              'Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản/mật khẩu!',
+          );
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }

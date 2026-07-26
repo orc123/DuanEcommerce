@@ -1,15 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '@/app/shared/services/layout.service';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { LOGIN_URL } from '@/app/shared/constants/urls.const';
+import { AuthService } from '@/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
+  imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator, TieredMenuModule],
   template: ` <div class="layout-topbar">
     <div class="layout-topbar-logo-container">
       <button
@@ -94,30 +97,57 @@ import { LayoutService } from '@/app/shared/services/layout.service';
         <div class="layout-topbar-menu-content">
           <button type="button" class="layout-topbar-action">
             <i class="pi pi-calendar"></i>
-            <span>Calendar</span>
+            <span>Lịch</span>
           </button>
           <button type="button" class="layout-topbar-action">
             <i class="pi pi-inbox"></i>
-            <span>Messages</span>
+            <span>Tin nhắn</span>
           </button>
-          <button type="button" class="layout-topbar-action">
+          <button type="button" class="layout-topbar-action" (click)="userMenu.toggle($event)">
             <i class="pi pi-user"></i>
-            <span>Profile</span>
+            <span>Tài khoản</span>
           </button>
+          <p-tieredmenu #userMenu [model]="userMenuItems" [popup]="true" />
         </div>
       </div>
     </div>
   </div>`,
 })
-export class AppTopbar {
+export class AppTopbar implements OnInit {
   items!: MenuItem[];
+  userMenuItems: MenuItem[] = [];
 
   layoutService = inject(LayoutService);
+  authService = inject(AuthService);
+  router = inject(Router);
 
   toggleDarkMode() {
     this.layoutService.layoutConfig.update(state => ({
       ...state,
       darkTheme: !state.darkTheme,
     }));
+  }
+
+  ngOnInit(): void {
+    this.userMenuItems = [
+      {
+        label: 'Xem thông tin cá nhân',
+        icon: 'pi pi-id-card',
+        routerLink: ['/profile'],
+      },
+      {
+        label: 'Đổi mật khẩu',
+        icon: 'pi pi-key',
+        routerLink: ['/change-password'],
+      },
+      {
+        label: 'Đăng xuất',
+        icon: 'pi pi-sign-out',
+        command: event => {
+          this.authService.logout();
+          this.router.navigate([LOGIN_URL]);
+        },
+      },
+    ];
   }
 }

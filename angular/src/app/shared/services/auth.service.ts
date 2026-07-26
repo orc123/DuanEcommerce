@@ -4,6 +4,7 @@ import { LoginRequestDto } from '../models/login-request.dto';
 import { Observable } from 'rxjs';
 import { LoginResponseDto } from '../models/login-response.dto';
 import { environment } from '@/environments/environment';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/keys.cont';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,13 @@ export class AuthService {
       data,
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
     );
+  }
+
+  public isAuthenticated(): boolean {
+    return localStorage.getItem(ACCESS_TOKEN) != null;
+  }
+  public logout() {
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
   }
 }

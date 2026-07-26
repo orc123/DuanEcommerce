@@ -130,7 +130,6 @@ export class Login implements OnDestroy {
       username: this.loginForm.controls['username'].value,
       password: this.loginForm.controls['password'].value,
     };
-    debugger;
     this.authService
       .login(request)
       .pipe(takeUntil(this.ngUnsubscribe))

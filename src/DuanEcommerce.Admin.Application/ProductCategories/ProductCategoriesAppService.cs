@@ -14,29 +14,31 @@ namespace DuanEcommerce.Admin.ProductCategories;
 public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository) : CrudAppService
     <ProductCategory, ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>(repository), IProductCategoriesAppService
 {
-    public override async Task<PagedResultDto<ProductCategoryDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+    public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
-        var query = await Repository.GetQueryableAsync();
-
-        var totalCount = await AsyncExecuter.CountAsync(query);
-
-        var entities = await AsyncExecuter.ToListAsync(query);
-
-        var entityDtos = totalCount == 0 ? [] : ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(entities);
-
-        return new PagedResultDto<ProductCategoryDto>(totalCount, entityDtos);
+        await Repository.DeleteManyAsync(ids);
+        await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
-    public async Task<PagedResultDto<ProductCategoryInListDto>> GetListFilterAsync(BaseListFilterDto input)
+    public async Task<List<ProductCategoryDto>> GetListAllAsync()
+    {
+        var query = await Repository.GetQueryableAsync();
+        query = query.Where(x => x.IsActive);
+        var data = await AsyncExecuter.ToListAsync(query);
+
+        return ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data);
+    }
+
+    public async Task<PagedResultDto<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
 
-        query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword)).AsQueryable();
+        query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword!)).AsQueryable();
 
         var totalCount = await AsyncExecuter.CountAsync(query);
 
         var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
-        return new PagedResultDto<ProductCategoryInListDto>(totalCount, ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryInListDto>>(data));
+        return new PagedResultDto<ProductCategoryDto>(totalCount, ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data));
     }
 }

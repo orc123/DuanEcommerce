@@ -10,5 +10,7 @@ namespace DuanEcommerce.Admin.ProductCategories;
 public interface IProductCategoriesAppService 
     : ICrudAppService<ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>
 {
-    Task<PagedResultDto<ProductCategoryInListDto>> GetListFilterAsync(BaseListFilterDto input);
+    Task<PagedResultDto<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input);
+    Task<List<ProductCategoryDto>> GetListAllAsync();
+    Task DeleteMultipleAsync(IEnumerable<Guid> ids);
 }

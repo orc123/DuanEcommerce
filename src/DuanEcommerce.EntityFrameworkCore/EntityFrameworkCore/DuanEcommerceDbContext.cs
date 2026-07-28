@@ -74,7 +74,21 @@ public class DuanEcommerceDbContext :
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<OrderTransaction> OrderTransactions { get; set; }
     public DbSet<ProductCategory> ProductCategories { get; set; }
-    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductAttributeDateTime> ProductAttributeDateTimes { get; set; }
+    public DbSet<ProductAttributeDecimal> ProductAttributeDecimals { get; set; }
+    public DbSet<ProductAttributeInt> ProductAttributeInts { get; set; }
+    public DbSet<ProductAttributeText> ProductAttributeTexts { get; set; }
+    public DbSet<ProductAttributeVarchar> ProductAttributeVarchars { get; set; }
+    public DbSet<ProductLink> ProductLinks { get; set; }
+    public DbSet<ProductReview> ProductReviews { get; set; }
+    public DbSet<ProductTag> ProductTags { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+
+    public DbSet<Promotion> Promotions { get; set; }
+    public DbSet<PromotionCategory> PromotionCategories { get; set; }
+    public DbSet<PromotionManufacturer> PromotionManufacturers { get; set; }
+    public DbSet<PromotionProduct> PromotionProducts { get; set; }
+    public DbSet<PromotionUsageHistory> PromotionUsageHistories { get; set; }
 
 
     #endregion

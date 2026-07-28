@@ -11,10 +11,10 @@ export const APP_ROUTES: Routes = [
         path: '',
         loadComponent: () => import('./home/home.component').then(c => c.HomeComponent),
       },
-      // {
-      //   path: 'identity',
-      //   loadChildren: () => import('@abp/ng.identity').then(c => c.createRoutes()),
-      // },
+      {
+        path: 'products',
+        loadChildren: () => import('./products/product.route'),
+      },
       // {
       //   path: 'tenant-management',
       //   loadChildren: () => import('@abp/ng.tenant-management').then(c => c.createRoutes()),

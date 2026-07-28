@@ -12,6 +12,7 @@ import { ProductDto, ProductsService } from '../proxy/products';
 import { PagedResultDto } from '@abp/ng.core';
 import { DecimalPipe } from '@angular/common';
 import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-categories';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-product',
@@ -25,6 +26,7 @@ import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-c
     DropdownModule,
     FormsModule,
     InputTextModule,
+    ProgressSpinnerModule,
   ],
   template: `
     <p-panel header="Danh sách sản phẩm">
@@ -90,7 +92,9 @@ import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-c
         [rowsPerPageOptions]="[10, 20, 30, 50, 100]"
         (onPageChange)="pageChanged($event)"
       ></p-paginator>
-      <p-block-ui [blocked]="blockedPanel" [target]="pnl"></p-block-ui>
+      <p-block-ui [blocked]="blockedPanel" [target]="pnl">
+        <p-progressSpinner></p-progressSpinner>
+      </p-block-ui>
     </p-panel>
   `,
 })
@@ -118,6 +122,7 @@ export class Product implements OnInit, OnDestroy {
   }
 
   loadData() {
+    this.toggleBlockUI(true);
     this.productService
       .getListFilter({
         keyword: this.keyword,
@@ -130,8 +135,11 @@ export class Product implements OnInit, OnDestroy {
         next: (response: PagedResultDto<ProductDto>) => {
           this.items = response.items ?? [];
           this.totalCount = response.totalCount;
+          this.toggleBlockUI(false);
         },
-        error: () => {},
+        error: () => {
+          this.toggleBlockUI(false);
+        },
       });
   }
 
@@ -150,6 +158,16 @@ export class Product implements OnInit, OnDestroy {
     this.skipCount = (event.page - 1) * this.maxResultCount;
     this.maxResultCount = event.rows;
     this.loadData();
+  }
+
+  private toggleBlockUI(enabled: boolean) {
+    if (enabled == true) {
+      this.blockedPanel = true;
+    } else {
+      setTimeout(() => {
+        this.blockedPanel = false;
+      }, 1000);
+    }
   }
 
   ngOnDestroy(): void {

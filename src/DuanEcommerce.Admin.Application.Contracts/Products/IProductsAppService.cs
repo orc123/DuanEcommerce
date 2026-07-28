@@ -15,7 +15,7 @@ public interface IProductsAppService : ICrudAppService
     CreateUpdateProductDto
     >
 {
-    Task<PagedResultDto<ProductDto>> GetListFilterAsync(BaseListFilterDto input);
+    Task<PagedResultDto<ProductDto>> GetListFilterAsync(ProductListFilterDto input);
     Task<List<ProductDto>> GetListAllAsync();
     Task DeleteMultipleAsync(IEnumerable<Guid> ids); 
 }

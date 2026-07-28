@@ -1,5 +1,6 @@
 import type { ProductType } from '../duan-ecommerce/products/product-type.enum';
 import type { EntityDto } from '@abp/ng.core';
+import type { BaseListFilterDto } from '../models';
 
 export interface CreateUpdateProductDto {
   manufacturerId?: string;
@@ -31,4 +32,8 @@ export interface ProductDto extends EntityDto<string> {
   seoMetaDescription?: string;
   description?: string;
   thumbnailPicture?: string;
+}
+
+export interface ProductListFilterDto extends BaseListFilterDto {
+  categoryId?: string | null;
 }

@@ -1799,9 +1799,9 @@
                   "parametersOnMethod": [
                     {
                       "name": "input",
-                      "typeAsString": "DuanEcommerce.Admin.BaseListFilterDto, DuanEcommerce.Admin.Application.Contracts",
-                      "type": "DuanEcommerce.Admin.BaseListFilterDto",
-                      "typeSimple": "DuanEcommerce.Admin.BaseListFilterDto",
+                      "typeAsString": "DuanEcommerce.Admin.Products.ProductListFilterDto, DuanEcommerce.Admin.Application.Contracts",
+                      "type": "DuanEcommerce.Admin.Products.ProductListFilterDto",
+                      "typeSimple": "DuanEcommerce.Admin.Products.ProductListFilterDto",
                       "isOptional": false,
                       "defaultValue": null,
                       "summary": null,
@@ -2044,9 +2044,9 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "DuanEcommerce.Admin.BaseListFilterDto, DuanEcommerce.Admin.Application.Contracts",
-                  "type": "DuanEcommerce.Admin.BaseListFilterDto",
-                  "typeSimple": "DuanEcommerce.Admin.BaseListFilterDto",
+                  "typeAsString": "DuanEcommerce.Admin.Products.ProductListFilterDto, DuanEcommerce.Admin.Application.Contracts",
+                  "type": "DuanEcommerce.Admin.Products.ProductListFilterDto",
+                  "typeSimple": "DuanEcommerce.Admin.Products.ProductListFilterDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "summary": null,
@@ -2055,6 +2055,21 @@
                 }
               ],
               "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "CategoryId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
                 {
                   "nameOnMethod": "input",
                   "name": "Keyword",
@@ -7765,6 +7780,35 @@
           "maximum": null,
           "regex": null,
           "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        }
+      ],
+      "summary": null,
+      "remarks": null,
+      "description": null,
+      "displayName": null
+    },
+    "DuanEcommerce.Admin.Products.ProductListFilterDto": {
+      "baseType": "DuanEcommerce.Admin.BaseListFilterDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CategoryId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null

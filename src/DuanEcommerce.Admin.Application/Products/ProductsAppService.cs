@@ -38,10 +38,11 @@ public class ProductsAppService : CrudAppService
         return ObjectMapper.Map<List<Product>, List<ProductDto>>(data);
     }
 
-    public async Task<PagedResultDto<ProductDto>> GetListFilterAsync(BaseListFilterDto input)
+    public async Task<PagedResultDto<ProductDto>> GetListFilterAsync(ProductListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
         query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
+        query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId ==  input.CategoryId.Value);
 
         var totalCount = await AsyncExecuter.LongCountAsync(query);
         var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));

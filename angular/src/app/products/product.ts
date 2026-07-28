@@ -13,6 +13,11 @@ import { PagedResultDto } from '@abp/ng.core';
 import { DecimalPipe } from '@angular/common';
 import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-categories';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { NotificationService } from '../shared/services/notification.service';
+import { ProductDetail } from './product-detail';
+import { Dialog } from 'primeng/dialog';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-product',
@@ -27,12 +32,16 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     FormsModule,
     InputTextModule,
     ProgressSpinnerModule,
+    DynamicDialogModule,
+    Dialog,
+    ProductDetail,
+    MessageModule,
   ],
   template: `
     <p-panel header="Danh sách sản phẩm">
       <div class="grid">
         <div class="col-4">
-          <button pButton icon="fa fa-plus" label="Thêm mới"></button>
+          <button pButton icon="fa fa-plus" label="Thêm mới" (click)="showAddModal()"></button>
         </div>
         <div class="col-8">
           <div class="formgroup-inline">
@@ -44,6 +53,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
               <p-dropdown
                 [options]="productCategories"
                 [(ngModel)]="categoryId"
+                optionValue="value"
+                optionLabel="name"
                 placeholder="Chọn danh mục"
               ></p-dropdown>
             </div>
@@ -96,6 +107,15 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         <p-progressSpinner></p-progressSpinner>
       </p-block-ui>
     </p-panel>
+
+    <p-dialog
+      [header]="headerTitle"
+      [modal]="true"
+      [(visible)]="visibleForm"
+      [style]="{ width: '70%' }"
+    >
+      <app-product-detail [product]="productDto" (saveChange)="saveData()"> </app-product-detail>
+    </p-dialog>
   `,
 })
 export class Product implements OnInit, OnDestroy {
@@ -103,6 +123,7 @@ export class Product implements OnInit, OnDestroy {
 
   productService = inject(ProductsService);
   productCategoryService = inject(ProductCategoriesService);
+  notificationService = inject(NotificationService);
 
   blockedPanel: boolean = false;
   items: ProductDto[] = [];
@@ -115,6 +136,10 @@ export class Product implements OnInit, OnDestroy {
   productCategories: any[] = [];
   keyword: string = '';
   categoryId: string = '';
+
+  visibleForm = false;
+  productDto: ProductDto = {};
+  headerTitle = '';
 
   ngOnInit(): void {
     this.loadData();
@@ -145,12 +170,14 @@ export class Product implements OnInit, OnDestroy {
 
   loadProductCategories() {
     this.productCategoryService.getListAll().subscribe((response: ProductCategoryDto[]) => {
+      console.log(response);
       response.forEach(e => {
         this.productCategories.push({
           value: e.id,
           name: e.name,
         });
       });
+      console.log(this.productCategories);
     });
   }
 
@@ -158,6 +185,22 @@ export class Product implements OnInit, OnDestroy {
     this.skipCount = (event.page - 1) * this.maxResultCount;
     this.maxResultCount = event.rows;
     this.loadData();
+  }
+
+  showAddModal() {
+    this.headerTitle = 'Thêm mới sản phẩm';
+    this.visibleForm = true;
+  }
+
+  showEditModal(id: string) {
+    this.headerTitle = 'Chỉnh sửa sản phẩm';
+    this.visibleForm = true;
+  }
+
+  saveData() {
+    this.visibleForm = false;
+    this.loadData();
+    this.notificationService.showSuccess('Thêm sản phẩm thành công');
   }
 
   private toggleBlockUI(enabled: boolean) {

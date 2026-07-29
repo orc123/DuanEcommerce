@@ -12,6 +12,7 @@ export interface CreateUpdateProductDto {
   sortOrder?: number;
   visibility?: boolean;
   isActive?: boolean;
+  sellPrice?: number;
   categoryId?: string;
   seoMetaDescription?: string;
   description?: string;
@@ -28,6 +29,7 @@ export interface ProductDto extends EntityDto<string> {
   sortOrder?: number;
   visibility?: boolean;
   isActive?: boolean;
+  sellPrice?: number;
   categoryId?: string;
   seoMetaDescription?: string;
   description?: string;

@@ -1,17 +1,16 @@
-using DuanEcommerce.ProductCategories;
+﻿using DuanEcommerce.Manufacturers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace DuanEcommerce.Admin.ProductCategories;
+namespace DuanEcommerce.Admin.Manufacturers;
 
-public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository) : CrudAppService
-    <ProductCategory, ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>(repository), IProductCategoriesAppService
+public class ManufacturersAppService(IRepository<Manufacturer, Guid> repository) : CrudAppService
+    <Manufacturer, ManufacturerDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateManufacturerDto, CreateUpdateManufacturerDto>(repository), IManufacturersAppService
 {
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
@@ -19,16 +18,16 @@ public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repo
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
-    public async Task<List<ProductCategoryDto>> GetListAllAsync()
+    public async Task<List<ManufacturerDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
         query = query.Where(x => x.IsActive);
         var data = await AsyncExecuter.ToListAsync(query);
 
-        return ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data);
+        return ObjectMapper.Map<List<Manufacturer>, List<ManufacturerDto>>(data);
     }
 
-    public async Task<PagedResultDto<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input)
+    public async Task<PagedResultDto<ManufacturerDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
 
@@ -38,6 +37,6 @@ public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repo
 
         var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
-        return new PagedResultDto<ProductCategoryDto>(totalCount, ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data));
+        return new PagedResultDto<ManufacturerDto>(totalCount, ObjectMapper.Map<List<Manufacturer>, List<ManufacturerDto>>(data));
     }
 }

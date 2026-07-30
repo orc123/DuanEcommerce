@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { Product } from './product';
+import { Products } from './products';
 
 export default [
-  { path: '', component: Product },
+  { path: '', component: Products },
   { path: '**', redirectTo: 'auth/error' },
 ] as Routes;

@@ -1,5 +1,7 @@
+using DuanEcommerce.Admin.Manufacturers;
 using DuanEcommerce.Admin.ProductCategories;
 using DuanEcommerce.Admin.Products;
+using DuanEcommerce.Manufacturers;
 using DuanEcommerce.ProductCategories;
 using DuanEcommerce.Products;
 using Riok.Mapperly.Abstractions;
@@ -37,4 +39,20 @@ public partial class CreateUpdateProductToProductMapper : MapperBase<CreateUpdat
     public override partial Product Map(CreateUpdateProductDto source);
 
     public override partial void Map(CreateUpdateProductDto source, Product destination);
+}
+
+[Mapper]
+public partial class ManufacturerToManufacturerDtoMapper : MapperBase<Manufacturer, ManufacturerDto>
+{
+    public override partial ManufacturerDto Map(Manufacturer source);
+
+    public override partial void Map(Manufacturer source, ManufacturerDto destination);
+}
+
+[Mapper]
+public partial class CreateUpdateManufacturerDtoToManufacturer : MapperBase<CreateUpdateManufacturerDto, Manufacturer>
+{
+    public override partial Manufacturer Map(CreateUpdateManufacturerDto source);
+
+    public override partial void Map(CreateUpdateManufacturerDto source, Manufacturer destination);
 }

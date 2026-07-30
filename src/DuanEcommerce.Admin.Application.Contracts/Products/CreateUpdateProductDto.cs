@@ -1,7 +1,5 @@
 ﻿using DuanEcommerce.Products;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DuanEcommerce.Admin.Products;
 

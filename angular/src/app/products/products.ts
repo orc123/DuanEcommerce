@@ -20,7 +20,7 @@ import { Dialog } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-products',
   imports: [
     PanelModule,
     TableModule,
@@ -54,7 +54,7 @@ import { MessageModule } from 'primeng/message';
                 [options]="productCategories"
                 [(ngModel)]="categoryId"
                 optionValue="value"
-                optionLabel="name"
+                optionLabel="label"
                 placeholder="Chọn danh mục"
               ></p-dropdown>
             </div>
@@ -114,11 +114,11 @@ import { MessageModule } from 'primeng/message';
       [(visible)]="visibleForm"
       [style]="{ width: '70%' }"
     >
-      <app-product-detail [product]="productDto" (saveChange)="saveData()"> </app-product-detail>
+      <app-product-detail [id]="productId" (saveChange)="saveData()"> </app-product-detail>
     </p-dialog>
   `,
 })
-export class Product implements OnInit, OnDestroy {
+export class Products implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
 
   productService = inject(ProductsService);
@@ -138,7 +138,7 @@ export class Product implements OnInit, OnDestroy {
   categoryId: string = '';
 
   visibleForm = false;
-  productDto: ProductDto = {};
+  productId: string = '';
   headerTitle = '';
 
   ngOnInit(): void {
@@ -174,10 +174,9 @@ export class Product implements OnInit, OnDestroy {
       response.forEach(e => {
         this.productCategories.push({
           value: e.id,
-          name: e.name,
+          label: e.name,
         });
       });
-      console.log(this.productCategories);
     });
   }
 
@@ -190,11 +189,13 @@ export class Product implements OnInit, OnDestroy {
   showAddModal() {
     this.headerTitle = 'Thêm mới sản phẩm';
     this.visibleForm = true;
+    this.productId = '';
   }
 
   showEditModal(id: string) {
     this.headerTitle = 'Chỉnh sửa sản phẩm';
     this.visibleForm = true;
+    this.productId = id;
   }
 
   saveData() {

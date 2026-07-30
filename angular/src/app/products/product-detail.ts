@@ -18,6 +18,7 @@ import { InputNumber } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { QuillEditorComponent } from 'ngx-quill';
+import { ValidationMessage } from '../shared/validation-message';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,30 +34,53 @@ import { QuillEditorComponent } from 'ngx-quill';
     DropdownModule,
     CheckboxModule,
     QuillEditorComponent,
+    ValidationMessage,
   ],
   template: `
-    <form [formGroup]="form" (ngSubmit)="saveChanges()">
+    <form [formGroup]="form" skipValidation (ngSubmit)="saveChanges()">
       <p-panel #pnl header="Sản phẩm">
         <div class="formgrid grid">
           <div class="field col-12">
-            <label for="name" class="block">Tên</label>
+            <label for="name" class="block">Tên <span class="required">*</span></label>
             <input id="name" pInputText type="text" class="w-full" formControlName="name" />
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="name"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field col-12">
-            <label for="code" class="block">Code</label>
+            <label for="code" class="block">Code <span class="required">*</span></label>
             <input id="code" pInputText type="text" class="w-full" formControlName="code" />
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="code"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field col-12">
-            <label for="slug" class="block">Slug</label>
+            <label for="slug" class="block">Slug <span class="required">*</span></label>
             <input id="slug" pInputText type="text" class="w-full" formControlName="slug" />
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="slug"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field col-12">
-            <label for="sku" class="block">SKU</label>
+            <label for="sku" class="block">SKU <span class="required">*</span></label>
             <input id="sku" pInputText type="text" class="w-full" formControlName="sku" />
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="sku"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
 
           <div class="field col-12">
-            <label for="manufacturerId" class="block">Nhà sản xuất</label>
+            <label for="manufacturerId" class="block"
+              >Nhà sản xuất <span class="required">*</span></label
+            >
             <p-dropdown
               [options]="manufactures"
               formControlName="manufacturerId"
@@ -65,9 +89,14 @@ import { QuillEditorComponent } from 'ngx-quill';
               autoWidth="false"
               [style]="{ width: '100%' }"
             ></p-dropdown>
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="manufacturerId"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field col-12">
-            <label for="categoryId" class="block">Danh mục</label>
+            <label for="categoryId" class="block">Danh mục <span class="required">*</span></label>
             <p-dropdown
               [options]="productCategories"
               formControlName="categoryId"
@@ -76,9 +105,16 @@ import { QuillEditorComponent } from 'ngx-quill';
               autoWidth="false"
               [style]="{ width: '100%' }"
             ></p-dropdown>
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="categoryId"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field col-12">
-            <label for="productType" class="block">Loại sản phẩm</label>
+            <label for="productType" class="block"
+              >Loại sản phẩm <span class="required">*</span></label
+            >
             <p-dropdown
               [options]="productTypes"
               formControlName="productType"
@@ -87,10 +123,15 @@ import { QuillEditorComponent } from 'ngx-quill';
               autoWidth="false"
               [style]="{ width: '100%' }"
             ></p-dropdown>
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="productType"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
 
           <div class="field col-12">
-            <label for="sortOrder" class="block">Thứ tự</label>
+            <label for="sortOrder" class="block">Thứ tự <span class="required">*</span></label>
             <p-input-number
               id="sortOrder"
               pInputText
@@ -98,9 +139,14 @@ import { QuillEditorComponent } from 'ngx-quill';
               class="w-full"
               formControlName="sortOrder"
             />
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="sortOrder"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field col-12">
-            <label for="sellPrice" class="block">Giá bán</label>
+            <label for="sellPrice" class="block">Giá bán <span class="required">*</span></label>
             <p-input-number
               id="sortOrder"
               pInputText
@@ -108,6 +154,11 @@ import { QuillEditorComponent } from 'ngx-quill';
               class="w-full"
               formControlName="sellPrice"
             />
+            <app-validation-message
+              [entityForm]="form"
+              fieldName="sellPrice"
+              [validationMessages]="validationMessages"
+            ></app-validation-message>
           </div>
           <div class="field-checkbox col-12 md:col-3">
             <p-checkbox formControlName="visibility" binary="true" id="visibility"></p-checkbox>
@@ -129,12 +180,6 @@ import { QuillEditorComponent } from 'ngx-quill';
           </div>
           <div class="field col-12">
             <label for="description" class="block">Mô tả</label>
-            <!-- <textarea
-              pInputTextarea
-              formControlName="description"
-              [style]="{ height: '120px' }"
-              class="w-full"
-            ></textarea> -->
             <div class="editor-container">
               <quill-editor
                 formControlName="description"
@@ -145,7 +190,13 @@ import { QuillEditorComponent } from 'ngx-quill';
           </div>
         </div>
         <ng-template pTemplate="footer">
-          <button type="submit" pButton icon="fa fa-save" label="Lưu lại"></button>
+          <button
+            type="submit"
+            [disabled]="!form.valid || btnDisabled"
+            pButton
+            icon="fa fa-save"
+            label="Lưu lại"
+          ></button>
         </ng-template>
         <p-block-ui [blocked]="blockedPanel" [target]="pnl">
           <p-progressSpinner></p-progressSpinner>
@@ -170,6 +221,23 @@ export class ProductDetail implements OnInit, OnDestroy {
   @Input() product: ProductDto = {};
   @Output() saveChange = new EventEmitter<void>();
 
+  btnDisabled = false;
+
+  validationMessages = {
+    code: [{ type: 'required', message: 'Bạn phải nhập mã duy nhất' }],
+    name: [
+      { type: 'required', message: 'Bạn phải nhập tên' },
+      { type: 'maxlength', message: 'Bạn không được nhập quá 255 kí tự' },
+    ],
+    slug: [{ type: 'required', message: 'Bạn phải URL duy nhất' }],
+    sku: [{ type: 'required', message: 'Bạn phải mã SKU sản phẩm' }],
+    manufacturerId: [{ type: 'required', message: 'Bạn phải chọn nhà cung cấp' }],
+    categoryId: [{ type: 'required', message: 'Bạn phải chọn danh mục' }],
+    productType: [{ type: 'required', message: 'Bạn phải chọn loại sản phẩm' }],
+    sortOrder: [{ type: 'required', message: 'Bạn phải nhập thứ tự' }],
+    sellPrice: [{ type: 'required', message: 'Bạn phải nhập giá bán' }],
+  };
+
   blockedPanel: boolean = false;
   ngOnInit(): void {
     this.selectedEntity = this.product;
@@ -178,10 +246,22 @@ export class ProductDetail implements OnInit, OnDestroy {
 
   buildForm() {
     this.form = this.fb.group({
-      name: new FormControl(this.selectedEntity.name || null, Validators.required),
-      code: new FormControl(this.selectedEntity.code || null, Validators.required),
-      slug: new FormControl(this.selectedEntity.slug || null, Validators.required),
-      sku: new FormControl(this.selectedEntity.sku || null, Validators.required),
+      name: new FormControl(
+        this.selectedEntity.name || null,
+        Validators.compose([Validators.required, Validators.maxLength(50)]),
+      ),
+      code: new FormControl(
+        this.selectedEntity.code || null,
+        Validators.compose([Validators.required, Validators.maxLength(50)]),
+      ),
+      slug: new FormControl(
+        this.selectedEntity.slug || null,
+        Validators.compose([Validators.required, Validators.maxLength(50)]),
+      ),
+      sku: new FormControl(
+        this.selectedEntity.sku || null,
+        Validators.compose([Validators.required, Validators.maxLength(50)]),
+      ),
       manufacturerId: new FormControl(
         this.selectedEntity.manufacturerId || null,
         Validators.required,
@@ -190,9 +270,9 @@ export class ProductDetail implements OnInit, OnDestroy {
       productType: new FormControl(this.selectedEntity.productType || null, Validators.required),
       sortOrder: new FormControl(this.selectedEntity.sortOrder || null, Validators.required),
       sellPrice: new FormControl(this.selectedEntity.sellPrice || null, Validators.required),
-      visibility: new FormControl(this.selectedEntity.visibility || false),
+      visibility: new FormControl(this.selectedEntity.visibility || true),
 
-      isActive: new FormControl(this.selectedEntity.isActive || false),
+      isActive: new FormControl(this.selectedEntity.isActive || true),
       seoMetaDescription: new FormControl(
         this.selectedEntity.seoMetaDescription || null,
         Validators.required,
@@ -232,6 +312,10 @@ export class ProductDetail implements OnInit, OnDestroy {
   }
 
   saveChanges() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // Hiển thị lỗi toàn bộ các ô bị thiếu
+      return;
+    }
     this.saveChange.emit();
   }
 
@@ -243,9 +327,11 @@ export class ProductDetail implements OnInit, OnDestroy {
   private toggleBlockUI(enabled: boolean) {
     if (enabled == true) {
       this.blockedPanel = true;
+      this.btnDisabled = true;
     } else {
       setTimeout(() => {
         this.blockedPanel = false;
+        this.btnDisabled = false;
       }, 1000);
     }
   }

@@ -14,10 +14,11 @@ import { DecimalPipe } from '@angular/common';
 import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-categories';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { NotificationService } from '../shared/services/notification.service';
 import { ProductDetail } from './product-detail';
 import { Dialog } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
+import { NotificationService } from '../shared/services/notification.service';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-products',
@@ -36,12 +37,22 @@ import { MessageModule } from 'primeng/message';
     Dialog,
     ProductDetail,
     MessageModule,
+    BadgeModule,
   ],
   template: `
     <p-panel header="Danh sách sản phẩm">
       <div class="grid">
         <div class="col-4">
           <button pButton icon="fa fa-plus" label="Thêm mới" (click)="showAddModal()"></button>
+          @if (selectedItems.length === 1) {
+            <button
+              pButton
+              icon="fa fa-minus"
+              class="ml-1 p-button-help"
+              label="Sửa"
+              (click)="showEditModal()"
+            ></button>
+          }
         </div>
         <div class="col-8">
           <div class="formgroup-inline">
@@ -68,9 +79,12 @@ import { MessageModule } from 'primeng/message';
           </div>
         </div>
       </div>
-      <p-table #pnl [value]="items">
+      <p-table #pnl [value]="items" [(selection)]="selectedItems">
         <ng-template pTemplate="header">
           <tr>
+            <th style="width: 10px">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
             <th>Mã</th>
             <th>SKU</th>
             <th>Tên</th>
@@ -79,18 +93,36 @@ import { MessageModule } from 'primeng/message';
             <th>Thứ tự</th>
             <th>Hiển thị</th>
             <th>Kích hoạt</th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template #body let-product>
           <tr>
+            <td style="width:10px">
+              <span class="ui-column-title"></span>
+              <p-tableCheckbox [value]="product"></p-tableCheckbox>
+            </td>
             <td>{{ product.code }}</td>
             <td>{{ product.sku }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.productType }}</td>
             <td>{{ product.categoryId }}</td>
             <td>{{ product.sortOrder }}</td>
-            <td>{{ product.visibility }}</td>
-            <td>{{ product.isActive }}</td>
+            <td>
+              @if (product.visibility === true) {
+                <p-badge severity="success" value="Hiển thị"></p-badge>
+              } @else {
+                <p-badge severity="danger" value="Ẩn"></p-badge>
+              }
+            </td>
+            <td>
+              @if (product.visibility === true) {
+                <p-badge value="Kích hoạt" severity="success"></p-badge>
+              } @else {
+                <p-badge value="Khoá" severity="danger"></p-badge>
+              }
+            </td>
+            <td></td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -108,14 +140,16 @@ import { MessageModule } from 'primeng/message';
       </p-block-ui>
     </p-panel>
 
-    <p-dialog
-      [header]="headerTitle"
-      [modal]="true"
-      [(visible)]="visibleForm"
-      [style]="{ width: '70%' }"
-    >
-      <app-product-detail [id]="productId" (saveChange)="saveData()"> </app-product-detail>
-    </p-dialog>
+    @if (visibleForm) {
+      <p-dialog
+        [header]="headerTitle"
+        [modal]="true"
+        [(visible)]="visibleForm"
+        [style]="{ width: '70%' }"
+      >
+        <app-product-detail [productId]="productId" (saveChange)="saveData()"></app-product-detail>
+      </p-dialog>
+    }
   `,
 })
 export class Products implements OnInit, OnDestroy {
@@ -131,6 +165,7 @@ export class Products implements OnInit, OnDestroy {
   public skipCount: number = 0;
   public maxResultCount: number = 10;
   public totalCount: number | undefined = 0;
+  public selectedItems: ProductDto[] = [];
 
   // Filters
   productCategories: any[] = [];
@@ -170,7 +205,6 @@ export class Products implements OnInit, OnDestroy {
 
   loadProductCategories() {
     this.productCategoryService.getListAll().subscribe((response: ProductCategoryDto[]) => {
-      console.log(response);
       response.forEach(e => {
         this.productCategories.push({
           value: e.id,
@@ -192,16 +226,20 @@ export class Products implements OnInit, OnDestroy {
     this.productId = '';
   }
 
-  showEditModal(id: string) {
+  showEditModal() {
+    if (this.selectedItems.length == 0 || this.selectedItems.length > 1) {
+      this.notificationService.showError('Bạn phải chọn 1 bản ghi');
+      return;
+    }
     this.headerTitle = 'Chỉnh sửa sản phẩm';
     this.visibleForm = true;
-    this.productId = id;
+    this.productId = this.selectedItems[0].id!;
   }
 
   saveData() {
     this.visibleForm = false;
     this.loadData();
-    this.notificationService.showSuccess('Thêm sản phẩm thành công');
+    this.selectedItems = [];
   }
 
   private toggleBlockUI(enabled: boolean) {

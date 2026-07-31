@@ -9,5 +9,5 @@ public class OrderTransaction : CreationAuditedEntity<Guid>
     public Guid OrderId { get; set; }
     public Guid? UserId { get; set; }
     public TransactionType TransactionType { get; set; }
-    public string Note { get; set; }
+    public string? Note { get; set; }
 }

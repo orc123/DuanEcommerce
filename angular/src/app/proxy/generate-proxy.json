@@ -7723,7 +7723,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -7771,7 +7771,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -7848,7 +7848,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -7896,7 +7896,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -7989,7 +7989,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8053,7 +8053,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8162,7 +8162,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8226,7 +8226,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8389,22 +8389,6 @@
           "displayName": null
         },
         {
-          "name": "SellPrice",
-          "jsonName": null,
-          "type": "System.Double",
-          "typeSimple": "number",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null,
-          "isNullable": false,
-          "summary": null,
-          "description": null,
-          "displayName": null
-        },
-        {
           "name": "CategoryId",
           "jsonName": null,
           "type": "System.Guid",
@@ -8431,7 +8415,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8447,7 +8431,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8457,6 +8441,22 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "SellPrice",
+          "jsonName": null,
+          "type": "System.Double",
+          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -8626,22 +8626,6 @@
           "displayName": null
         },
         {
-          "name": "SellPrice",
-          "jsonName": null,
-          "type": "System.Double",
-          "typeSimple": "number",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null,
-          "isNullable": false,
-          "summary": null,
-          "description": null,
-          "displayName": null
-        },
-        {
           "name": "CategoryId",
           "jsonName": null,
           "type": "System.Guid",
@@ -8668,7 +8652,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8684,7 +8668,7 @@
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null
@@ -8694,6 +8678,22 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "SellPrice",
+          "jsonName": null,
+          "type": "System.Double",
+          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

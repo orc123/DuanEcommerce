@@ -22,6 +22,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ManufacturerDto, ManufacturersService } from '../proxy/manufacturers';
 import { productTypeOptions } from '../proxy/duan-ecommerce/products';
 import { UtilityService } from '../shared/services/utility.service';
+import { TextareaModule } from 'primeng/textarea';
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -38,6 +40,7 @@ import { UtilityService } from '../shared/services/utility.service';
     QuillEditorComponent,
     ValidationMessage,
     DropdownModule,
+    TextareaModule,
   ],
   template: `
     @if (form) {
@@ -224,6 +227,7 @@ export class ProductDetail implements OnInit, OnDestroy {
   productService = inject(ProductsService);
   manufacturerService = inject(ManufacturersService);
   utilityService = inject(UtilityService);
+  notificationService = inject(NotificationService);
 
   private ngUnsubscribe = new Subject<void>();
   public form!: FormGroup;
@@ -257,6 +261,17 @@ export class ProductDetail implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.selectedEntity = {};
     this.loadProductTypes();
+    this.initFormData();
+  }
+
+  generateSlug() {
+    const name = this.form?.get('name')?.value;
+    if (name) {
+      this.form.controls['slug'].setValue(this.utilityService.MakeSeoTitle(name));
+    }
+  }
+
+  initFormData() {
     var productCategories = this.productCategoryService.getListAll();
     var manufactures = this.manufacturerService.getListAll();
     this.toggleBlockUI(true);
@@ -295,13 +310,6 @@ export class ProductDetail implements OnInit, OnDestroy {
           this.toggleBlockUI(false);
         },
       });
-  }
-
-  generateSlug() {
-    const name = this.form?.get('name')?.value;
-    if (name) {
-      this.form.controls['slug'].setValue(this.utilityService.MakeSeoTitle(name));
-    }
   }
 
   buildForm() {
@@ -365,10 +373,16 @@ export class ProductDetail implements OnInit, OnDestroy {
   }
 
   saveChanges() {
+    console.log(this.form.value);
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
+    debugger;
+    var message = this.utilityService.isEmpty(this.productId)
+      ? 'Thêm sản phẩm thành công'
+      : 'Cập nhật sản phẩm thành công';
     this.toggleBlockUI(true);
     const saveObservable = this.utilityService.isEmpty(this.productId)
       ? this.productService.create(this.form.value)
@@ -378,6 +392,8 @@ export class ProductDetail implements OnInit, OnDestroy {
       next: () => {
         this.toggleBlockUI(false);
         this.saveChange.emit();
+
+        this.notificationService.showSuccess(message);
       },
       error: () => {
         this.toggleBlockUI(false);

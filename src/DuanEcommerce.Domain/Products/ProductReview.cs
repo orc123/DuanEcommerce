@@ -11,6 +11,6 @@ public class ProductReview : CreationAuditedEntity<Guid>
     public double Rating { get; set; }
 
     public DateTime? PublishedDate { get; set; }
-    public string Content { get; set; }
+    public string? Content { get; set; }
     public Guid OrderId { get; set; }
 }

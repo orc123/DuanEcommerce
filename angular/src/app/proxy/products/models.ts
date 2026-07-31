@@ -12,11 +12,11 @@ export interface CreateUpdateProductDto {
   sortOrder?: number;
   visibility?: boolean;
   isActive?: boolean;
-  sellPrice?: number;
   categoryId?: string;
-  seoMetaDescription?: string;
-  description?: string;
-  thumbnailPicture?: string;
+  seoMetaDescription?: string | null;
+  description?: string | null;
+  thumbnailPicture?: string | null;
+  sellPrice?: number;
 }
 
 export interface ProductDto extends EntityDto<string> {
@@ -29,11 +29,11 @@ export interface ProductDto extends EntityDto<string> {
   sortOrder?: number;
   visibility?: boolean;
   isActive?: boolean;
-  sellPrice?: number;
   categoryId?: string;
-  seoMetaDescription?: string;
-  description?: string;
-  thumbnailPicture?: string;
+  seoMetaDescription?: string | null;
+  description?: string | null;
+  thumbnailPicture?: string | null;
+  sellPrice?: number;
 }
 
 export interface ProductListFilterDto extends BaseListFilterDto {

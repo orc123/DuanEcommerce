@@ -12,5 +12,5 @@ public class ProductAttribute : CreationAuditedAggregateRoot<Guid>
     public bool IsActive { get; set; }
     public bool IsRequired { get; set; }
     public bool IsUnique { get; set; }
-    public string Note { get; set; }
+    public string? Note { get; set; }
 }

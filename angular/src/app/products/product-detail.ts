@@ -379,11 +379,11 @@ export class ProductDetail implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
       return;
     }
-    debugger;
     var message = this.utilityService.isEmpty(this.productId)
       ? 'Thêm sản phẩm thành công'
       : 'Cập nhật sản phẩm thành công';
     this.toggleBlockUI(true);
+    debugger;
     const saveObservable = this.utilityService.isEmpty(this.productId)
       ? this.productService.create(this.form.value)
       : this.productService.update(this.productId!, this.form.value);
@@ -395,7 +395,9 @@ export class ProductDetail implements OnInit, OnDestroy {
 
         this.notificationService.showSuccess(message);
       },
-      error: () => {
+      error: err => {
+        debugger;
+        this.notificationService.showError(err.error.message);
         this.toggleBlockUI(false);
       },
     });

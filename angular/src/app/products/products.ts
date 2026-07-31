@@ -19,6 +19,7 @@ import { Dialog } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
 import { NotificationService } from '../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
+import { ProductType } from '../proxy/duan-ecommerce/products';
 
 @Component({
   selector: 'app-products',
@@ -79,7 +80,7 @@ import { BadgeModule } from 'primeng/badge';
           </div>
         </div>
       </div>
-      <p-table #pnl [value]="items" [(selection)]="selectedItems">
+      <p-table #pnl [value]="items" [(selection)]="selectedItems" selectionMode="multiple">
         <ng-template pTemplate="header">
           <tr>
             <th style="width: 10px">
@@ -97,7 +98,7 @@ import { BadgeModule } from 'primeng/badge';
           </tr>
         </ng-template>
         <ng-template #body let-product>
-          <tr>
+          <tr [pSelectableRow]="product">
             <td style="width:10px">
               <span class="ui-column-title"></span>
               <p-tableCheckbox [value]="product"></p-tableCheckbox>
@@ -105,8 +106,8 @@ import { BadgeModule } from 'primeng/badge';
             <td>{{ product.code }}</td>
             <td>{{ product.sku }}</td>
             <td>{{ product.name }}</td>
-            <td>{{ product.productType }}</td>
-            <td>{{ product.categoryId }}</td>
+            <td>{{ getProductType(product.productType) }}</td>
+            <td>{{ product.categoryName }}</td>
             <td>{{ product.sortOrder }}</td>
             <td>
               @if (product.visibility === true) {
@@ -240,6 +241,10 @@ export class Products implements OnInit, OnDestroy {
     this.visibleForm = false;
     this.loadData();
     this.selectedItems = [];
+  }
+
+  getProductType(value: number) {
+    return ProductType[value];
   }
 
   private toggleBlockUI(enabled: boolean) {

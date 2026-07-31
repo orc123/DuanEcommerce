@@ -28,6 +28,16 @@ public class ProductsAppService : CrudAppService
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    public override Task<ProductDto> CreateAsync(CreateUpdateProductDto input)
+    {
+        return base.CreateAsync(input);
+    }
+
+    public override Task<ProductDto> UpdateAsync(Guid id, CreateUpdateProductDto input)
+    {
+        return base.UpdateAsync(id, input);
+    }
+
     public async Task<List<ProductDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();

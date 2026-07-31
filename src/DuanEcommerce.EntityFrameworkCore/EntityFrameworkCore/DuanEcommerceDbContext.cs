@@ -335,6 +335,16 @@ public class DuanEcommerceDbContext :
 
             b.Property(x => x.SeoMetaDescription)
                 .HasMaxLength(250);
+
+            b.Property(x => x.Name)
+              .HasMaxLength(50)
+              .IsRequired();
+
+            b.Property(x => x.CategoryName)
+                .HasMaxLength(50);
+
+            b.Property(x => x.CategorySlug)
+                .HasMaxLength(50);
         });
 
         builder.Entity<ProductLink>(b =>

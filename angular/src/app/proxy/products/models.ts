@@ -34,6 +34,8 @@ export interface ProductDto extends EntityDto<string> {
   description?: string | null;
   thumbnailPicture?: string | null;
   sellPrice?: number;
+  categoryName?: string;
+  categorySlug?: string;
 }
 
 export interface ProductListFilterDto extends BaseListFilterDto {

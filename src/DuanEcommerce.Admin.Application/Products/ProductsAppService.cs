@@ -117,9 +117,25 @@ public class ProductsAppService(
         query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId ==  input.CategoryId.Value);
 
         var totalCount = await AsyncExecuter.LongCountAsync(query);
-        var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
+        var data = await AsyncExecuter.ToListAsync(query.OrderByDescending(x => x.CreationTime).Skip(input.SkipCount).Take(input.MaxResultCount));
 
         return new PagedResultDto<ProductDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductDto>>(data));
+    }
+
+    public async Task<string?> GetThumbnailImageAsync(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return null;
+        }
+
+        var thumbnailPictureContent = await _fileContainer.GetAllBytesOrNullAsync(fileName);
+
+        if (thumbnailPictureContent == null)
+        {
+            return null;
+        }
+        return Convert.ToBase64String(thumbnailPictureContent);
     }
 
     private async Task SaveThumbnailImageAsync(string fileName, string base64)

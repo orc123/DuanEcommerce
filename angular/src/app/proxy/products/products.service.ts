@@ -71,6 +71,16 @@ export class ProductsService {
     { apiName: this.apiName,...config });
   
 
+  getThumbnailImage = (fileName: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, string>({
+      method: 'GET',
+      responseType: 'text',
+      url: '/api/app/products/thumbnail-image',
+      params: { fileName },
+    },
+    { apiName: this.apiName,...config });
+  
+
   update = (id: string, input: CreateUpdateProductDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ProductDto>({
       method: 'PUT',

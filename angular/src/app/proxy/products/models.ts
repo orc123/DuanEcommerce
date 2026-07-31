@@ -15,8 +15,9 @@ export interface CreateUpdateProductDto {
   categoryId?: string;
   seoMetaDescription?: string | null;
   description?: string | null;
-  thumbnailPicture?: string | null;
   sellPrice?: number;
+  thumbnailPictureName?: string | null;
+  thumbnailPictureContent?: string | null;
 }
 
 export interface ProductDto extends EntityDto<string> {

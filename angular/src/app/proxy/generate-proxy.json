@@ -2485,6 +2485,27 @@
                   }
                 },
                 {
+                  "name": "GetThumbnailImageAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "fileName",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string",
+                    "summary": null
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -2882,6 +2903,55 @@
               "returnValue": {
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.ProductDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.ProductDto>",
+                "summary": null
+              },
+              "allowAnonymous": null,
+              "authorizeDatas": [],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "GetThumbnailImageAsyncByFileName": {
+              "uniqueName": "GetThumbnailImageAsyncByFileName",
+              "name": "GetThumbnailImageAsync",
+              "httpMethod": "GET",
+              "url": "api/app/products/thumbnail-image",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "fileName",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "fileName",
+                  "name": "fileName",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "returnValue": {
+                "type": "System.String",
+                "typeSimple": "string",
                 "summary": null
               },
               "allowAnonymous": null,
@@ -8437,7 +8507,23 @@
           "displayName": null
         },
         {
-          "name": "ThumbnailPicture",
+          "name": "SellPrice",
+          "jsonName": null,
+          "type": "System.Double",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "ThumbnailPictureName",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -8453,17 +8539,17 @@
           "displayName": null
         },
         {
-          "name": "SellPrice",
+          "name": "ThumbnailPictureContent",
           "jsonName": null,
-          "type": "System.Double",
-          "typeSimple": "number",
+          "type": "System.String",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
           "minimum": null,
           "maximum": null,
           "regex": null,
-          "isNullable": false,
+          "isNullable": true,
           "summary": null,
           "description": null,
           "displayName": null

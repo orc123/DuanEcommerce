@@ -1,4 +1,13 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-categories';
 import {
@@ -24,6 +33,8 @@ import { productTypeOptions } from '../proxy/duan-ecommerce/products';
 import { UtilityService } from '../shared/services/utility.service';
 import { TextareaModule } from 'primeng/textarea';
 import { NotificationService } from '../shared/services/notification.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ImageModule } from 'primeng/image';
 
 @Component({
   selector: 'app-product-detail',
@@ -41,6 +52,7 @@ import { NotificationService } from '../shared/services/notification.service';
     ValidationMessage,
     DropdownModule,
     TextareaModule,
+    ImageModule,
   ],
   template: `
     @if (form) {
@@ -175,6 +187,23 @@ import { NotificationService } from '../shared/services/notification.service';
                 [validationMessages]="validationMessages"
               ></app-validation-message>
             </div>
+            <div class="field col-12 md:col-6">
+              <label for="thumbnailImage" class="block">Hình ảnh</label>
+              <input
+                id="thumbnailImage"
+                type="file"
+                (change)="onFileChange($event)"
+                class="w-full"
+              />
+            </div>
+            <div class="field col-12 md:col-6">
+              <p-image
+                [src]="thumbnailImage"
+                [alt]="selectedEntity.name"
+                width="250"
+                [preview]="true"
+              ></p-image>
+            </div>
             <div class="field-checkbox col-12 md:col-3">
               <p-checkbox formControlName="visibility" binary="true" id="visibility"></p-checkbox>
               <label for="visibility">Hiển thị</label>
@@ -228,6 +257,8 @@ export class ProductDetail implements OnInit, OnDestroy {
   manufacturerService = inject(ManufacturersService);
   utilityService = inject(UtilityService);
   notificationService = inject(NotificationService);
+  cd = inject(ChangeDetectorRef);
+  sanitizer = inject(DomSanitizer);
 
   private ngUnsubscribe = new Subject<void>();
   public form!: FormGroup;
@@ -237,6 +268,7 @@ export class ProductDetail implements OnInit, OnDestroy {
   productCategories: any[] = [];
   manufactures: any[] = [];
   productTypes: any[] = [];
+  public thumbnailImage: any;
   @Input() productId: string = '';
   @Output() saveChange = new EventEmitter<void>();
 
@@ -342,6 +374,8 @@ export class ProductDetail implements OnInit, OnDestroy {
       isActive: new FormControl(this.selectedEntity.isActive ?? true),
       seoMetaDescription: new FormControl(this.selectedEntity.seoMetaDescription || null),
       description: new FormControl(this.selectedEntity.description || null),
+      thumbnailPictureName: new FormControl(this.selectedEntity.thumbnailPicture || null),
+      thumbnailPictureContent: new FormControl(null),
     });
   }
 
@@ -354,6 +388,7 @@ export class ProductDetail implements OnInit, OnDestroy {
       .subscribe({
         next: (res: ProductDto) => {
           this.selectedEntity = res;
+          this.loadThumbnail(this.selectedEntity.thumbnailPicture!);
           this.buildForm();
           this.toggleBlockUI(false);
         },
@@ -372,9 +407,21 @@ export class ProductDetail implements OnInit, OnDestroy {
     });
   }
 
-  saveChanges() {
-    console.log(this.form.value);
+  loadThumbnail(fileName: string) {
+    this.productService
+      .getThumbnailImage(fileName)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (res: string) => {
+          var fileExt = this.selectedEntity.thumbnailPicture?.split('.').pop();
+          this.thumbnailImage = this.sanitizer.bypassSecurityTrustResourceUrl(
+            `data:image/${fileExt};base64, ${res}`,
+          );
+        },
+      });
+  }
 
+  saveChanges() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -383,7 +430,6 @@ export class ProductDetail implements OnInit, OnDestroy {
       ? 'Thêm sản phẩm thành công'
       : 'Cập nhật sản phẩm thành công';
     this.toggleBlockUI(true);
-    debugger;
     const saveObservable = this.utilityService.isEmpty(this.productId)
       ? this.productService.create(this.form.value)
       : this.productService.update(this.productId!, this.form.value);
@@ -396,11 +442,27 @@ export class ProductDetail implements OnInit, OnDestroy {
         this.notificationService.showSuccess(message);
       },
       error: err => {
-        debugger;
         this.notificationService.showError(err.error.message);
         this.toggleBlockUI(false);
       },
     });
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.form.patchValue({
+          thumbnailPictureName: file.name,
+          thumbnailPictureContent: reader.result,
+        });
+
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+      };
+    }
   }
 
   ngOnDestroy(): void {

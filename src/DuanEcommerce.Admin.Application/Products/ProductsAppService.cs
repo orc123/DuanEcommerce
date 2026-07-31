@@ -3,16 +3,23 @@ using DuanEcommerce.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.BlobStoring;
 using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Products;
 
-public class ProductsAppService(IRepository<Product, Guid> repository, ProductManager productManager, IRepository<ProductCategory> productCategoryRepository) : CrudAppService
+public class ProductsAppService(
+        IRepository<Product, Guid> repository, 
+        ProductManager productManager, 
+        IRepository<ProductCategory> productCategoryRepository,
+        IBlobContainer<ProductThumbnailPictureContainer> fileContainer
+    ) : CrudAppService
     <Product,
     ProductDto,
     Guid,
@@ -23,6 +30,7 @@ public class ProductsAppService(IRepository<Product, Guid> repository, ProductMa
 {
     private readonly ProductManager _productManager = productManager;
     private readonly IRepository<ProductCategory> _productCategoryRepository = productCategoryRepository;
+    private readonly IBlobContainer<ProductThumbnailPictureContainer> _fileContainer = fileContainer;
 
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
@@ -34,7 +42,13 @@ public class ProductsAppService(IRepository<Product, Guid> repository, ProductMa
     {
         var product = await _productManager.CreateAsync(input.ManufacturerId, input.Name, input.Code, input.Slug,
             input.ProductType, input.SKU, input.SortOrder, input.Visibility, input.IsActive,
-            input.CategoryId, input.SeoMetaDescription, input.Description, input.ThumbnailPicture, input.SellPrice);
+            input.CategoryId, input.SeoMetaDescription, input.Description, input.SellPrice);
+
+        if (input.ThumbnailPictureContent != null && input.ThumbnailPictureContent.Length > 0)
+        {
+            await SaveThumbnailImageAsync(input.ThumbnailPictureName, input.ThumbnailPictureContent);
+            product.ThumbnailPicture = input.ThumbnailPictureName;
+        }
 
         var result = await Repository.InsertAsync(product);
         return ObjectMapper.Map<Product, ProductDto>(result);
@@ -76,7 +90,11 @@ public class ProductsAppService(IRepository<Product, Guid> repository, ProductMa
         }
         product.SeoMetaDescription = input.SeoMetaDescription;
         product.Description = input.Description;
-        product.ThumbnailPicture = input.ThumbnailPicture;
+        if (input.ThumbnailPictureContent != null && input.ThumbnailPictureContent.Length > 0)
+        {
+            await SaveThumbnailImageAsync(input.ThumbnailPictureName, input.ThumbnailPictureContent);
+            product.ThumbnailPicture = input.ThumbnailPictureName;
+        }
         product.SellPrice = input.SellPrice;
         await Repository.UpdateAsync(product);
 
@@ -102,5 +120,13 @@ public class ProductsAppService(IRepository<Product, Guid> repository, ProductMa
         var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
         return new PagedResultDto<ProductDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductDto>>(data));
+    }
+
+    private async Task SaveThumbnailImageAsync(string fileName, string base64)
+    {
+        Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+        base64 = regex.Replace(base64, string.Empty);
+        byte[] bytes = Convert.FromBase64String(base64);
+        await _fileContainer.SaveAsync(fileName, bytes, overrideExisting: true);
     }
 }

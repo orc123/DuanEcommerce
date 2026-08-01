@@ -18,6 +18,10 @@ import { AuthService } from '../shared/services/auth.service';
 import { LoginRequestDto } from '../shared/models/login-request.dto';
 import { LoginResponseDto } from '../shared/models/login-response.dto';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../shared/constants/keys.cont';
+import { BlockUI } from 'primeng/blockui';
+import { ProgressSpinner } from 'primeng/progressspinner';
+import { TokenService } from '../shared/services/token.service';
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +35,8 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../shared/constants/keys.cont';
     RippleModule,
     AppFloatingConfigurator,
     ReactiveFormsModule,
+    BlockUI,
+    ProgressSpinner,
   ],
   template: `
     <app-floating-configurator />
@@ -105,6 +111,9 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../shared/constants/keys.cont';
               (onClick)="onLogin()"
             ></p-button>
           </form>
+          <p-block-ui [blocked]="blockedPanel">
+            <p-progress-spinner></p-progress-spinner>
+          </p-block-ui>
         </div>
       </div>
     </div>
@@ -116,16 +125,17 @@ export class Login implements OnDestroy {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
+  tokenService = inject(TokenService);
+  notificationService = inject(NotificationService);
 
-  email: string = '';
-  password: string = '';
-  checked: boolean = false;
+  blockedPanel: boolean = false;
   loginForm: FormGroup = this.fb.group({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
   onLogin() {
+    this.toggleBlockUI(true);
     var request: LoginRequestDto = {
       username: this.loginForm.controls['username'].value,
       password: this.loginForm.controls['password'].value,
@@ -134,21 +144,31 @@ export class Login implements OnDestroy {
       .login(request)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
-        next: res => {
-          localStorage.setItem(ACCESS_TOKEN, res.access_token);
-          localStorage.setItem(REFRESH_TOKEN, res.refresh_token);
+        next: (res: LoginResponseDto) => {
+          this.tokenService.saveToken(res.access_token);
+          this.tokenService.saveRefreshToken(res.refresh_token);
+          this.toggleBlockUI(false);
           this.router.navigate(['']);
         },
         error: err => {
           console.error('Lỗi đăng nhập:', err);
-          alert(
-            err?.error?.error_description ||
-              'Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản/mật khẩu!',
+          this.notificationService.showError(
+            'Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản/mật khẩu!',
           );
+          this.toggleBlockUI(false);
         },
       });
   }
 
+  private toggleBlockUI(enabled: boolean) {
+    if (enabled == true) {
+      this.blockedPanel = true;
+    } else {
+      setTimeout(() => {
+        this.blockedPanel = false;
+      }, 1000);
+    }
+  }
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();

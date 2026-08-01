@@ -1,4 +1,5 @@
 ﻿using DuanEcommerce.Manufacturers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Manufacturers;
 
+[Authorize]
 public class ManufacturersAppService(IRepository<Manufacturer, Guid> repository) : CrudAppService
     <Manufacturer, ManufacturerDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateManufacturerDto, CreateUpdateManufacturerDto>(repository), IManufacturersAppService
 {

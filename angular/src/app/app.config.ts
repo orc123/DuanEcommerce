@@ -22,9 +22,25 @@ import { FOOTER_PROVIDER } from './footer/footer.config';
 import { provideQuillConfig } from 'ngx-quill';
 
 import { MessageService } from 'primeng/api';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { GlobalHttpInterceptorService } from './shared/interceptors/error-handler.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    // 1. Cần có provideHttpClient với withInterceptorsFromDi() để Angular kích hoạt các HTTP_INTERCEPTORS Class-based
+    provideHttpClient(withInterceptorsFromDi()),
+    // 2. Đăng ký các HttpInterceptors của bạn
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpInterceptorService,
+      multi: true,
+    },
     MessageService,
     provideRouter(APP_ROUTES),
     APP_ROUTE_PROVIDER,

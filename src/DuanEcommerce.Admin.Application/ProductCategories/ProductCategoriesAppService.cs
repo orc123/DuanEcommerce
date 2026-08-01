@@ -1,4 +1,5 @@
 using DuanEcommerce.ProductCategories;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.ProductCategories;
 
+[Authorize]
 public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository) : CrudAppService
     <ProductCategory, ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>(repository), IProductCategoriesAppService
 {

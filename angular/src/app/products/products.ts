@@ -21,6 +21,9 @@ import { NotificationService } from '../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
 import { ProductType } from '../proxy/duan-ecommerce/products';
 import { ConfirmationService } from 'primeng/api';
+import { GlobalHttpInterceptorService } from '../shared/interceptors/error-handler.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../shared/interceptors/token.interceptor';
 
 @Component({
   selector: 'app-products',
@@ -79,6 +82,8 @@ import { ConfirmationService } from 'primeng/api';
                 optionValue="value"
                 optionLabel="label"
                 placeholder="Chọn danh mục"
+                [showClear]="true"
+                [style]="{ width: '100%' }"
               ></p-dropdown>
             </div>
             <button
@@ -163,6 +168,7 @@ import { ConfirmationService } from 'primeng/api';
       </p-dialog>
     }
   `,
+  providers: [ProductsService, ProductCategoriesService, NotificationService, ConfirmationService],
 })
 export class Products implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();

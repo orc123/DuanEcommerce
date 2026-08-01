@@ -1,5 +1,6 @@
 ﻿using DuanEcommerce.ProductCategories;
 using DuanEcommerce.Products;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Products;
 
+[Authorize]
 public class ProductsAppService(
         IRepository<Product, Guid> repository, 
         ProductManager productManager, 

@@ -21,9 +21,6 @@ import { NotificationService } from '../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
 import { ProductType } from '../proxy/duan-ecommerce/products';
 import { ConfirmationService } from 'primeng/api';
-import { GlobalHttpInterceptorService } from '../shared/interceptors/error-handler.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from '../shared/interceptors/token.interceptor';
 
 @Component({
   selector: 'app-products',
@@ -168,7 +165,7 @@ import { TokenInterceptor } from '../shared/interceptors/token.interceptor';
       </p-dialog>
     }
   `,
-  providers: [ProductsService, ProductCategoriesService, NotificationService, ConfirmationService],
+  providers: [],
 })
 export class Products implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();

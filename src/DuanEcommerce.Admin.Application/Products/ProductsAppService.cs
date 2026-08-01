@@ -20,7 +20,8 @@ public class ProductsAppService(
         IRepository<Product, Guid> repository, 
         ProductManager productManager, 
         IRepository<ProductCategory> productCategoryRepository,
-        IBlobContainer<ProductThumbnailPictureContainer> fileContainer
+        IBlobContainer<ProductThumbnailPictureContainer> fileContainer,
+        ProductCodeGenerator productCodeGenerator
     ) : CrudAppService
     <Product,
     ProductDto,
@@ -33,6 +34,7 @@ public class ProductsAppService(
     private readonly ProductManager _productManager = productManager;
     private readonly IRepository<ProductCategory> _productCategoryRepository = productCategoryRepository;
     private readonly IBlobContainer<ProductThumbnailPictureContainer> _fileContainer = fileContainer;
+    private readonly ProductCodeGenerator _productCodeGenerator = productCodeGenerator;
 
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
@@ -138,6 +140,11 @@ public class ProductsAppService(
             return null;
         }
         return Convert.ToBase64String(thumbnailPictureContent);
+    }
+
+    public async Task<string> GetSuggestNewCodeAsync()
+    {
+        return await _productCodeGenerator.GenerateAsync();
     }
 
     private async Task SaveThumbnailImageAsync(string fileName, string base64)

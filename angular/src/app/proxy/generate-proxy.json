@@ -1367,8 +1367,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Manufacturers.IManufacturersAppService",
               "summary": null,
               "remarks": null,
@@ -1388,8 +1393,13 @@
                 "typeSimple": "[DuanEcommerce.Admin.Manufacturers.ManufacturerDto]",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Manufacturers.IManufacturersAppService",
               "summary": null,
               "remarks": null,
@@ -1467,8 +1477,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Manufacturers.ManufacturerDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Manufacturers.IManufacturersAppService",
               "summary": null,
               "remarks": null,
@@ -1516,8 +1531,13 @@
                 "typeSimple": "DuanEcommerce.Admin.Manufacturers.ManufacturerDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<DuanEcommerce.Admin.Manufacturers.ManufacturerDto,DuanEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto>",
               "summary": null,
               "remarks": null,
@@ -1591,8 +1611,13 @@
                 "typeSimple": "DuanEcommerce.Admin.Manufacturers.ManufacturerDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<DuanEcommerce.Admin.Manufacturers.ManufacturerDto,System.Guid,DuanEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto>",
               "summary": null,
               "remarks": null,
@@ -1640,8 +1665,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>",
               "summary": null,
               "remarks": null,
@@ -1689,8 +1719,13 @@
                 "typeSimple": "DuanEcommerce.Admin.Manufacturers.ManufacturerDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Manufacturers.ManufacturerDto,DuanEcommerce.Admin.Manufacturers.ManufacturerDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -1768,8 +1803,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Manufacturers.ManufacturerDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Manufacturers.ManufacturerDto,DuanEcommerce.Admin.Manufacturers.ManufacturerDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -2006,8 +2046,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.ProductCategories.IProductCategoriesAppService",
               "summary": null,
               "remarks": null,
@@ -2027,8 +2072,13 @@
                 "typeSimple": "[DuanEcommerce.Admin.ProductCategories.ProductCategoryDto]",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.ProductCategories.IProductCategoriesAppService",
               "summary": null,
               "remarks": null,
@@ -2106,8 +2156,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.ProductCategories.ProductCategoryDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.ProductCategories.IProductCategoriesAppService",
               "summary": null,
               "remarks": null,
@@ -2155,8 +2210,13 @@
                 "typeSimple": "DuanEcommerce.Admin.ProductCategories.ProductCategoryDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<DuanEcommerce.Admin.ProductCategories.ProductCategoryDto,DuanEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto>",
               "summary": null,
               "remarks": null,
@@ -2230,8 +2290,13 @@
                 "typeSimple": "DuanEcommerce.Admin.ProductCategories.ProductCategoryDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<DuanEcommerce.Admin.ProductCategories.ProductCategoryDto,System.Guid,DuanEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto>",
               "summary": null,
               "remarks": null,
@@ -2279,8 +2344,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>",
               "summary": null,
               "remarks": null,
@@ -2328,8 +2398,13 @@
                 "typeSimple": "DuanEcommerce.Admin.ProductCategories.ProductCategoryDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.ProductCategories.ProductCategoryDto,DuanEcommerce.Admin.ProductCategories.ProductCategoryDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -2407,8 +2482,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.ProductCategories.ProductCategoryDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.ProductCategories.ProductCategoryDto,DuanEcommerce.Admin.ProductCategories.ProductCategoryDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -2499,6 +2579,15 @@
                       "displayName": null
                     }
                   ],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string",
+                    "summary": null
+                  }
+                },
+                {
+                  "name": "GetSuggestNewCodeAsync",
+                  "parametersOnMethod": [],
                   "returnValue": {
                     "type": "System.String",
                     "typeSimple": "string",
@@ -2666,8 +2755,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
               "summary": null,
               "remarks": null,
@@ -2715,8 +2809,13 @@
                 "typeSimple": "DuanEcommerce.Admin.Products.ProductDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<DuanEcommerce.Admin.Products.ProductDto,DuanEcommerce.Admin.Products.CreateUpdateProductDto>",
               "summary": null,
               "remarks": null,
@@ -2790,8 +2889,13 @@
                 "typeSimple": "DuanEcommerce.Admin.Products.ProductDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<DuanEcommerce.Admin.Products.ProductDto,System.Guid,DuanEcommerce.Admin.Products.CreateUpdateProductDto>",
               "summary": null,
               "remarks": null,
@@ -2811,8 +2915,13 @@
                 "typeSimple": "[DuanEcommerce.Admin.Products.ProductDto]",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
               "summary": null,
               "remarks": null,
@@ -2905,8 +3014,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.ProductDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
               "summary": null,
               "remarks": null,
@@ -2954,8 +3068,39 @@
                 "typeSimple": "string",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "GetSuggestNewCodeAsync": {
+              "uniqueName": "GetSuggestNewCodeAsync",
+              "name": "GetSuggestNewCodeAsync",
+              "httpMethod": "GET",
+              "url": "api/app/products/suggest-new-code",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.String",
+                "typeSimple": "string",
+                "summary": null
+              },
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
               "summary": null,
               "remarks": null,
@@ -3003,8 +3148,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>",
               "summary": null,
               "remarks": null,
@@ -3052,8 +3202,13 @@
                 "typeSimple": "DuanEcommerce.Admin.Products.ProductDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Products.ProductDto,DuanEcommerce.Admin.Products.ProductDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -3131,8 +3286,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.ProductDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Products.ProductDto,DuanEcommerce.Admin.Products.ProductDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,

@@ -333,6 +333,7 @@ export class ProductDetail implements OnInit, OnDestroy {
 
           if (this.utilityService.isEmpty(this.productId)) {
             this.buildForm();
+            this.getNewSuggestionCode();
             this.toggleBlockUI(false);
           } else {
             this.loadFormDetails(this.productId);
@@ -417,6 +418,19 @@ export class ProductDetail implements OnInit, OnDestroy {
           this.thumbnailImage = this.sanitizer.bypassSecurityTrustResourceUrl(
             `data:image/${fileExt};base64, ${res}`,
           );
+        },
+      });
+  }
+
+  getNewSuggestionCode() {
+    this.productService
+      .getSuggestNewCode()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (res: string) => {
+          this.form.patchValue({
+            code: res,
+          });
         },
       });
   }

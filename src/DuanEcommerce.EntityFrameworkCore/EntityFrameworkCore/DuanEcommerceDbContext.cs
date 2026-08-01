@@ -22,6 +22,7 @@ using DuanEcommerce.Orders;
 using DuanEcommerce.ProductCategories;
 using DuanEcommerce.Products;
 using DuanEcommerce.Promotions;
+using DuanEcommerce.IdentitySettings;
 
 namespace DuanEcommerce.EntityFrameworkCore;
 
@@ -90,6 +91,8 @@ public class DuanEcommerceDbContext :
     public DbSet<PromotionManufacturer> PromotionManufacturers { get; set; }
     public DbSet<PromotionProduct> PromotionProducts { get; set; }
     public DbSet<PromotionUsageHistory> PromotionUsageHistories { get; set; }
+
+    public DbSet<IdentitySetting> IdentitySettings { get; set; }
 
 
     #endregion
@@ -423,6 +426,16 @@ public class DuanEcommerceDbContext :
             b.ToTable(DuanEcommerceConsts.DbTablePrefix + "PromotionUsageHistories");
             b.ConfigureByConvention();
             b.HasKey(x => x.Id);
+        });
+
+        builder.Entity<IdentitySetting>(b =>
+        {
+            b.ToTable(DuanEcommerceConsts.DbTablePrefix + "IdentitySettings");
+            b.ConfigureByConvention();
+            b.HasKey(x => x.Id);
+            b.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(200);
         });
     }
 }

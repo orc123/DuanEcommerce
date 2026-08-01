@@ -20,6 +20,7 @@ import { MessageModule } from 'primeng/message';
 import { NotificationService } from '../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
 import { ProductType } from '../proxy/duan-ecommerce/products';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-products',
@@ -52,6 +53,16 @@ import { ProductType } from '../proxy/duan-ecommerce/products';
               class="ml-1 p-button-help"
               label="Sửa"
               (click)="showEditModal()"
+            ></button>
+          }
+
+          @if (selectedItems.length > 0) {
+            <button
+              pButton
+              icon="fa fa-minus"
+              class="ml-1 p-button-danger"
+              label="Xóa"
+              (click)="deleteItems()"
             ></button>
           }
         </div>
@@ -159,6 +170,7 @@ export class Products implements OnInit, OnDestroy {
   productService = inject(ProductsService);
   productCategoryService = inject(ProductCategoriesService);
   notificationService = inject(NotificationService);
+  confirmationService = inject(ConfirmationService);
 
   blockedPanel: boolean = false;
   items: ProductDto[] = [];
@@ -245,6 +257,49 @@ export class Products implements OnInit, OnDestroy {
 
   getProductType(value: number) {
     return ProductType[value];
+  }
+
+  deleteItems() {
+    if (this.selectedItems.length == 0) {
+      this.notificationService.showError('Bạn phải chọn ít nhất 1 bản ghi');
+      return;
+    }
+
+    var ids = this.selectedItems.map(x => x.id!);
+
+    this.confirmationService.confirm({
+      header: 'Xóa các bản ghi đã chọn?',
+      message: 'Bạn có muốn xoá các bản ghi đã chọn?',
+      rejectButtonProps: {
+        label: 'Hủy',
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: 'Xóa',
+      },
+      accept: () => {
+        this.deleteItemsConfirmed(ids);
+      },
+    });
+  }
+
+  deleteItemsConfirmed(ids: string[]) {
+    this.toggleBlockUI(true);
+    this.productService
+      .deleteMultiple(ids)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: () => {
+          this.notificationService.showSuccess('Xóa các bản ghi đã chọn thành công');
+          this.loadData();
+          this.selectedItems = [];
+          this.toggleBlockUI(false);
+        },
+        error: () => {
+          this.toggleBlockUI(false);
+        },
+      });
   }
 
   private toggleBlockUI(enabled: boolean) {

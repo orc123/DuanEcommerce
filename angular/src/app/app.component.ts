@@ -3,14 +3,20 @@ import { Router, RouterOutlet } from '@angular/router';
 import { LoaderBarComponent } from '@abp/ng.theme.shared';
 import { AuthService } from './shared/services/auth.service';
 import { LOGIN_URL } from './shared/constants/urls.const';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
   template: `
     <abp-loader-bar />
     <router-outlet />
+    <p-confirmDialog />
+    <p-toast />
   `,
-  imports: [LoaderBarComponent, RouterOutlet],
+  imports: [LoaderBarComponent, RouterOutlet, ConfirmDialogModule, ToastModule],
+  providers: [ConfirmationService],
 })
 export class AppComponent implements OnInit {
   authService = inject(AuthService);

@@ -21,6 +21,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { NotificationService } from '../shared/services/notification.service';
 import { ImageModule } from 'primeng/image';
 import { ProductAttributeDto, ProductAttributesService } from '../proxy/product-attributes';
+import { InputNumber } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-attribute-detail',
@@ -37,6 +38,7 @@ import { ProductAttributeDto, ProductAttributesService } from '../proxy/product-
     DropdownModule,
     TextareaModule,
     ImageModule,
+    InputNumber,
   ],
   template: `
     @if (form) {
@@ -77,6 +79,21 @@ import { ProductAttributeDto, ProductAttributesService } from '../proxy/product-
               <app-validation-message
                 [entityForm]="form"
                 fieldName="dataType"
+                [validationMessages]="validationMessages"
+              ></app-validation-message>
+            </div>
+
+            <div class="field col-12">
+              <label for="sortOrder" class="block">Thứ tự <span class="required">*</span></label>
+              <p-input-number
+                id="sortOrder"
+                class="w-full"
+                [style]="{ width: '100%' }"
+                formControlName="sortOrder"
+              ></p-input-number>
+              <app-validation-message
+                [entityForm]="form"
+                fieldName="sortOrder"
                 [validationMessages]="validationMessages"
               ></app-validation-message>
             </div>
@@ -140,10 +157,11 @@ export class AttributeDetail implements OnInit, OnDestroy {
   validationMessages = {
     code: [{ type: 'required', message: 'Bạn phải nhập mã duy nhất' }],
     label: [
-      { type: 'required', message: 'Bạn phải nhập Label' },
+      { type: 'required', message: 'Bạn phải nhập Nhãn' },
       { type: 'maxlength', message: 'Bạn không được nhập quá 50 kí tự' },
     ],
     dataType: [{ type: 'required', message: 'Bạn phải chọn kiểu dữ liệu' }],
+    sortOrder: [{ type: 'required', message: 'Bạn phải nhập thứ tự' }],
   };
 
   blockedPanel: boolean = false;
@@ -174,6 +192,7 @@ export class AttributeDetail implements OnInit, OnDestroy {
         this.selectedEntity.label || null,
         Validators.compose([Validators.required, Validators.maxLength(50)]),
       ),
+      sortOrder: new FormControl(this.selectedEntity.sortOrder ?? 0, Validators.required),
       dataType: new FormControl(this.selectedEntity.dataType ?? null, Validators.required),
       visibility: new FormControl(this.selectedEntity.visibility ?? true),
       isActive: new FormControl(this.selectedEntity.isActive ?? true),

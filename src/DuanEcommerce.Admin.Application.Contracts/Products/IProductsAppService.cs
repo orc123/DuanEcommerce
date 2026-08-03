@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DuanEcommerce.Admin.Products.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
@@ -19,4 +20,9 @@ public interface IProductsAppService : ICrudAppService
     Task DeleteMultipleAsync(IEnumerable<Guid> ids);
     Task<string?> GetThumbnailImageAsync(string fileName);
     Task<string> GetSuggestNewCodeAsync();
+    Task<ProductAttributeValueDto> AddAttributeAsync(AddUpdateProductAttributeDto input);
+    Task<ProductAttributeValueDto> UpdateAttributeAsync(Guid id, AddUpdateProductAttributeDto input);
+    Task RemoveProductAttributeAsync(Guid attributeId, Guid id);
+    Task<List<ProductAttributeValueDto>> GetProductAttributeAllAsync(Guid productId);
+    Task<PagedResultDto<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input);
 }

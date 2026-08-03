@@ -8,4 +8,8 @@ public static class DuanEcommerceDomainErrorCodes
 
     public const string ProductSKUAlreadyExists = "DuanEcommerce:ProductSKUAlreadyExists";
     public const string ProductIsNotExists = "DuanEcommerce:ProductIsNotExists";
+
+    public const string ProductAttributeIdIsNotExists = "DuanEcommerce:ProductAttributeIdIsNotExists";
+
+    public const string ProductAttributeValueIsNotValid = "DuanEcommerce:ProductAttributeValueIsNotValid";
 }

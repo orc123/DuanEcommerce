@@ -316,6 +316,7 @@ public class ProductsAppService(
                         IntId = aint.Id,
                         TextId = aText.Id,
                         VarcharId = aVarchar.Id,
+                        DateTimeId = adate.Id
                     };
         return await AsyncExecuter.ToListAsync(query);
     }
@@ -362,6 +363,7 @@ public class ProductsAppService(
                         IntId = aint.Id,
                         TextId = aText.Id,
                         VarcharId = aVarchar.Id,
+                        DateTimeId = adate.Id
                     };
         var totalCount = await AsyncExecuter.LongCountAsync(query);
         var data = await AsyncExecuter.ToListAsync(

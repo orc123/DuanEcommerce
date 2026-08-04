@@ -314,7 +314,7 @@ export class ProductAttribute implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: () => {
-          this.notificationService.showSuccess('Xóa thành công');
+          this.notificationService.showSuccess('Xóa thuộc tính thành công');
           this.loadFormDetails(this.productId);
           this.toggleBlockUI(false);
         },

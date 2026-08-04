@@ -307,6 +307,11 @@ public class ProductsAppService(
                         TextId = aText != null ? aText.Id : null,
                         VarcharId = aVarchar != null ? aVarchar.Id : null,
                     };
+        query = query.Where(x => x.DateTimeId != null
+                          || x.DecimalId != null
+                          || x.IntValue != null
+                          || x.TextId != null
+                          || x.VarcharId != null);
         return await AsyncExecuter.ToListAsync(query);
     }
 
@@ -354,6 +359,11 @@ public class ProductsAppService(
                         TextId = aText != null ? aText.Id : null,
                         VarcharId = aVarchar != null ? aVarchar.Id : null,
                     };
+        query = query.Where(x => x.DateTimeId != null
+                          || x.DecimalId != null
+                          || x.IntValue != null
+                          || x.TextId != null
+                          || x.VarcharId != null);
         var totalCount = await AsyncExecuter.LongCountAsync(query);
         var data = await AsyncExecuter.ToListAsync(
             query.OrderByDescending(x => x.Label)

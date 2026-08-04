@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 import { LoginResponseDto } from '../models/login-response.dto';
 import { environment } from '@/environments/environment';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/keys.cont';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   httpClient = inject(HttpClient);
+  tokenService = inject(TokenService);
 
   public login(input: LoginRequestDto): Observable<LoginResponseDto> {
     var body = {
@@ -50,10 +52,9 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return localStorage.getItem(ACCESS_TOKEN) != null;
+    return this.tokenService.getToken() != null;
   }
   public logout() {
-    localStorage.removeItem(ACCESS_TOKEN);
-    localStorage.removeItem(REFRESH_TOKEN);
+    this.tokenService.signOut();
   }
 }

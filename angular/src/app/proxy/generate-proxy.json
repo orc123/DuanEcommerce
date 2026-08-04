@@ -3274,6 +3274,133 @@
                   }
                 },
                 {
+                  "name": "AddAttributeAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto, DuanEcommerce.Admin.Application.Contracts",
+                      "type": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                      "typeSimple": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                    "typeSimple": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                    "summary": null
+                  }
+                },
+                {
+                  "name": "UpdateAttributeAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto, DuanEcommerce.Admin.Application.Contracts",
+                      "type": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                      "typeSimple": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                    "typeSimple": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                    "summary": null
+                  }
+                },
+                {
+                  "name": "RemoveProductAttributeAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "attributeId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    },
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void",
+                    "summary": null
+                  }
+                },
+                {
+                  "name": "GetProductAttributeAllAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "productId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.List<DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto>",
+                    "typeSimple": "[DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto]",
+                    "summary": null
+                  }
+                },
+                {
+                  "name": "GetProductAttributesAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto, DuanEcommerce.Admin.Application.Contracts",
+                      "type": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto",
+                      "typeSimple": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto",
+                      "isOptional": false,
+                      "defaultValue": null,
+                      "summary": null,
+                      "description": null,
+                      "displayName": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto>",
+                    "summary": null
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -3771,6 +3898,373 @@
               "returnValue": {
                 "type": "System.String",
                 "typeSimple": "string",
+                "summary": null
+              },
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "AddAttributeAsyncByInput": {
+              "uniqueName": "AddAttributeAsyncByInput",
+              "name": "AddAttributeAsync",
+              "httpMethod": "POST",
+              "url": "api/app/products/attribute",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto, DuanEcommerce.Admin.Application.Contracts",
+                  "type": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "typeSimple": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "typeSimple": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "returnValue": {
+                "type": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                "typeSimple": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                "summary": null
+              },
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "RemoveProductAttributeAsyncByAttributeIdAndId": {
+              "uniqueName": "RemoveProductAttributeAsyncByAttributeIdAndId",
+              "name": "RemoveProductAttributeAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/products/{id}/product-attribute/{attributeId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "attributeId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "attributeId",
+                  "name": "attributeId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void",
+                "summary": null
+              },
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "GetProductAttributeAllAsyncByProductId": {
+              "uniqueName": "GetProductAttributeAllAsyncByProductId",
+              "name": "GetProductAttributeAllAsync",
+              "httpMethod": "GET",
+              "url": "api/app/products/product-attribute-all/{productId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "productId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "productId",
+                  "name": "productId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto>",
+                "typeSimple": "[DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto]",
+                "summary": null
+              },
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "GetProductAttributesAsyncByInput": {
+              "uniqueName": "GetProductAttributesAsyncByInput",
+              "name": "GetProductAttributesAsync",
+              "httpMethod": "GET",
+              "url": "api/app/products/product-attributes",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto, DuanEcommerce.Admin.Application.Contracts",
+                  "type": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto",
+                  "typeSimple": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "ProductId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Keyword",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto>",
+                "summary": null
+              },
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": null,
+                  "roles": null
+                }
+              ],
+              "implementFrom": "DuanEcommerce.Admin.Products.IProductsAppService",
+              "summary": null,
+              "remarks": null,
+              "description": null,
+              "displayName": null
+            },
+            "UpdateAttributeAsyncByIdAndInput": {
+              "uniqueName": "UpdateAttributeAsyncByIdAndInput",
+              "name": "UpdateAttributeAsync",
+              "httpMethod": "PUT",
+              "url": "api/app/products/{id}/attribute",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto, DuanEcommerce.Admin.Application.Contracts",
+                  "type": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "typeSimple": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "typeSimple": "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": "",
+                  "summary": null,
+                  "description": null,
+                  "displayName": null
+                }
+              ],
+              "returnValue": {
+                "type": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
+                "typeSimple": "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto",
                 "summary": null
               },
               "allowAnonymous": false,
@@ -9459,6 +9953,413 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        }
+      ],
+      "summary": null,
+      "remarks": null,
+      "description": null,
+      "displayName": null
+    },
+    "DuanEcommerce.Admin.Products.Attributes.AddUpdateProductAttributeDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "ProductId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "AttributeId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DateTimeValue",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DecimalValue",
+          "jsonName": null,
+          "type": "System.Decimal?",
+          "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "IntValue",
+          "jsonName": null,
+          "type": "System.Int32?",
+          "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "VarcharValue",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "TextValue",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        }
+      ],
+      "summary": null,
+      "remarks": null,
+      "description": null,
+      "displayName": null
+    },
+    "DuanEcommerce.Admin.Products.Attributes.ProductAttributeListFilterDto": {
+      "baseType": "DuanEcommerce.Admin.BaseListFilterDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "ProductId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        }
+      ],
+      "summary": null,
+      "remarks": null,
+      "description": null,
+      "displayName": null
+    },
+    "DuanEcommerce.Admin.Products.Attributes.ProductAttributeValueDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "ProductId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "AttributeId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "Code",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DataType",
+          "jsonName": null,
+          "type": "DuanEcommerce.ProductAttributes.AttributeType",
+          "typeSimple": "enum",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "Label",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": false,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DateTimeValue",
+          "jsonName": null,
+          "type": "System.DateTime?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DecimalValue",
+          "jsonName": null,
+          "type": "System.Decimal?",
+          "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "IntValue",
+          "jsonName": null,
+          "type": "System.Int32?",
+          "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "TextValue",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "VarcharValue",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DateTimeId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "DecimalId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "IntId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "TextId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null,
+          "isNullable": true,
+          "summary": null,
+          "description": null,
+          "displayName": null
+        },
+        {
+          "name": "VarcharId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

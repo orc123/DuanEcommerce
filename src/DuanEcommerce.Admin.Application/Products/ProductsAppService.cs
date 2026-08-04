@@ -20,16 +20,16 @@ namespace DuanEcommerce.Admin.Products;
 [Authorize]
 public class ProductsAppService(
         IRepository<Product, Guid> repository,
-        ProductManager productManager,
-        IRepository<ProductCategory> productCategoryRepository,
-        IBlobContainer<ProductThumbnailPictureContainer> fileContainer,
-        ProductCodeGenerator productCodeGenerator,
-        IRepository<ProductAttribute, Guid> productAttributeRepository,
-        IRepository<ProductAttributeDateTime, Guid> productAttributeDateTimeRepository,
-        IRepository<ProductAttributeInt, Guid> productAttributeIntRepository,
-        IRepository<ProductAttributeDecimal, Guid> productAttributeDecimalRepository,
-        IRepository<ProductAttributeText, Guid> productAttributeTextRepository,
-        IRepository<ProductAttributeVarchar, Guid> productAttributeVarcharRepository
+        ProductManager _productManager,
+        IRepository<ProductCategory> _productCategoryRepository,
+        IBlobContainer<ProductThumbnailPictureContainer> _fileContainer,
+        ProductCodeGenerator _productCodeGenerator,
+        IRepository<ProductAttribute, Guid> _productAttributeRepository,
+        IRepository<ProductAttributeDateTime, Guid> _productAttributeDateTimeRepository,
+        IRepository<ProductAttributeInt, Guid> _productAttributeIntRepository,
+        IRepository<ProductAttributeDecimal, Guid> _productAttributeDecimalRepository,
+        IRepository<ProductAttributeText, Guid> _productAttributeTextRepository,
+        IRepository<ProductAttributeVarchar, Guid> _productAttributeVarcharRepository
     ) : CrudAppService
     <Product,
     ProductDto,
@@ -39,16 +39,6 @@ public class ProductsAppService(
     CreateUpdateProductDto
     >(repository), IProductsAppService
 {
-    private readonly ProductManager _productManager = productManager;
-    private readonly IRepository<ProductCategory> _productCategoryRepository = productCategoryRepository;
-    private readonly IBlobContainer<ProductThumbnailPictureContainer> _fileContainer = fileContainer;
-    private readonly ProductCodeGenerator _productCodeGenerator = productCodeGenerator;
-    private readonly IRepository<ProductAttribute, Guid> _productAttributeRepository = productAttributeRepository;
-    private readonly IRepository<ProductAttributeDateTime, Guid> _productAttributeDateTimeRepository = productAttributeDateTimeRepository;
-    private readonly IRepository<ProductAttributeInt, Guid> _productAttributeIntRepository = productAttributeIntRepository;
-    private readonly IRepository<ProductAttributeDecimal, Guid> _productAttributeDecimalRepository = productAttributeDecimalRepository;
-    private readonly IRepository<ProductAttributeText, Guid> _productAttributeTextRepository = productAttributeTextRepository;
-    private readonly IRepository<ProductAttributeVarchar, Guid> _productAttributeVarcharRepository = productAttributeVarcharRepository;
 
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
@@ -172,7 +162,7 @@ public class ProductsAppService(
     public async Task<ProductAttributeValueDto> AddAttributeAsync(AddUpdateProductAttributeDto input)
     {
         var product = await Repository.GetAsync(input.ProductId)
-             ?? throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductIsNotExists); ;
+             ?? throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductIsNotExists);
         var attribute = await _productAttributeRepository.GetAsync(input.AttributeId)
             ?? throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeIdIsNotExists);
         var newAttributeId = Guid.NewGuid();
@@ -183,7 +173,7 @@ public class ProductsAppService(
                 {
                     throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeValueIsNotValid);
                 }
-                var intAttribute = new ProductAttributeInt(newAttributeId, input.ProductId, input.AttributeId, input.IntValue.Value);
+                var intAttribute = new ProductAttributeInt(newAttributeId, input.AttributeId, input.ProductId, input.IntValue.Value);
                 await _productAttributeIntRepository.InsertAsync(intAttribute);
                 break;
             case AttributeType.Varchar:
@@ -191,7 +181,7 @@ public class ProductsAppService(
                 {
                     throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeValueIsNotValid);
                 }
-                var varcharAttribute = new ProductAttributeVarchar(newAttributeId, input.ProductId, input.AttributeId, input.VarcharValue);
+                var varcharAttribute = new ProductAttributeVarchar(newAttributeId, input.AttributeId, input.ProductId, input.VarcharValue);
                 await _productAttributeVarcharRepository.InsertAsync(varcharAttribute);
                 break;
             case AttributeType.Text:
@@ -199,7 +189,7 @@ public class ProductsAppService(
                 {
                     throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeValueIsNotValid);
                 }
-                var textAttribute = new ProductAttributeText(newAttributeId, input.ProductId, input.AttributeId, input.TextValue);
+                var textAttribute = new ProductAttributeText(newAttributeId, input.AttributeId, input.ProductId, input.TextValue);
                 await _productAttributeTextRepository.InsertAsync(textAttribute);
                 break;
             case AttributeType.Decimal:
@@ -207,7 +197,7 @@ public class ProductsAppService(
                 {
                     throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeValueIsNotValid);
                 }
-                var decimalAttribute = new ProductAttributeDecimal(newAttributeId, input.ProductId, input.AttributeId, input.DecimalValue.Value);
+                var decimalAttribute = new ProductAttributeDecimal(newAttributeId, input.AttributeId, input.ProductId, input.DecimalValue.Value);
                 await _productAttributeDecimalRepository.InsertAsync(decimalAttribute);
                 break;
             case AttributeType.Date:
@@ -215,7 +205,7 @@ public class ProductsAppService(
                 {
                     throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeValueIsNotValid);
                 }
-                var datetimeAttribute = new ProductAttributeDateTime(newAttributeId, input.ProductId, input.AttributeId, input.DateTimeValue.Value);
+                var datetimeAttribute = new ProductAttributeDateTime(newAttributeId, input.AttributeId, input.ProductId, input.DateTimeValue.Value);
                 await _productAttributeDateTimeRepository.InsertAsync(datetimeAttribute);
                 break;
             default:
@@ -238,7 +228,7 @@ public class ProductsAppService(
 
     public async Task RemoveProductAttributeAsync(Guid attributeId, Guid id)
     {
-        var attribute = await _productAttributeRepository.GetAsync(x => x.Id == id)
+        var attribute = await _productAttributeRepository.GetAsync(x => x.Id == attributeId)
            ?? throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductAttributeIdIsNotExists);
 
         switch (attribute.DataType)
@@ -277,16 +267,20 @@ public class ProductsAppService(
     public async Task<List<ProductAttributeValueDto>> GetProductAttributeAllAsync(Guid productId)
     {
         var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
-
-        var attributeIntQuery = await _productAttributeIntRepository.GetQueryableAsync();
-        var attributeVarcharQuery = await _productAttributeVarcharRepository.GetQueryableAsync();
-        var attributeTextQuery = await _productAttributeTextRepository.GetQueryableAsync();
-        var attributeDecimalQuery = await _productAttributeDecimalRepository.GetQueryableAsync();
-        var attributeDateTimeQuery = await _productAttributeDateTimeRepository.GetQueryableAsync();
-
+        // Lọc theo ProductId ngay từ các Queryable con trước khi JOIN
+        var attributeIntQuery = (await _productAttributeIntRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == productId);
+        var attributeVarcharQuery = (await _productAttributeVarcharRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == productId);
+        var attributeTextQuery = (await _productAttributeTextRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == productId);
+        var attributeDecimalQuery = (await _productAttributeDecimalRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == productId);
+        var attributeDateTimeQuery = (await _productAttributeDateTimeRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == productId);
         var query = from a in attributeQuery
-                    join adate in attributeDateTimeQuery on a.Id equals adate.AttributeId into aDateTimeTabke
-                    from adate in aDateTimeTabke.DefaultIfEmpty()
+                    join adate in attributeDateTimeQuery on a.Id equals adate.AttributeId into aDateTimeTable
+                    from adate in aDateTimeTable.DefaultIfEmpty()
                     join adecimal in attributeDecimalQuery on a.Id equals adecimal.AttributeId into aDecimalTable
                     from adecimal in aDecimalTable.DefaultIfEmpty()
                     join aint in attributeIntQuery on a.Id equals aint.AttributeId into aIntTable
@@ -295,11 +289,6 @@ public class ProductsAppService(
                     from aVarchar in aVarcharTable.DefaultIfEmpty()
                     join aText in attributeTextQuery on a.Id equals aText.AttributeId into aTextTable
                     from aText in aTextTable.DefaultIfEmpty()
-                    where (adate != null || adate.ProductId == productId)
-                        && (adecimal != null || adecimal.ProductId == productId)
-                        && (aint != null || aint.ProductId == productId)
-                        && (aVarchar != null || aVarchar.ProductId == productId)
-                        && (aText != null || aText.ProductId == productId)
                     select new ProductAttributeValueDto()
                     {
                         Label = a.Label,
@@ -307,16 +296,16 @@ public class ProductsAppService(
                         DataType = a.DataType,
                         Code = a.Code,
                         ProductId = productId,
-                        DateTimeValue = adate.Value,
-                        DecimalValue = adecimal.Value,
-                        IntValue = aint.Value,
-                        TextValue = aText.Value,
-                        VarcharValue = aVarchar.Value,
-                        DecimalId = adecimal.Id,
-                        IntId = aint.Id,
-                        TextId = aText.Id,
-                        VarcharId = aVarchar.Id,
-                        DateTimeId = adate.Id
+                        DateTimeValue = adate != null ? adate.Value : null,
+                        DecimalValue = adecimal != null ? adecimal.Value : null,
+                        IntValue = aint != null ? aint.Value : null,
+                        TextValue = aText != null ? aText.Value : null,
+                        VarcharValue = aVarchar != null ? aVarchar.Value : null,
+                        DateTimeId = adate != null ? adate.Id : null,
+                        DecimalId = adecimal != null ? adecimal.Id : null,
+                        IntId = aint != null ? aint.Id : null,
+                        TextId = aText != null ? aText.Id : null,
+                        VarcharId = aVarchar != null ? aVarchar.Id : null,
                     };
         return await AsyncExecuter.ToListAsync(query);
     }
@@ -325,11 +314,16 @@ public class ProductsAppService(
     {
         var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
 
-        var attributeDateTimeQuery = await _productAttributeDateTimeRepository.GetQueryableAsync();
-        var attributeDecimalQuery = await _productAttributeDecimalRepository.GetQueryableAsync();
-        var attributeIntQuery = await _productAttributeIntRepository.GetQueryableAsync();
-        var attributeVarcharQuery = await _productAttributeVarcharRepository.GetQueryableAsync();
-        var attributeTextQuery = await _productAttributeTextRepository.GetQueryableAsync();
+        var attributeIntQuery = (await _productAttributeIntRepository.GetQueryableAsync())
+             .Where(x => x.ProductId == input.ProductId);
+        var attributeVarcharQuery = (await _productAttributeVarcharRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == input.ProductId);
+        var attributeTextQuery = (await _productAttributeTextRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == input.ProductId);
+        var attributeDecimalQuery = (await _productAttributeDecimalRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == input.ProductId);
+        var attributeDateTimeQuery = (await _productAttributeDateTimeRepository.GetQueryableAsync())
+            .Where(x => x.ProductId == input.ProductId);
 
         var query = from a in attributeQuery
                     join adate in attributeDateTimeQuery on a.Id equals adate.AttributeId into aDateTimeTabke
@@ -342,11 +336,6 @@ public class ProductsAppService(
                     from aVarchar in aVarcharTable.DefaultIfEmpty()
                     join aText in attributeTextQuery on a.Id equals aText.AttributeId into aTextTable
                     from aText in aTextTable.DefaultIfEmpty()
-                    where (adate != null || adate.ProductId == input.ProductId)
-                    && (adecimal != null || adecimal.ProductId == input.ProductId)
-                     && (aint != null || aint.ProductId == input.ProductId)
-                      && (aVarchar != null || aVarchar.ProductId == input.ProductId)
-                       && (aText != null || aText.ProductId == input.ProductId)
                     select new ProductAttributeValueDto()
                     {
                         Label = a.Label,
@@ -354,16 +343,16 @@ public class ProductsAppService(
                         DataType = a.DataType,
                         Code = a.Code,
                         ProductId = input.ProductId,
-                        DateTimeValue = adate.Value,
-                        DecimalValue = adecimal.Value,
-                        IntValue = aint.Value,
-                        TextValue = aText.Value,
-                        VarcharValue = aVarchar.Value,
-                        DecimalId = adecimal.Id,
-                        IntId = aint.Id,
-                        TextId = aText.Id,
-                        VarcharId = aVarchar.Id,
-                        DateTimeId = adate.Id
+                        DateTimeValue = adate != null ? adate.Value : null,
+                        DecimalValue = adecimal != null ? adecimal.Value : null,
+                        IntValue = aint != null ? aint.Value : null,
+                        TextValue = aText != null ? aText.Value : null,
+                        VarcharValue = aVarchar != null ? aVarchar.Value : null,
+                        DateTimeId = adate != null ? adate.Id : null,
+                        DecimalId = adecimal != null ? adecimal.Id : null,
+                        IntId = aint != null ? aint.Id : null,
+                        TextId = aText != null ? aText.Id : null,
+                        VarcharId = aVarchar != null ? aVarchar.Id : null,
                     };
         var totalCount = await AsyncExecuter.LongCountAsync(query);
         var data = await AsyncExecuter.ToListAsync(

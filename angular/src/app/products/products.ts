@@ -21,6 +21,7 @@ import { NotificationService } from '../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
 import { ProductType } from '../proxy/duan-ecommerce/products';
 import { ConfirmationService } from 'primeng/api';
+import { ProductAttribute } from './product-attribute';
 
 @Component({
   selector: 'app-products',
@@ -39,6 +40,7 @@ import { ConfirmationService } from 'primeng/api';
     Dialog,
     ProductDetail,
     MessageModule,
+    ProductAttribute,
     BadgeModule,
   ],
   template: `
@@ -136,7 +138,15 @@ import { ConfirmationService } from 'primeng/api';
                 <p-badge value="Khoá" severity="danger"></p-badge>
               }
             </td>
-            <td></td>
+            <td>
+              <button
+                pButton
+                icon="fa fa-pencil"
+                class="ml-1 p-button-success p-button-sm"
+                label="Thuộc tính"
+                (click)="manageProductAttribute(product.id)"
+              ></button>
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -164,6 +174,17 @@ import { ConfirmationService } from 'primeng/api';
         <app-product-detail [productId]="productId" (saveChange)="saveData()"></app-product-detail>
       </p-dialog>
     }
+
+    @if (visibleAttributeForm) {
+      <p-dialog
+        header="Quản lý thuộc tính sản phẩm"
+        [modal]="true"
+        [(visible)]="visibleAttributeForm"
+        [style]="{ width: '70%' }"
+      >
+        <app-product-attribute [productId]="productId"></app-product-attribute>
+      </p-dialog>
+    }
   `,
   providers: [],
 })
@@ -189,6 +210,7 @@ export class Products implements OnInit, OnDestroy {
   categoryId: string = '';
 
   visibleForm = false;
+  visibleAttributeForm = false;
   productId: string = '';
   headerTitle = '';
 
@@ -250,6 +272,11 @@ export class Products implements OnInit, OnDestroy {
     this.headerTitle = 'Chỉnh sửa sản phẩm';
     this.visibleForm = true;
     this.productId = this.selectedItems[0].id!;
+  }
+
+  manageProductAttribute(id?: string) {
+    this.visibleAttributeForm = true;
+    this.productId = id!;
   }
 
   saveData() {

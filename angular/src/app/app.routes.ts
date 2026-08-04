@@ -1,11 +1,12 @@
-import { authGuard, permissionGuard } from '@abp/ng.core';
 import { Routes } from '@angular/router';
 import { AppLayout } from './layout/component/app.layout';
+import { authGuard } from './shared/guards/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {
     path: '',
     component: AppLayout,
+    canActivate: [authGuard],
     children: [
       {
         path: '',

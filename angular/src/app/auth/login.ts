@@ -66,7 +66,7 @@ import { NotificationService } from '../shared/services/notification.service';
             <span class="text-600 font-medium">Vui lòng đăng nhập để tiếp tục</span>
           </div>
 
-          <form [formGroup]="loginForm">
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <label for="email1" class="block text-900 text-sm font-semibold mb-2"
               >Email / Tên đăng nhập</label
             >
@@ -108,7 +108,7 @@ import { NotificationService } from '../shared/services/notification.service';
             <p-button
               label="Đăng Nhập"
               styleClass="w-full p-3 font-semibold text-lg"
-              (onClick)="onLogin()"
+              type="submit"
             ></p-button>
           </form>
           <p-block-ui [blocked]="blockedPanel">

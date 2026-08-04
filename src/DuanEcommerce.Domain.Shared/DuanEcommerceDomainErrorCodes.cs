@@ -12,4 +12,6 @@ public static class DuanEcommerceDomainErrorCodes
     public const string ProductAttributeIdIsNotExists = "DuanEcommerce:ProductAttributeIdIsNotExists";
 
     public const string ProductAttributeValueIsNotValid = "DuanEcommerce:ProductAttributeValueIsNotValid";
+
+    public const string RoleNameAlreadyExists = "DuanEcommerce:RoleNameAlreadyExists";
 }

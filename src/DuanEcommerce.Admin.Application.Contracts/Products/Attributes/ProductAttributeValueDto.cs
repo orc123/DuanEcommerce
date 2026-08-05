@@ -8,6 +8,10 @@ namespace DuanEcommerce.Admin.Products.Attributes;
 
 public class ProductAttributeValueDto : EntityDto<Guid>
 {
+    public ProductAttributeValueDto()
+    {
+        
+    }
     public Guid ProductId { get; set; }
     public Guid AttributeId { get; set; }
     public string Code { get; set; }

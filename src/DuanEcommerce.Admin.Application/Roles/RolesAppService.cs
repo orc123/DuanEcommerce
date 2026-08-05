@@ -53,6 +53,21 @@ public class RolesAppService(IRepository<IdentityRole, Guid> repository) : CrudA
         return new PagedResultDto<RoleDto>(totalCount, data);
     }
 
+    public async override Task<RoleDto> GetAsync(Guid id)
+    {
+        var role = await Repository.GetAsync(id);
+        if (role == null)
+        {
+            throw new EntityNotFoundException(typeof(IdentityRole), id);
+        }
+        return new RoleDto
+        {
+            Id = role.Id,
+            Name = role.Name,
+            Description = role.GetProperty<string>(RoleConsts.DescriptionFieldName)
+        };
+    }
+
     public async override Task<RoleDto> CreateAsync(CreateUpdateRoleDto input)
     {
         var query = await Repository.GetQueryableAsync();

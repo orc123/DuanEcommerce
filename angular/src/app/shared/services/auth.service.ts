@@ -4,7 +4,7 @@ import { LoginRequestDto } from '../models/login-request.dto';
 import { Observable } from 'rxjs';
 import { LoginResponseDto } from '../models/login-response.dto';
 import { environment } from '@/environments/environment';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/keys.cont';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/keys.const';
 import { TokenService } from './token.service';
 
 @Injectable({

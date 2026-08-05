@@ -20,6 +20,10 @@ export const APP_ROUTES: Routes = [
         path: 'attributes',
         loadChildren: () => import('./attributes/attribute.route'),
       },
+      {
+        path: 'roles',
+        loadChildren: () => import('./roles/role.route'),
+      },
       // {
       //   path: 'tenant-management',
       //   loadChildren: () => import('@abp/ng.tenant-management').then(c => c.createRoutes()),

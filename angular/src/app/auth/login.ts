@@ -17,7 +17,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 import { LoginRequestDto } from '../shared/models/login-request.dto';
 import { LoginResponseDto } from '../shared/models/login-response.dto';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../shared/constants/keys.cont';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../shared/constants/keys.const';
 import { BlockUI } from 'primeng/blockui';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { TokenService } from '../shared/services/token.service';

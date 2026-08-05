@@ -38,6 +38,17 @@ export class AppMenu implements OnInit {
           },
         ],
       },
+      {
+        label: 'Hệ thống',
+        items: [
+          { label: 'Danh sách quyền', icon: 'pi pi-fw pi-circle', routerLink: ['/roles'] },
+          {
+            label: 'Danh sách người dùng',
+            icon: 'pi pi-fw pi-circle',
+            routerLink: ['/users'],
+          },
+        ],
+      },
     ];
   }
 }

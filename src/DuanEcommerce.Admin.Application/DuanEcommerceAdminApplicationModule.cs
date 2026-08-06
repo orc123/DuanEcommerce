@@ -1,5 +1,4 @@
 ﻿using DuanEcommerce.Products;
-using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.BlobStoring;
 using Volo.Abp.BlobStoring.FileSystem;

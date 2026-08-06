@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DuanEcommerce.Roles;
+﻿namespace DuanEcommerce.Roles;
 
 public class RoleConsts
 {

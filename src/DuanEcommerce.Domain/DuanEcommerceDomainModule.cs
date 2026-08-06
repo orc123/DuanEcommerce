@@ -1,11 +1,9 @@
 using DuanEcommerce.MultiTenancy;
-using DuanEcommerce.Products;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
-using Volo.Abp.BlobStoring;
 using Volo.Abp.BlobStoring.Database;
 using Volo.Abp.Caching;
 using Volo.Abp.Emailing;

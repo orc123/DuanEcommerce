@@ -2,11 +2,13 @@ using DuanEcommerce.Admin.Manufacturers;
 using DuanEcommerce.Admin.ProductAttributes;
 using DuanEcommerce.Admin.ProductCategories;
 using DuanEcommerce.Admin.Products;
+using DuanEcommerce.Admin.Users;
 using DuanEcommerce.Manufacturers;
 using DuanEcommerce.ProductAttributes;
 using DuanEcommerce.ProductCategories;
 using DuanEcommerce.Products;
 using Riok.Mapperly.Abstractions;
+using Volo.Abp.Identity;
 using Volo.Abp.Mapperly;
 
 namespace DuanEcommerce.Admin;
@@ -73,4 +75,12 @@ public partial class CreateUpdateProductAttributeDtoToProductAttribute : MapperB
     public override partial ProductAttribute Map(CreateUpdateProductAttributeDto source);
 
     public override partial void Map(CreateUpdateProductAttributeDto source, ProductAttribute destination);
+}
+
+[Mapper]
+public partial class IdentityUserToUserDtoMapper : MapperBase<IdentityUser, UserDto>
+{
+    public override partial UserDto Map(IdentityUser source);
+
+    public override partial void Map(IdentityUser source, UserDto destination);
 }

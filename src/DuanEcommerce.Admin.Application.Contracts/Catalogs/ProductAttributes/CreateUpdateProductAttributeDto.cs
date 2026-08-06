@@ -1,5 +1,4 @@
 ﻿using DuanEcommerce.ProductAttributes;
-using System;
 
 namespace DuanEcommerce.Admin.ProductAttributes;
 

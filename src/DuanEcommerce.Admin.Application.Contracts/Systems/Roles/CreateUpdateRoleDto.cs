@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DuanEcommerce.Admin.Roles;
+﻿namespace DuanEcommerce.Admin.Roles;
 
 public class CreateUpdateRoleDto
 {

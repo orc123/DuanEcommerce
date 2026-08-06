@@ -9,7 +9,7 @@ public class DuanEcommercePermissionDefinitionProvider : PermissionDefinitionPro
     public override void Define(IPermissionDefinitionContext context)
     {
         //Catalog
-        var catalogGroup = context.AddGroup(DuanEcommercePermissions.CatalogGroupName);
+        var catalogGroup = context.AddGroup(DuanEcommercePermissions.CatalogGroupName, L("Permission:Catalog"));
 
         //Add product
         var productPermission = catalogGroup.AddPermission(DuanEcommercePermissions.Product.Default, L("Permission:Catalog.Product"));

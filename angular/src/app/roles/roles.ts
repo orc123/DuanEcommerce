@@ -19,6 +19,7 @@ import { BadgeModule } from 'primeng/badge';
 import { ConfirmationService } from 'primeng/api';
 import { RoleDto, RolesService } from '../proxy/roles';
 import { RoleDetail } from './role-detail';
+import { PermissionGrant } from './permission-grant';
 
 @Component({
   selector: 'app-roles',
@@ -38,6 +39,7 @@ import { RoleDetail } from './role-detail';
     MessageModule,
     BadgeModule,
     RoleDetail,
+    PermissionGrant,
   ],
   template: `
     <div class="animated fadeIn">
@@ -46,9 +48,6 @@ import { RoleDetail } from './role-detail';
         <div class="grid">
           <div class="col-6">
             <button
-              appPermission
-              appFunction="LEARNING_COURSE_CATEGORY"
-              appAction="CREATE"
               pButton
               type="button"
               label="Thêm"
@@ -58,9 +57,6 @@ import { RoleDetail } from './role-detail';
             ></button>
             @if (selectedItems.length > 0) {
               <button
-                appPermission
-                appFunction="LEARNING_COURSE_CATEGORY"
-                appAction="DELETE"
                 pButton
                 type="button"
                 label="Xóa"
@@ -72,9 +68,6 @@ import { RoleDetail } from './role-detail';
 
             @if (selectedItems.length === 1) {
               <button
-                appPermission
-                appFunction="LEARNING_COURSE_CATEGORY"
-                appAction="UPDATE"
                 pButton
                 type="button"
                 label="Sửa"
@@ -170,6 +163,20 @@ import { RoleDetail } from './role-detail';
         <app-role-detail [roleId]="roleId" (saveChange)="saveData()"></app-role-detail>
       </p-dialog>
     }
+
+    @if (visibleFormPermission) {
+      <p-dialog
+        header="Phân quyền"
+        [modal]="true"
+        [(visible)]="visibleFormPermission"
+        [style]="{ width: '70%' }"
+      >
+        <app-permission-grant
+          [providerKey]="roleName"
+          (saveChange)="saveDataPermission()"
+        ></app-permission-grant>
+      </p-dialog>
+    }
   `,
   providers: [],
 })
@@ -194,7 +201,9 @@ export class Roles implements OnInit, OnDestroy {
   categoryId: string = '';
 
   visibleForm = false;
+  visibleFormPermission = false;
   roleId: string = '';
+  roleName = '';
   headerTitle = '';
 
   ngOnInit(): void {
@@ -250,7 +259,17 @@ export class Roles implements OnInit, OnDestroy {
     this.selectedItems = [];
   }
 
-  showPermissionModal(id: string, name: string) {}
+  showPermissionModal(id: string, name: string) {
+    this.visibleFormPermission = true;
+    this.roleName = name;
+  }
+
+  saveDataPermission() {
+    this.visibleFormPermission = false;
+    this.loadData();
+    this.selectedItems = [];
+    this.roleName = '';
+  }
 
   deleteItems() {
     if (this.selectedItems.length == 0) {

@@ -34,5 +34,5 @@ export const APP_ROUTES: Routes = [
       // },
     ],
   },
-  { path: 'auth', loadChildren: () => import('../app/auth/auth.routes') },
+  { path: 'auth', loadChildren: () => import('./auth/auth.routes') },
 ];

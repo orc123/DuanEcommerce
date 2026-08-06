@@ -2,8 +2,8 @@ namespace DuanEcommerce.Admin.Permissions;
 
 public static class DuanEcommercePermissions
 {
-    public const string SystemGroupName = "TeduEcomAdminSystem";
-    public const string CatalogGroupName = "TeduEcomAdminCatalog";
+    public const string SystemGroupName = "DuanEcomAdminSystem";
+    public const string CatalogGroupName = "DuanEcomAdminCatalog";
 
     //Add your own permission names. Example:
     public static class Role

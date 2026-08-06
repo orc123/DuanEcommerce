@@ -274,12 +274,12 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
 
         var supportedCultures = new[]
          {
-                new CultureInfo("vi")
+                new CultureInfo("en")
             };
 
         app.UseAbpRequestLocalization(options =>
         {
-            options.DefaultRequestCulture = new RequestCulture("vi");
+            options.DefaultRequestCulture = new RequestCulture("en");
             options.SupportedCultures = supportedCultures;
             options.SupportedUICultures = supportedCultures;
             options.RequestCultureProviders = new List<IRequestCultureProvider>

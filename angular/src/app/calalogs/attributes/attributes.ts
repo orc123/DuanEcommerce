@@ -14,11 +14,11 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { Dialog } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
-import { NotificationService } from '../shared/services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
 import { ConfirmationService } from 'primeng/api';
-import { ProductAttributeDto, ProductAttributesService } from '../proxy/product-attributes';
-import { AttributeType } from '../proxy/duan-ecommerce/product-attributes';
+import { ProductAttributeDto, ProductAttributesService } from '../../proxy/product-attributes';
+import { AttributeType } from '../../proxy/duan-ecommerce/product-attributes';
 import { AttributeDetail } from './attribute-detail';
 
 @Component({

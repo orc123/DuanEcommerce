@@ -14,10 +14,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { Dialog } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
-import { NotificationService } from '../shared/services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { BadgeModule } from 'primeng/badge';
 import { ConfirmationService } from 'primeng/api';
-import { RoleDto, RolesService } from '../proxy/roles';
+import { RoleDto, RolesService } from '../../proxy/roles';
 import { RoleDetail } from './role-detail';
 import { PermissionGrant } from './permission-grant';
 

@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ProductsService } from '../proxy/products';
+import { ProductsService } from '../../proxy/products';
 import { PanelModule } from 'primeng/panel';
 import { BlockUI } from 'primeng/blockui';
 import { ProgressSpinner } from 'primeng/progressspinner';
@@ -16,12 +16,12 @@ import { ButtonDirective } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { TextareaModule } from 'primeng/textarea';
-import { NotificationService } from '../shared/services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { ImageModule } from 'primeng/image';
-import { ProductAttributeDto, ProductAttributesService } from '../proxy/product-attributes';
+import { ProductAttributeDto, ProductAttributesService } from '../../proxy/product-attributes';
 import { ConfirmationService } from 'primeng/api';
-import { AttributeType } from '../proxy/duan-ecommerce/product-attributes';
-import { ProductAttributeValueDto } from '../proxy/products/attributes';
+import { AttributeType } from '../../proxy/duan-ecommerce/product-attributes';
+import { ProductAttributeValueDto } from '../../proxy/products/attributes';
 import { TableModule } from 'primeng/table';
 import { InputNumberModule } from 'primeng/inputnumber'; // 👈 Import cái này
 import { CalendarModule } from 'primeng/calendar'; // 👈 Import cái này nếu có dùng p-calendar

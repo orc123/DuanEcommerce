@@ -15,15 +15,15 @@ import { PanelModule } from 'primeng/panel';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
-import { NotificationService } from '../shared/services/notification.service';
-import { RolesService } from '../proxy/roles';
+import { NotificationService } from '../../shared/services/notification.service';
+import { RolesService } from '../../proxy/roles';
 import {
   GetPermissionListResultDto,
   PermissionGrantInfoDto,
   PermissionGroupDto,
   UpdatePermissionDto,
   UpdatePermissionsDto,
-} from '../proxy/volo/abp/permission-management';
+} from '../../proxy/volo/abp/permission-management';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 @Component({

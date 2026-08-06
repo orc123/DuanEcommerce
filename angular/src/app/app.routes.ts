@@ -13,16 +13,12 @@ export const APP_ROUTES: Routes = [
         loadComponent: () => import('./home/home.component').then(c => c.HomeComponent),
       },
       {
-        path: 'products',
-        loadChildren: () => import('./products/product.route'),
+        path: 'calatogs',
+        loadChildren: () => import('./calalogs/calatog.route'),
       },
       {
-        path: 'attributes',
-        loadChildren: () => import('./attributes/attribute.route'),
-      },
-      {
-        path: 'roles',
-        loadChildren: () => import('./roles/role.route'),
+        path: 'systems',
+        loadChildren: () => import('./systems/system.route'),
       },
       // {
       //   path: 'tenant-management',

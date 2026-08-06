@@ -9,7 +9,7 @@ import {
   Output,
 } from '@angular/core';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
-import { ProductCategoriesService, ProductCategoryDto } from '../proxy/product-categories';
+import { ProductCategoriesService, ProductCategoryDto } from '../../proxy/product-categories';
 import {
   FormBuilder,
   FormControl,
@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ProductDto, ProductsService } from '../proxy/products';
+import { ProductDto, ProductsService } from '../../proxy/products';
 import { Panel, PanelModule } from 'primeng/panel';
 import { BlockUI } from 'primeng/blockui';
 import { ProgressSpinner } from 'primeng/progressspinner';
@@ -26,13 +26,13 @@ import { ButtonDirective } from 'primeng/button';
 import { InputNumber } from 'primeng/inputnumber';
 import { CheckboxModule } from 'primeng/checkbox';
 import { QuillEditorComponent } from 'ngx-quill';
-import { ValidationMessage } from '../shared/validation-message';
+import { ValidationMessage } from '../../shared/validation-message';
 import { DropdownModule } from 'primeng/dropdown';
-import { ManufacturerDto, ManufacturersService } from '../proxy/manufacturers';
-import { productTypeOptions } from '../proxy/duan-ecommerce/products';
-import { UtilityService } from '../shared/services/utility.service';
+import { ManufacturerDto, ManufacturersService } from '../../proxy/manufacturers';
+import { productTypeOptions } from '../../proxy/duan-ecommerce/products';
+import { UtilityService } from '../../shared/services/utility.service';
 import { TextareaModule } from 'primeng/textarea';
-import { NotificationService } from '../shared/services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageModule } from 'primeng/image';
 

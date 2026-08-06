@@ -11,12 +11,12 @@ import { Panel, PanelModule } from 'primeng/panel';
 import { BlockUI } from 'primeng/blockui';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { InputText } from 'primeng/inputtext';
-import { ValidationMessage } from '../shared/validation-message';
-import { UtilityService } from '../shared/services/utility.service';
-import { NotificationService } from '../shared/services/notification.service';
-import { RoleDto, RolesService } from '../proxy/roles';
-import { MessageConstants } from '../shared/constants/message.const';
-
+import { ValidationMessage } from '@/app/shared/validation-message';
+import { RolesService } from '@/app/proxy/roles/roles.service';
+import { UtilityService } from '@/app/shared/services/utility.service';
+import { NotificationService } from '@/app/shared/services/notification.service';
+import { RoleDto } from '@/app/proxy/roles';
+import { MessageConstants } from '@/app/shared/constants/message.const';
 @Component({
   selector: 'app-role-detail',
   imports: [

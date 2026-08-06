@@ -13,14 +13,14 @@ import { ProgressSpinner } from 'primeng/progressspinner';
 import { InputText } from 'primeng/inputtext';
 import { ButtonDirective } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-import { ValidationMessage } from '../shared/validation-message';
+import { ValidationMessage } from '../../shared/validation-message';
 import { DropdownModule } from 'primeng/dropdown';
-import { attributeTypeOptions } from '../proxy/duan-ecommerce/product-attributes';
-import { UtilityService } from '../shared/services/utility.service';
+import { attributeTypeOptions } from '../../proxy/duan-ecommerce/product-attributes';
+import { UtilityService } from '../../shared/services/utility.service';
 import { TextareaModule } from 'primeng/textarea';
-import { NotificationService } from '../shared/services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { ImageModule } from 'primeng/image';
-import { ProductAttributeDto, ProductAttributesService } from '../proxy/product-attributes';
+import { ProductAttributeDto, ProductAttributesService } from '../../proxy/product-attributes';
 import { InputNumber } from 'primeng/inputnumber';
 
 @Component({

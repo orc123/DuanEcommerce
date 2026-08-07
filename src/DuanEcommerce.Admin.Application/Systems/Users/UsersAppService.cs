@@ -140,4 +140,30 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         userDto.Roles = roles;
         return userDto;
     }
+
+    public async Task AssignRoleAsync(Guid userId, string[] roleNames)
+    {
+        var user = await _identityUserManager.FindByIdAsync(userId.ToString()) 
+                ?? throw new EntityNotFoundException(typeof(IdentityUser), userId);
+
+        var currentRoles = await _identityUserManager.GetRolesAsync(user);
+        var removedResult = await _identityUserManager.RemoveFromRolesAsync(user, currentRoles);
+        var addedResult = await _identityUserManager.AddToRolesAsync(user, currentRoles);
+        if (!addedResult.Succeeded || !removedResult.Succeeded)
+        {
+            List<Microsoft.AspNetCore.Identity.IdentityError> addedErrorList = addedResult.Errors.ToList();
+            List<Microsoft.AspNetCore.Identity.IdentityError> removedErrorList = removedResult.Errors.ToList();
+            var errorList = new List<Microsoft.AspNetCore.Identity.IdentityError>();
+            errorList.AddRange(addedErrorList);
+            errorList.AddRange(removedErrorList);
+            string errors = "";
+
+            foreach (var error in errorList)
+            {
+                errors = errors + error.Description.ToString();
+            }
+            throw new UserFriendlyException(errors);
+        }
+
+    }
 }

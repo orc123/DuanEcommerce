@@ -14,4 +14,5 @@ public interface IUsersAppService
     Task<PagedResultDto<UserDto>> GetListWithFilterAsync(BaseListFilterDto input);
 
     Task<List<UserDto>> GetListAllAsync(string filterKeyword);
+    Task AssignRoleAsync(Guid userId, string[] roleNames);
 }

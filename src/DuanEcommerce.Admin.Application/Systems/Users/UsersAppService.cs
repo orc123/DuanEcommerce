@@ -148,7 +148,7 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
 
         var currentRoles = await _identityUserManager.GetRolesAsync(user);
         var removedResult = await _identityUserManager.RemoveFromRolesAsync(user, currentRoles);
-        var addedResult = await _identityUserManager.AddToRolesAsync(user, currentRoles);
+        var addedResult = await _identityUserManager.AddToRolesAsync(user, roleNames);
         if (!addedResult.Succeeded || !removedResult.Succeeded)
         {
             List<Microsoft.AspNetCore.Identity.IdentityError> addedErrorList = addedResult.Errors.ToList();

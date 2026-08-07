@@ -18,6 +18,7 @@ import { BadgeModule } from 'primeng/badge';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { UserDetail } from './user-detail';
+import { RoleAssign } from './role-assign';
 
 @Component({
   selector: 'app-user',
@@ -125,17 +126,17 @@ import { UserDetail } from './user-detail';
           class="p-button-rounded p-button-text"
           (click)="setPassword(row.id)"
         ></button>
-        
-        <button
-          pButton
-          pRipple
-          type="button"
-          icon="pi pi-users"
-          pTooltip="Gán vai trò"
-          tooltipPosition="top"
-          (click)="assignRole(row.id)"
-          class="p-button-rounded p-button-text"
-        ></button> -->
+        -->
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-users"
+                  pTooltip="Gán vai trò"
+                  tooltipPosition="top"
+                  (click)="assignRole(row.id)"
+                  class="p-button-rounded p-button-text"
+                ></button>
               </td>
             </tr>
           </ng-template>
@@ -177,6 +178,17 @@ import { UserDetail } from './user-detail';
         <app-user-detail [userId]="userId" (saveChange)="saveData()"></app-user-detail>
       </p-dialog>
     }
+
+    @if (visibleFormRoleAssign) {
+      <p-dialog
+        header="Gán quyền"
+        [modal]="true"
+        [(visible)]="visibleFormRoleAssign"
+        [style]="{ width: '70%' }"
+      >
+        <app-role-assign [userId]="userId" (saveChange)="saveData()"></app-role-assign>
+      </p-dialog>
+    }
   `,
   imports: [
     PanelModule,
@@ -194,6 +206,7 @@ import { UserDetail } from './user-detail';
     DatePipe,
     InputTextModule,
     UserDetail,
+    RoleAssign,
   ],
 })
 export class Users implements OnInit, OnDestroy {
@@ -217,7 +230,7 @@ export class Users implements OnInit, OnDestroy {
   keyword: string = '';
 
   visibleForm = false;
-  visibleFormPermission = false;
+  visibleFormRoleAssign = false;
   headerTitle = '';
 
   ngOnInit(): void {
@@ -269,8 +282,14 @@ export class Users implements OnInit, OnDestroy {
 
   saveData() {
     this.visibleForm = false;
+    this.visibleFormRoleAssign = false;
     this.loadData();
     this.selectedItems = [];
+  }
+
+  assignRole(id: string) {
+    this.visibleFormRoleAssign = true;
+    this.userId = id;
   }
 
   deleteItems() {

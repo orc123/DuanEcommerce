@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -68,6 +69,11 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
                 options.UseLocalServer();
                 options.UseAspNetCore();
             });
+        });
+
+        PreConfigure<IdentityBuilder>(builder =>
+        {
+            builder.AddDefaultTokenProviders();
         });
 
         if (!hostingEnvironment.IsDevelopment())

@@ -15,4 +15,5 @@ public interface IUsersAppService
 
     Task<List<UserDto>> GetListAllAsync(string filterKeyword);
     Task AssignRoleAsync(Guid userId, string[] roleNames);
+    Task SetPasswordAsync(Guid userId, SetPasswordDto input);
 }

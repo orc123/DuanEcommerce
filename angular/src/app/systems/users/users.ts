@@ -19,6 +19,7 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { UserDetail } from './user-detail';
 import { RoleAssign } from './role-assign';
+import { SetPasword } from './set-password';
 
 @Component({
   selector: 'app-user',
@@ -116,17 +117,17 @@ import { RoleAssign } from './role-assign';
                 }
               </td>
               <td>
-                <!-- <button
-          pButton
-          pRipple
-          type="button"
-          icon="pi pi-key"
-          pTooltip="Đặt mật khẩu"
-          tooltipPosition="top"
-          class="p-button-rounded p-button-text"
-          (click)="setPassword(row.id)"
-        ></button>
-        -->
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-key"
+                  pTooltip="Đặt mật khẩu"
+                  tooltipPosition="top"
+                  class="p-button-rounded p-button-text"
+                  (click)="setPassword(row.id)"
+                ></button>
+
                 <button
                   pButton
                   pRipple
@@ -189,6 +190,17 @@ import { RoleAssign } from './role-assign';
         <app-role-assign [userId]="userId" (saveChange)="saveData()"></app-role-assign>
       </p-dialog>
     }
+
+    @if (visibleFormSetPassword) {
+      <p-dialog
+        header="Đặt lại Mật khẩu"
+        [modal]="true"
+        [(visible)]="visibleFormSetPassword"
+        [style]="{ width: '70%' }"
+      >
+        <app-set-password [userId]="userId" (saveChange)="saveData()"></app-set-password>
+      </p-dialog>
+    }
   `,
   imports: [
     PanelModule,
@@ -207,6 +219,7 @@ import { RoleAssign } from './role-assign';
     InputTextModule,
     UserDetail,
     RoleAssign,
+    SetPasword,
   ],
 })
 export class Users implements OnInit, OnDestroy {
@@ -231,6 +244,7 @@ export class Users implements OnInit, OnDestroy {
 
   visibleForm = false;
   visibleFormRoleAssign = false;
+  visibleFormSetPassword = false;
   headerTitle = '';
 
   ngOnInit(): void {
@@ -283,6 +297,7 @@ export class Users implements OnInit, OnDestroy {
   saveData() {
     this.visibleForm = false;
     this.visibleFormRoleAssign = false;
+    this.visibleFormSetPassword = false;
     this.loadData();
     this.selectedItems = [];
   }
@@ -290,6 +305,11 @@ export class Users implements OnInit, OnDestroy {
   assignRole(id: string) {
     this.visibleFormRoleAssign = true;
     this.userId = id;
+  }
+
+  setPassword(id: string) {
+    this.userId = id;
+    this.visibleFormSetPassword = true;
   }
 
   deleteItems() {

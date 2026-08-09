@@ -22,6 +22,7 @@ import { BlockUI } from 'primeng/blockui';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { TokenService } from '../shared/services/token.service';
 import { NotificationService } from '../shared/services/notification.service';
+import { ConfigStateService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-login',
@@ -127,6 +128,7 @@ export class Login implements OnDestroy {
   router = inject(Router);
   tokenService = inject(TokenService);
   notificationService = inject(NotificationService);
+  configStateService = inject(ConfigStateService);
 
   blockedPanel: boolean = false;
   loginForm: FormGroup = this.fb.group({
@@ -147,8 +149,16 @@ export class Login implements OnDestroy {
         next: (res: LoginResponseDto) => {
           this.tokenService.saveToken(res.access_token);
           this.tokenService.saveRefreshToken(res.refresh_token);
-          this.toggleBlockUI(false);
-          this.router.navigate(['']);
+          this.configStateService.refreshAppState().subscribe({
+            next: () => {
+              this.toggleBlockUI(false);
+              this.router.navigate(['']);
+            },
+            error: () => {
+              this.toggleBlockUI(false);
+              this.router.navigate(['']);
+            },
+          });
         },
         error: err => {
           console.error('Lỗi đăng nhập:', err);

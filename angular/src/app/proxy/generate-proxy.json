@@ -1370,7 +1370,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Manufacturer.Delete",
                   "roles": null
                 }
               ],
@@ -1396,7 +1400,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Manufacturer",
                   "roles": null
                 }
               ],
@@ -1480,7 +1488,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Manufacturer",
                   "roles": null
                 }
               ],
@@ -1534,7 +1546,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -1614,7 +1626,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -1668,7 +1680,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -1722,7 +1734,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -1806,7 +1818,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2049,7 +2061,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Attribute.Delete",
                   "roles": null
                 }
               ],
@@ -2075,7 +2091,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Attribute",
                   "roles": null
                 }
               ],
@@ -2159,7 +2179,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Attribute",
                   "roles": null
                 }
               ],
@@ -2213,7 +2237,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2293,7 +2317,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2347,7 +2371,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2401,7 +2425,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2485,7 +2509,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2728,7 +2752,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.ProductCategory.Delete",
                   "roles": null
                 }
               ],
@@ -2754,7 +2782,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.ProductCategory",
                   "roles": null
                 }
               ],
@@ -2838,7 +2870,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.ProductCategory",
                   "roles": null
                 }
               ],
@@ -2892,7 +2928,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -2972,7 +3008,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -3026,7 +3062,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -3080,7 +3116,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -3164,7 +3200,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -3564,7 +3600,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Delete",
                   "roles": null
                 }
               ],
@@ -3618,7 +3658,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Create",
                   "roles": null
                 }
               ],
@@ -3698,7 +3742,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Update",
                   "roles": null
                 }
               ],
@@ -3724,7 +3772,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product",
                   "roles": null
                 }
               ],
@@ -3823,7 +3875,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product",
                   "roles": null
                 }
               ],
@@ -3877,7 +3933,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product",
                   "roles": null
                 }
               ],
@@ -3903,7 +3963,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -3957,7 +4017,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Attribute",
                   "roles": null
                 }
               ],
@@ -4037,7 +4101,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Attribute",
                   "roles": null
                 }
               ],
@@ -4091,7 +4159,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Attribute",
                   "roles": null
                 }
               ],
@@ -4190,7 +4262,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Attribute",
                   "roles": null
                 }
               ],
@@ -4270,7 +4346,11 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "DuanEcomAdminCatalog.Product.Attribute",
                   "roles": null
                 }
               ],
@@ -4324,7 +4404,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -4378,7 +4458,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -4462,7 +4542,7 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
-                  "policy": null,
+                  "policy": "AdminOnly",
                   "roles": null
                 }
               ],
@@ -4777,8 +4857,17 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles.Delete",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Roles.IRolesAppService",
               "summary": null,
               "remarks": null,
@@ -4798,8 +4887,17 @@
                 "typeSimple": "[DuanEcommerce.Admin.Roles.RoleDto]",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Roles.IRolesAppService",
               "summary": null,
               "remarks": null,
@@ -4877,8 +4975,17 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Roles.RoleDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Roles.IRolesAppService",
               "summary": null,
               "remarks": null,
@@ -4926,8 +5033,17 @@
                 "typeSimple": "DuanEcommerce.Admin.Roles.RoleDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Roles.RoleDto,DuanEcommerce.Admin.Roles.RoleDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -4975,8 +5091,17 @@
                 "typeSimple": "DuanEcommerce.Admin.Roles.RoleDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles.Create",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<DuanEcommerce.Admin.Roles.RoleDto,DuanEcommerce.Admin.Roles.CreateUpdateRoleDto>",
               "summary": null,
               "remarks": null,
@@ -5050,8 +5175,17 @@
                 "typeSimple": "DuanEcommerce.Admin.Roles.RoleDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles.Update",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<DuanEcommerce.Admin.Roles.RoleDto,System.Guid,DuanEcommerce.Admin.Roles.CreateUpdateRoleDto>",
               "summary": null,
               "remarks": null,
@@ -5125,8 +5259,17 @@
                 "typeSimple": "Volo.Abp.PermissionManagement.GetPermissionListResultDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Roles",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Roles.IRolesAppService",
               "summary": null,
               "remarks": null,
@@ -5229,6 +5372,10 @@
               "allowAnonymous": false,
               "authorizeDatas": [
                 {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
                   "policy": "AbpIdentity.Roles.Update",
                   "roles": null
                 }
@@ -5280,8 +5427,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>",
               "summary": null,
               "remarks": null,
@@ -5359,8 +5511,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Roles.RoleDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Roles.RoleDto,DuanEcommerce.Admin.Roles.RoleDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -5673,8 +5830,17 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Delete",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Users.IUsersAppService",
               "summary": null,
               "remarks": null,
@@ -5722,8 +5888,17 @@
                 "typeSimple": "[DuanEcommerce.Admin.Users.UserDto]",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Users.IUsersAppService",
               "summary": null,
               "remarks": null,
@@ -5801,8 +5976,17 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Users.UserDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Delete",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Users.IUsersAppService",
               "summary": null,
               "remarks": null,
@@ -5850,8 +6034,17 @@
                 "typeSimple": "DuanEcommerce.Admin.Users.UserDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Create",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<DuanEcommerce.Admin.Users.UserDto,DuanEcommerce.Admin.Users.CreateUserDto>",
               "summary": null,
               "remarks": null,
@@ -5925,8 +6118,17 @@
                 "typeSimple": "DuanEcommerce.Admin.Users.UserDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Update",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<DuanEcommerce.Admin.Users.UserDto,System.Guid,DuanEcommerce.Admin.Users.UpdateUserDto>",
               "summary": null,
               "remarks": null,
@@ -5974,8 +6176,17 @@
                 "typeSimple": "DuanEcommerce.Admin.Users.UserDto",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Delete",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Users.UserDto,DuanEcommerce.Admin.Users.UserDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,
@@ -6049,8 +6260,17 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Update",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Users.IUsersAppService",
               "summary": null,
               "remarks": null,
@@ -6124,8 +6344,17 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                },
+                {
+                  "policy": "AbpIdentity.Users.Update",
+                  "roles": null
+                }
+              ],
               "implementFrom": "DuanEcommerce.Admin.Users.IUsersAppService",
               "summary": null,
               "remarks": null,
@@ -6173,8 +6402,13 @@
                 "typeSimple": "System.Void",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>",
               "summary": null,
               "remarks": null,
@@ -6252,8 +6486,13 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<DuanEcommerce.Admin.Users.UserDto>",
                 "summary": null
               },
-              "allowAnonymous": null,
-              "authorizeDatas": [],
+              "allowAnonymous": false,
+              "authorizeDatas": [
+                {
+                  "policy": "AdminOnly",
+                  "roles": null
+                }
+              ],
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<DuanEcommerce.Admin.Users.UserDto,DuanEcommerce.Admin.Users.UserDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>",
               "summary": null,
               "remarks": null,

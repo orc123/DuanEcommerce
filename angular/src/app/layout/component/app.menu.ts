@@ -34,22 +34,30 @@ export class AppMenu implements OnInit {
             label: 'Danh sách sản phẩm',
             icon: 'pi pi-fw pi-circle',
             routerLink: ['/calatogs/products'],
+            permission: 'DuanEcomAdminCatalog.Product',
           },
           {
             label: 'Danh sách thuộc tính',
             icon: 'pi pi-fw pi-circle',
             routerLink: ['/calatogs/attributes'],
+            permission: 'DuanEcomAdminCatalog.Attribute',
           },
         ],
       },
       {
         label: 'Hệ thống',
         items: [
-          { label: 'Danh sách quyền', icon: 'pi pi-fw pi-circle', routerLink: ['/systems/roles'] },
+          {
+            label: 'Danh sách quyền',
+            icon: 'pi pi-fw pi-circle',
+            routerLink: ['/systems/roles'],
+            permission: 'AbpIdentity.Roles',
+          },
           {
             label: 'Danh sách người dùng',
             icon: 'pi pi-fw pi-circle',
             routerLink: ['/systems/users'],
+            permission: 'AbpIdentity.Users',
           },
         ],
       },

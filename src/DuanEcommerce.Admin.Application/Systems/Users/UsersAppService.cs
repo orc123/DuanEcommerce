@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using Volo.Abp.Identity;
 
 namespace DuanEcommerce.Admin.Users;
 
+[Authorize(IdentityPermissions.Users.Default, Policy = "AdminOnly")]
 public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, PagedAndSortedResultRequestDto,
                        CreateUserDto, UpdateUserDto>, IUsersAppService
 {
@@ -20,14 +22,21 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         IdentityUserManager identityUserManager) : base(repository)
     {
         _identityUserManager = identityUserManager;
+        GetPolicyName = IdentityPermissions.Users.Default;
+        GetListPolicyName = IdentityPermissions.Users.Default;
+        CreatePolicyName = IdentityPermissions.Users.Create;
+        UpdatePolicyName = IdentityPermissions.Users.Update;
+        DeletePolicyName = IdentityPermissions.Users.Delete;
     }
 
+    [Authorize(IdentityPermissions.Users.Delete)]
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
         await Repository.DeleteManyAsync(ids);
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    [Authorize(IdentityPermissions.Users.Default)]
     public async Task<List<UserDto>> GetListAllAsync(string filterKeyword)
     {
         var query = await Repository.GetQueryableAsync();
@@ -42,6 +51,7 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         return ObjectMapper.Map<List<IdentityUser>, List<UserDto>>(data);
     }
 
+    [Authorize(IdentityPermissions.Users.Delete)]
     public async Task<PagedResultDto<UserDto>> GetListWithFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
@@ -63,6 +73,7 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         return new PagedResultDto<UserDto>(totalCount, users);
     }
 
+    [Authorize(IdentityPermissions.Users.Create)]
     public async override Task<UserDto> CreateAsync(CreateUserDto input)
     {
         var query = await Repository.GetQueryableAsync();
@@ -100,6 +111,7 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         }
     }
 
+    [Authorize(IdentityPermissions.Users.Update)]
     public async override Task<UserDto> UpdateAsync(Guid id, UpdateUserDto input)
     {
         var user = await _identityUserManager.FindByIdAsync(id.ToString());
@@ -128,6 +140,7 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         }
     }
 
+    [Authorize(IdentityPermissions.Users.Delete)]
     public async override Task<UserDto> GetAsync(Guid id)
     {
         var user = await _identityUserManager.FindByIdAsync(id.ToString());
@@ -140,6 +153,8 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
         userDto.Roles = roles;
         return userDto;
     }
+
+    [Authorize(IdentityPermissions.Users.Update)]
 
     public async Task AssignRoleAsync(Guid userId, string[] roleNames)
     {
@@ -167,6 +182,7 @@ public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, Paged
 
     }
 
+    [Authorize(IdentityPermissions.Users.Update)]
     public async Task SetPasswordAsync(Guid userId, SetPasswordDto input)
     {
         var user = await _identityUserManager.FindByIdAsync(userId.ToString()) 

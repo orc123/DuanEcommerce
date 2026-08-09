@@ -1,3 +1,4 @@
+using DuanEcommerce.Admin.Permissions;
 using DuanEcommerce.ProductCategories;
 using Microsoft.AspNetCore.Authorization;
 using System;
@@ -11,16 +12,27 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.ProductCategories;
 
-[Authorize]
-public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository) : CrudAppService
-    <ProductCategory, ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>(repository), IProductCategoriesAppService
+[Authorize(DuanEcommercePermissions.ProductCategory.Default, Policy = "AdminOnly")]
+public class ProductCategoriesAppService : CrudAppService
+    <ProductCategory, ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>, IProductCategoriesAppService
 {
+    public ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository) : base(repository)
+    {
+        GetPolicyName = DuanEcommercePermissions.ProductCategory.Default;
+        GetListPolicyName = DuanEcommercePermissions.ProductCategory.Default;
+        CreatePolicyName = DuanEcommercePermissions.ProductCategory.Create;
+        UpdatePolicyName = DuanEcommercePermissions.ProductCategory.Update;
+        DeletePolicyName = DuanEcommercePermissions.ProductCategory.Delete;
+    }
+
+    [Authorize(DuanEcommercePermissions.ProductCategory.Delete)]
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
         await Repository.DeleteManyAsync(ids);
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    [Authorize(DuanEcommercePermissions.ProductCategory.Default)]
     public async Task<List<ProductCategoryDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
@@ -30,6 +42,7 @@ public class ProductCategoriesAppService(IRepository<ProductCategory, Guid> repo
         return ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data);
     }
 
+    [Authorize(DuanEcommercePermissions.ProductCategory.Default)]
     public async Task<PagedResultDto<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();

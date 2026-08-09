@@ -1,9 +1,8 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { forkJoin, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
@@ -15,13 +14,10 @@ import { BlockUI } from 'primeng/blockui';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { InputText } from 'primeng/inputtext';
 import { ValidationMessage } from '@/app/shared/validation-message';
-import { RolesService } from '@/app/proxy/roles/roles.service';
-import { UtilityService } from '@/app/shared/services/utility.service';
 import { NotificationService } from '@/app/shared/services/notification.service';
-import { MessageConstants } from '@/app/shared/constants/message.const';
-import { UserDto, UsersService } from '@/app/proxy/users';
-import { RoleDto } from '@/app/proxy/roles';
+import { UsersService } from '@/app/proxy/users';
 import { KeyFilterModule } from 'primeng/keyfilter';
+
 @Component({
   selector: 'app-set-password',
   imports: [
@@ -49,9 +45,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
               <input
                 id="newPassword"
                 type="password"
+                pInputPassword
                 [pKeyFilter]="noSpecial"
                 pInputText
-                [pKeyFilter]
                 formControlName="newPassword"
                 class="w-full"
               />
@@ -69,7 +65,6 @@ import { KeyFilterModule } from 'primeng/keyfilter';
                 type="password"
                 [pKeyFilter]="noSpecial"
                 pInputText
-                [pKeyFilter]
                 formControlName="confirmPassword"
                 class="w-full"
               />

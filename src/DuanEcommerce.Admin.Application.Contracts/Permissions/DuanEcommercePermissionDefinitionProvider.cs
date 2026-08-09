@@ -11,6 +11,18 @@ public class DuanEcommercePermissionDefinitionProvider : PermissionDefinitionPro
         //Catalog
         var catalogGroup = context.AddGroup(DuanEcommercePermissions.CatalogGroupName, L("Permission:Catalog"));
 
+        // Manufacturer
+        var manufacturerPermission = catalogGroup.AddPermission(DuanEcommercePermissions.Manufacturer.Default, L("Permission:Catalog.Manufacturer"));
+        manufacturerPermission.AddChild(DuanEcommercePermissions.Manufacturer.Create, L("Permission:Catalog.Manufacturer.Create"));
+        manufacturerPermission.AddChild(DuanEcommercePermissions.Manufacturer.Update, L("Permission:Catalog.Manufacturer.Update"));
+        manufacturerPermission.AddChild(DuanEcommercePermissions.Manufacturer.Delete, L("Permission:Catalog.Manufacturer.Delete"));
+
+        // ProductCategory productCategory
+        var productCategoryPermission = catalogGroup.AddPermission(DuanEcommercePermissions.ProductCategory.Default, L("Permission:Catalog.ProductCategory"));
+        productCategoryPermission.AddChild(DuanEcommercePermissions.ProductCategory.Create, L("Permission:Catalog.ProductCategory.Create"));
+        productCategoryPermission.AddChild(DuanEcommercePermissions.ProductCategory.Update, L("Permission:Catalog.ProductCategory.Update"));
+        productCategoryPermission.AddChild(DuanEcommercePermissions.ProductCategory.Delete, L("Permission:Catalog.ProductCategory.Delete"));
+
         //Add product
         var productPermission = catalogGroup.AddPermission(DuanEcommercePermissions.Product.Default, L("Permission:Catalog.Product"));
         productPermission.AddChild(DuanEcommercePermissions.Product.Create, L("Permission:Catalog.Product.Create"));

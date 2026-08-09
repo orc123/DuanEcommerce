@@ -1,4 +1,5 @@
-﻿using DuanEcommerce.Manufacturers;
+﻿using DuanEcommerce.Admin.Permissions;
+using DuanEcommerce.Manufacturers;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,28 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Manufacturers;
 
-[Authorize]
-public class ManufacturersAppService(IRepository<Manufacturer, Guid> repository) : CrudAppService
-    <Manufacturer, ManufacturerDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateManufacturerDto, CreateUpdateManufacturerDto>(repository), IManufacturersAppService
+[Authorize(DuanEcommercePermissions.Manufacturer.Default, Policy = "AdminOnly")]
+public class ManufacturersAppService : CrudAppService
+    <Manufacturer, ManufacturerDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateManufacturerDto, CreateUpdateManufacturerDto>, IManufacturersAppService
 {
+    public ManufacturersAppService(IRepository<Manufacturer, Guid> repository) : base(repository)
+    {
+        GetPolicyName = DuanEcommercePermissions.Manufacturer.Default;
+        GetListPolicyName = DuanEcommercePermissions.Manufacturer.Default;
+        CreatePolicyName = DuanEcommercePermissions.Manufacturer.Create;
+        UpdatePolicyName = DuanEcommercePermissions.Manufacturer.Update;
+        DeletePolicyName = DuanEcommercePermissions.Manufacturer.Delete;
+    }
+
+
+    [Authorize(DuanEcommercePermissions.Manufacturer.Delete)]
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
         await Repository.DeleteManyAsync(ids);
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    [Authorize(DuanEcommercePermissions.Manufacturer.Default)]
     public async Task<List<ManufacturerDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
@@ -29,6 +42,8 @@ public class ManufacturersAppService(IRepository<Manufacturer, Guid> repository)
         return ObjectMapper.Map<List<Manufacturer>, List<ManufacturerDto>>(data);
     }
 
+
+    [Authorize(DuanEcommercePermissions.Manufacturer.Default)]
     public async Task<PagedResultDto<ManufacturerDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();

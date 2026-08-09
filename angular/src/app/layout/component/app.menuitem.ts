@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { LayoutService } from '@/app/shared/services/layout.service';
 import { filter } from 'rxjs/operators';
+import { PermissionService } from '@abp/ng.core';
 
 @Component({
   selector: '[app-menuitem]',
@@ -12,7 +13,7 @@ import { filter } from 'rxjs/operators';
     @if (root() && isVisible()) {
       <div class="layout-menuitem-root-text">{{ item().label }}</div>
     }
-    @if ((!hasRouterLink() || hasChildren()) && isVisible()) {
+    @if ((!hasRouterLink() || hasChildren()) && isVisible() && !root()) {
       <a
         [attr.href]="item().url"
         (click)="itemClick($event)"
@@ -119,6 +120,8 @@ import { filter } from 'rxjs/operators';
 export class AppMenuitem {
   layoutService = inject(LayoutService);
 
+  permissionService = inject(PermissionService);
+
   router = inject(Router);
 
   item = input<any>(null);
@@ -127,11 +130,13 @@ export class AppMenuitem {
 
   parentPath = input<string | null>(null);
 
-  isVisible = computed(() => this.item()?.visible !== false);
+  isVisible = computed(() => this.item()?.visible !== false && this.permissionGranted());
 
   hasChildren = computed(() => this.item()?.items && this.item()?.items.length > 0);
 
   hasRouterLink = computed(() => !!this.item()?.routerLink);
+
+  permissionGranted = signal<boolean>(true);
 
   fullPath = computed(() => {
     const itemPath = this.item()?.path;
@@ -162,6 +167,16 @@ export class AppMenuitem {
   }
 
   ngOnInit() {
+    const permission = this.item()?.permission;
+
+    if (permission) {
+      // ✅ Gọi this.item()?.permission và subscribe kiểm tra quyền từ ABP
+      this.permissionService.getGrantedPolicy$(permission).subscribe((result: boolean) => {
+        this.permissionGranted.set(result); // Cập nhật lại Signal
+      });
+    } else {
+      this.permissionGranted.set(true);
+    }
     if (this.item()?.routerLink) {
       this.updateActiveStateFromRoute();
     }

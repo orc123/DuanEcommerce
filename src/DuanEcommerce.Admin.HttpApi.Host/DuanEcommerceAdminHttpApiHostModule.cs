@@ -157,6 +157,11 @@ public class DuanEcommerceAdminHttpApiHostModule : AbpModule
         {
             options.IsDynamicClaimsEnabled = true;
         });
+
+        context.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AdminOnly", p => p.RequireRole("Admin"));
+        });
     }
 
     private void ConfigureUrls(IConfiguration configuration)

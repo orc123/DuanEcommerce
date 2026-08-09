@@ -19,6 +19,7 @@ using Volo.Abp.SimpleStateChecking;
 
 namespace DuanEcommerce.Admin.Roles;
 
+[Authorize(IdentityPermissions.Roles.Default, Policy = "AdminOnly")]
 public class RolesAppService : CrudAppService
     <IdentityRole, RoleDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateRoleDto, CreateUpdateRoleDto>, IRolesAppService
 {
@@ -51,13 +52,23 @@ public class RolesAppService : CrudAppService
         ResourcePermissionGrantRepository = resourcePermissionGrantRepository;
         PermissionDefinitionManager = permissionDefinitionManager;
         SimpleStateCheckerManager = simpleStateCheckerManager;
+
+        GetPolicyName = IdentityPermissions.Roles.Default;
+        GetListPolicyName = IdentityPermissions.Roles.Default;
+        CreatePolicyName = IdentityPermissions.Roles.Create;
+        UpdatePolicyName = IdentityPermissions.Roles.Update;
+        DeletePolicyName = IdentityPermissions.Roles.Delete;
     }
+
+    [Authorize(IdentityPermissions.Roles.Delete)]
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
         await Repository.DeleteManyAsync(ids);
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+
+    [Authorize(IdentityPermissions.Roles.Default)]
     public async Task<List<RoleDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
@@ -71,6 +82,7 @@ public class RolesAppService : CrudAppService
         return data;
     }
 
+    [Authorize(IdentityPermissions.Roles.Default)]
     public async Task<PagedResultDto<RoleDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
@@ -89,6 +101,7 @@ public class RolesAppService : CrudAppService
         return new PagedResultDto<RoleDto>(totalCount, data);
     }
 
+    [Authorize(IdentityPermissions.Roles.Default)]
     public async override Task<RoleDto> GetAsync(Guid id)
     {
         var role = await Repository.GetAsync(id);
@@ -104,6 +117,7 @@ public class RolesAppService : CrudAppService
         };
     }
 
+    [Authorize(IdentityPermissions.Roles.Create)]
     public async override Task<RoleDto> CreateAsync(CreateUpdateRoleDto input)
     {
         var query = await Repository.GetQueryableAsync();
@@ -128,6 +142,7 @@ public class RolesAppService : CrudAppService
         };
     }
 
+    [Authorize(IdentityPermissions.Roles.Update)]
     public async override Task<RoleDto> UpdateAsync(Guid id, CreateUpdateRoleDto input)
     {
         var role = await Repository.GetAsync(id);
@@ -153,6 +168,7 @@ public class RolesAppService : CrudAppService
         };
     }
 
+    [Authorize(IdentityPermissions.Roles.Default)]
     public async Task<GetPermissionListResultDto> GetPermissionsAsync(string providerName, string providerKey)
     {
         //await CheckProviderPolicy(providerName);
@@ -250,6 +266,7 @@ public class RolesAppService : CrudAppService
             await PermissionManager.SetAsync(permissionDto.Name, providerName, providerKey, permissionDto.IsGranted);
         }
     }
+    [Authorize(IdentityPermissions.Roles.Default)]
 
     protected virtual async Task CheckProviderPolicy(string providerName)
     {

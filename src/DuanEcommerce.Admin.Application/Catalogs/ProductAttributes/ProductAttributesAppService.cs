@@ -1,3 +1,4 @@
+using DuanEcommerce.Admin.Permissions;
 using DuanEcommerce.ProductAttributes;
 using Microsoft.AspNetCore.Authorization;
 using System;
@@ -11,16 +12,26 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.ProductAttributes;
 
-[Authorize]
-public class ProductAttributesAppService(IRepository<ProductAttribute, Guid> repository) : CrudAppService
-    <ProductAttribute, ProductAttributeDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductAttributeDto, CreateUpdateProductAttributeDto>(repository), IProductAttributesAppService
+[Authorize(DuanEcommercePermissions.Attribute.Default, Policy = "AdminOnly")]
+public class ProductAttributesAppService : CrudAppService
+    <ProductAttribute, ProductAttributeDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductAttributeDto, CreateUpdateProductAttributeDto>, IProductAttributesAppService
 {
+    public ProductAttributesAppService(IRepository<ProductAttribute, Guid> repository) : base(repository)
+    {
+        GetPolicyName = DuanEcommercePermissions.Attribute.Default;
+        GetListPolicyName = DuanEcommercePermissions.Attribute.Default;
+        CreatePolicyName = DuanEcommercePermissions.Attribute.Create;
+        UpdatePolicyName = DuanEcommercePermissions.Attribute.Update;
+        DeletePolicyName = DuanEcommercePermissions.Attribute.Delete;
+    }
+    [Authorize(DuanEcommercePermissions.Attribute.Delete)]
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
         await Repository.DeleteManyAsync(ids);
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    [Authorize(DuanEcommercePermissions.Attribute.Default)]
     public async Task<List<ProductAttributeDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
@@ -30,6 +41,7 @@ public class ProductAttributesAppService(IRepository<ProductAttribute, Guid> rep
         return ObjectMapper.Map<List<ProductAttribute>, List<ProductAttributeDto>>(data);
     }
 
+    [Authorize(DuanEcommercePermissions.Attribute.Default)]
     public async Task<PagedResultDto<ProductAttributeDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();

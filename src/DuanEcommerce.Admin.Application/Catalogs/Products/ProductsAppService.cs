@@ -1,4 +1,5 @@
-﻿using DuanEcommerce.Admin.Products.Attributes;
+﻿using DuanEcommerce.Admin.Permissions;
+using DuanEcommerce.Admin.Products.Attributes;
 using DuanEcommerce.ProductAttributes;
 using DuanEcommerce.ProductCategories;
 using DuanEcommerce.Products;
@@ -16,35 +17,66 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Products;
 
-[Authorize]
-public class ProductsAppService(
-        IRepository<Product, Guid> repository,
-        ProductManager _productManager,
-        IRepository<ProductCategory> _productCategoryRepository,
-        IBlobContainer<ProductThumbnailPictureContainer> _fileContainer,
-        ProductCodeGenerator _productCodeGenerator,
-        IRepository<ProductAttribute, Guid> _productAttributeRepository,
-        IRepository<ProductAttributeDateTime, Guid> _productAttributeDateTimeRepository,
-        IRepository<ProductAttributeInt, Guid> _productAttributeIntRepository,
-        IRepository<ProductAttributeDecimal, Guid> _productAttributeDecimalRepository,
-        IRepository<ProductAttributeText, Guid> _productAttributeTextRepository,
-        IRepository<ProductAttributeVarchar, Guid> _productAttributeVarcharRepository
-    ) : CrudAppService
+[Authorize(DuanEcommercePermissions.Product.Default, Policy = "AdminOnly")]
+public class ProductsAppService : CrudAppService
     <Product,
     ProductDto,
     Guid,
     PagedAndSortedResultRequestDto,
     CreateUpdateProductDto,
     CreateUpdateProductDto
-    >(repository), IProductsAppService
+    >, IProductsAppService
 {
+    private readonly ProductManager _productManager;
+    private readonly IRepository<ProductCategory> _productCategoryRepository;
+    private readonly IBlobContainer<ProductThumbnailPictureContainer> _fileContainer;
+    private readonly ProductCodeGenerator _productCodeGenerator;
+    private readonly IRepository<ProductAttribute, Guid> _productAttributeRepository;
+    private readonly IRepository<ProductAttributeDateTime, Guid> _productAttributeDateTimeRepository;
+    private readonly IRepository<ProductAttributeInt, Guid> _productAttributeIntRepository;
+    private readonly IRepository<ProductAttributeDecimal, Guid> _productAttributeDecimalRepository;
+    private readonly IRepository<ProductAttributeText, Guid> _productAttributeTextRepository;
+    private readonly IRepository<ProductAttributeVarchar, Guid> _productAttributeVarcharRepository;
+    public ProductsAppService(
+        IRepository<Product, Guid> repository, 
+        ProductManager productManager, 
+        IRepository<ProductCategory> productCategoryRepository, 
+        IBlobContainer<ProductThumbnailPictureContainer> fileContainer, 
+        ProductCodeGenerator productCodeGenerator, 
+        IRepository<ProductAttribute, Guid> productAttributeRepository, 
+        IRepository<ProductAttributeDateTime, Guid> productAttributeDateTimeRepository, 
+        IRepository<ProductAttributeInt, Guid> productAttributeIntRepository, 
+        IRepository<ProductAttributeDecimal, Guid> productAttributeDecimalRepository, 
+        IRepository<ProductAttributeText, Guid> productAttributeTextRepository, 
+        IRepository<ProductAttributeVarchar, Guid> productAttributeVarcharRepository) : base(repository)
+    {
+        _productManager = productManager;
+        _productCategoryRepository = productCategoryRepository;
+        _fileContainer = fileContainer;
+        _productCodeGenerator = productCodeGenerator;
+        _productAttributeRepository = productAttributeRepository;
+        _productAttributeDateTimeRepository = productAttributeDateTimeRepository;
+        _productAttributeIntRepository = productAttributeIntRepository;
+        _productAttributeDecimalRepository = productAttributeDecimalRepository;
+        _productAttributeTextRepository = productAttributeTextRepository;
+        _productAttributeVarcharRepository = productAttributeVarcharRepository;
 
+        GetPolicyName = DuanEcommercePermissions.Product.Default;
+        GetListPolicyName = DuanEcommercePermissions.Product.Default;
+        CreatePolicyName = DuanEcommercePermissions.Product.Create;
+        UpdatePolicyName = DuanEcommercePermissions.Product.Update;
+        DeletePolicyName = DuanEcommercePermissions.Product.Delete;
+    }
+
+
+    [Authorize(DuanEcommercePermissions.Product.Delete)]
     public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
     {
         await Repository.DeleteManyAsync(ids);
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    [Authorize(DuanEcommercePermissions.Product.Create)]
     public override async Task<ProductDto> CreateAsync(CreateUpdateProductDto input)
     {
         var product = await _productManager.CreateAsync(input.ManufacturerId, input.Name, input.Code, input.Slug,
@@ -61,6 +93,7 @@ public class ProductsAppService(
         return ObjectMapper.Map<Product, ProductDto>(result);
     }
 
+    [Authorize(DuanEcommercePermissions.Product.Update)]
     public override async Task<ProductDto> UpdateAsync(Guid id, CreateUpdateProductDto input)
     {
         var product = await Repository.GetAsync(id) ?? throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductIsNotExists);
@@ -108,6 +141,7 @@ public class ProductsAppService(
         return ObjectMapper.Map<Product, ProductDto>(product);
     }
 
+    [Authorize(DuanEcommercePermissions.Product.Default)]
     public async Task<List<ProductDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
@@ -117,6 +151,7 @@ public class ProductsAppService(
         return ObjectMapper.Map<List<Product>, List<ProductDto>>(data);
     }
 
+    [Authorize(DuanEcommercePermissions.Product.Default)]
     public async Task<PagedResultDto<ProductDto>> GetListFilterAsync(ProductListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
@@ -129,6 +164,7 @@ public class ProductsAppService(
         return new PagedResultDto<ProductDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductDto>>(data));
     }
 
+    [Authorize(DuanEcommercePermissions.Product.Default)]
     public async Task<string?> GetThumbnailImageAsync(string fileName)
     {
         if (string.IsNullOrEmpty(fileName))
@@ -158,6 +194,7 @@ public class ProductsAppService(
         await _fileContainer.SaveAsync(fileName, bytes, overrideExisting: true);
     }
 
+    [Authorize(DuanEcommercePermissions.Product.AttributeManage)]
     public async Task<ProductAttributeValueDto> AddAttributeAsync(AddUpdateProductAttributeDto input)
     {
         var product = await Repository.GetAsync(input.ProductId)
@@ -225,6 +262,7 @@ public class ProductsAppService(
         };
     }
 
+    [Authorize(DuanEcommercePermissions.Product.AttributeManage)]
     public async Task RemoveProductAttributeAsync(Guid attributeId, Guid id)
     {
         var attribute = await _productAttributeRepository.GetAsync(x => x.Id == attributeId)
@@ -263,6 +301,7 @@ public class ProductsAppService(
         await UnitOfWorkManager.Current.SaveChangesAsync();
     }
 
+    [Authorize(DuanEcommercePermissions.Product.AttributeManage)]
     public async Task<List<ProductAttributeValueDto>> GetProductAttributeAllAsync(Guid productId)
     {
         var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
@@ -375,6 +414,7 @@ public class ProductsAppService(
         return await AsyncExecuter.ToListAsync(combinedQuery);
     }
 
+    [Authorize(DuanEcommercePermissions.Product.AttributeManage)]
     public async Task<PagedResultDto<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input)
     {
         var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
@@ -433,6 +473,7 @@ public class ProductsAppService(
         return new PagedResultDto<ProductAttributeValueDto>(totalCount, data);
     }
 
+    [Authorize(DuanEcommercePermissions.Product.AttributeManage)]
     public async Task<ProductAttributeValueDto> UpdateAttributeAsync(Guid id, AddUpdateProductAttributeDto input)
     {
         var product = await Repository.GetAsync(input.ProductId) ?? throw new BusinessException(DuanEcommerceDomainErrorCodes.ProductIsNotExists);

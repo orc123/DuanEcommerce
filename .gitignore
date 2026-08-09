@@ -282,3 +282,4 @@ src/DuanEcommerce.Blazor.Server.Tiered/Logs/*
 tempkey.rsa
 tempkey.jwk
 /src/DuanEcommerce.Admin.HttpApi.Host/Logs/logs.txt
+/src/DuanEcommerce.Public.Web/Logs/logs.txt

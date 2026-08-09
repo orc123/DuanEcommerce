@@ -1,4 +1,4 @@
-﻿using DuanEcommerce.EntityFrameworkCore;
+using DuanEcommerce.EntityFrameworkCore;
 using DuanEcommerce.Localization;
 using DuanEcommerce.MultiTenancy;
 using DuanEcommerce.Public.Web.HealthChecks;
@@ -18,6 +18,7 @@ using System.IO;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.Libs;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
@@ -145,6 +146,10 @@ public class PublicWebModule : AbpModule
         Configure<PermissionManagementOptions>(options =>
         {
             options.IsDynamicPermissionStoreEnabled = true;
+        });
+        Configure<AbpMvcLibsOptions>(options =>
+        {
+            options.CheckLibs = false;
         });
     }
 

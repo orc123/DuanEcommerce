@@ -14,7 +14,7 @@ using Volo.Abp.Uow;
 namespace DuanEcommerce.EntityFrameworkCore;
 
 [DependsOn(
-    typeof(DuanEcommerceApplicationTestModule),
+    typeof(DuanEcommerceAdminApplicationTestModule),
     typeof(DuanEcommerceEntityFrameworkCoreModule),
     typeof(AbpEntityFrameworkCoreSqliteModule)
 )]

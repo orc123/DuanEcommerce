@@ -17,7 +17,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Autofac" Version="10.5.0" />
     <ProjectReference Include="..\DuanEcommerce.EntityFrameworkCore\DuanEcommerce.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\DuanEcommerce.Application.Contracts\DuanEcommerce.Application.Contracts.csproj" />
+    <ProjectReference Include="..\DuanEcommerce.Admin.Application.Contracts\DuanEcommerce.Admin.Application.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

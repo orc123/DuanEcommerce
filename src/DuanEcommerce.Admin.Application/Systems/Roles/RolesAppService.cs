@@ -19,7 +19,7 @@ using Volo.Abp.SimpleStateChecking;
 
 namespace DuanEcommerce.Admin.Roles;
 
-[Authorize(IdentityPermissions.Roles.Default, Policy = "AdminOnly")]
+[Authorize(IdentityPermissions.Roles.Default)]
 public class RolesAppService : CrudAppService
     <IdentityRole, RoleDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateRoleDto, CreateUpdateRoleDto>, IRolesAppService
 {

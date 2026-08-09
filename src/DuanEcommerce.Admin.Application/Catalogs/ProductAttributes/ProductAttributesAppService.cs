@@ -12,7 +12,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.ProductAttributes;
 
-[Authorize(DuanEcommercePermissions.Attribute.Default, Policy = "AdminOnly")]
+[Authorize(DuanEcommercePermissions.Attribute.Default)]
 public class ProductAttributesAppService : CrudAppService
     <ProductAttribute, ProductAttributeDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductAttributeDto, CreateUpdateProductAttributeDto>, IProductAttributesAppService
 {

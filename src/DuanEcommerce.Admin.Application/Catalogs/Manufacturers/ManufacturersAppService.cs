@@ -11,7 +11,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Manufacturers;
 
-[Authorize(DuanEcommercePermissions.Manufacturer.Default, Policy = "AdminOnly")]
+[Authorize(DuanEcommercePermissions.Manufacturer.Default)]
 public class ManufacturersAppService : CrudAppService
     <Manufacturer, ManufacturerDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateManufacturerDto, CreateUpdateManufacturerDto>, IManufacturersAppService
 {

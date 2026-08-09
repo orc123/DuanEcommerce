@@ -12,7 +12,7 @@ using Volo.Abp.Identity;
 
 namespace DuanEcommerce.Admin.Users;
 
-[Authorize(IdentityPermissions.Users.Default, Policy = "AdminOnly")]
+[Authorize(IdentityPermissions.Users.Default)]
 public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, PagedAndSortedResultRequestDto,
                        CreateUserDto, UpdateUserDto>, IUsersAppService
 {

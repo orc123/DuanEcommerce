@@ -17,7 +17,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.Products;
 
-[Authorize(DuanEcommercePermissions.Product.Default, Policy = "AdminOnly")]
+[Authorize(DuanEcommercePermissions.Product.Default)]
 public class ProductsAppService : CrudAppService
     <Product,
     ProductDto,

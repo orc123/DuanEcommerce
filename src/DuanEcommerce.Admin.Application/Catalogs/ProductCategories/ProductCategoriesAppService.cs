@@ -12,7 +12,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace DuanEcommerce.Admin.ProductCategories;
 
-[Authorize(DuanEcommercePermissions.ProductCategory.Default, Policy = "AdminOnly")]
+[Authorize(DuanEcommercePermissions.ProductCategory.Default)]
 public class ProductCategoriesAppService : CrudAppService
     <ProductCategory, ProductCategoryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProductCategoryDto, CreateUpdateProductCategoryDto>, IProductCategoriesAppService
 {

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
 
 namespace DuanEcommerce.Public.ProductCategories;
 
-public class ProductCategoryDto : EntityDto<Guid>
+public class ProductCategoryDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -15,4 +16,6 @@ public class ProductCategoryDto : EntityDto<Guid>
     public bool IsActive { get; set; }
     public Guid? ParentId { get; set; }
     public string? SeoMetaDescription { get; set; }
+
+    public List<ProductCategoryDto> Children { get; set; } = new List<ProductCategoryDto>();
 }

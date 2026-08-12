@@ -14,6 +14,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.BlobStoring;
 using Volo.Abp.Domain.Repositories;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DuanEcommerce.Public.Products;
 
@@ -81,6 +82,17 @@ public class ProductsAppService : ReadOnlyAppService
         return new PagedResultDto<ProductDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductDto>>(data));
     }
 
+    public async Task<List<ProductDto>> GetListTopSellerAsync(int numberOfRecords)
+    {
+        var query = await Repository.GetQueryableAsync();
+        query = query.Where(x => x.IsActive == true)
+            .OrderByDescending(x => x.CreationTime)
+            .Take(numberOfRecords);
+
+        var data = await AsyncExecuter.ToListAsync(query);
+
+        return ObjectMapper.Map<List<Product>, List<ProductDto>>(data);
+    }
 
     public async Task<List<ProductAttributeValueDto>> GetProductAttributeAllAsync(Guid productId)
     {

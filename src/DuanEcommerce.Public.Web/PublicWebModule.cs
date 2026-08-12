@@ -27,6 +27,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
+using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
 using Volo.Abp.Modularity;
@@ -55,7 +56,8 @@ namespace DuanEcommerce.Public.Web;
     typeof(AbpTenantManagementWebModule),
     typeof(AbpFeatureManagementWebModule),
     typeof(AbpSwashbuckleModule),
-    typeof(AbpAspNetCoreSerilogModule)
+    typeof(AbpAspNetCoreSerilogModule),
+    typeof(AbpCachingStackExchangeRedisModule)
 )]
 public class PublicWebModule : AbpModule
 {

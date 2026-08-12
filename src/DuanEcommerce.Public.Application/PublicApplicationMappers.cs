@@ -47,13 +47,6 @@ public partial class ProductToProductDtoMapper : MapperBase<Product, ProductDto>
     public override partial void Map(Product source, ProductDto destination);
 }
 
-[Mapper]
-public partial class CreateUpdateProductToProductMapper : MapperBase<CreateUpdateProductDto, Product>
-{
-    public override partial Product Map(CreateUpdateProductDto source);
-
-    public override partial void Map(CreateUpdateProductDto source, Product destination);
-}
 
 [Mapper]
 public partial class ManufacturerToManufacturerDtoMapper : MapperBase<Manufacturer, ManufacturerDto>

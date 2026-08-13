@@ -56,8 +56,7 @@ namespace DuanEcommerce.Public.Web;
     typeof(AbpTenantManagementWebModule),
     typeof(AbpFeatureManagementWebModule),
     typeof(AbpSwashbuckleModule),
-    typeof(AbpAspNetCoreSerilogModule),
-    typeof(AbpCachingStackExchangeRedisModule)
+    typeof(AbpAspNetCoreSerilogModule) /*,typeof(AbpCachingStackExchangeRedisModule)*/
 )]
 public class PublicWebModule : AbpModule
 {

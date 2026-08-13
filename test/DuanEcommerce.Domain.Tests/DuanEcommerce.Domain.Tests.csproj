@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DuanEcommerce.Domain\DuanEcommerce.Domain.csproj" />
+    <ProjectReference Include="..\..\src\common\domain\DuanEcommerce.Domain\DuanEcommerce.Domain.csproj" />
     <ProjectReference Include="..\DuanEcommerce.TestBase\DuanEcommerce.TestBase.csproj" />
   </ItemGroup>
 

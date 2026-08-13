@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DuanEcommerce.EntityFrameworkCore\DuanEcommerce.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\common\infrastructure\DuanEcommerce.EntityFrameworkCore\DuanEcommerce.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\DuanEcommerce.Admin.Application.Tests\DuanEcommerce.Admin.Application.Tests.csproj" />
   </ItemGroup>
 

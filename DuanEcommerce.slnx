@@ -1,27 +1,27 @@
 <Solution>
     <Folder Name="/src/" />
     <Folder Name="/src/admin/">
-        <Project Path="src/DuanEcommerce.Admin.Application.Contracts/DuanEcommerce.Admin.Application.Contracts.csproj" />
-        <Project Path="src/DuanEcommerce.Admin.Application/DuanEcommerce.Admin.Application.csproj" />
-        <Project Path="src/DuanEcommerce.Admin.HttpApi.Client/DuanEcommerce.Admin.HttpApi.Client.csproj" />
-        <Project Path="src/DuanEcommerce.Admin.HttpApi.Host/DuanEcommerce.Admin.HttpApi.Host.csproj" />
-        <Project Path="src/DuanEcommerce.Admin.HttpApi/DuanEcommerce.Admin.HttpApi.csproj" />
+        <Project Path="src/admin/DuanEcommerce.Admin.Application.Contracts/DuanEcommerce.Admin.Application.Contracts.csproj" />
+        <Project Path="src/admin/DuanEcommerce.Admin.Application/DuanEcommerce.Admin.Application.csproj" />
+        <Project Path="src/admin/DuanEcommerce.Admin.HttpApi.Client/DuanEcommerce.Admin.HttpApi.Client.csproj" />
+        <Project Path="src/admin/DuanEcommerce.Admin.HttpApi.Host/DuanEcommerce.Admin.HttpApi.Host.csproj" />
+        <Project Path="src/admin/DuanEcommerce.Admin.HttpApi/DuanEcommerce.Admin.HttpApi.csproj" />
     </Folder>
     <Folder Name="/src/common/" />
     <Folder Name="/src/common/domain/">
-        <Project Path="src/DuanEcommerce.Domain.Shared/DuanEcommerce.Domain.Shared.csproj" />
-        <Project Path="src/DuanEcommerce.Domain/DuanEcommerce.Domain.csproj" />
+        <Project Path="src/common/domain/DuanEcommerce.Domain.Shared/DuanEcommerce.Domain.Shared.csproj" />
+        <Project Path="src/common/domain/DuanEcommerce.Domain/DuanEcommerce.Domain.csproj" />
     </Folder>
     <Folder Name="/src/common/infrastructure/">
-        <Project Path="src/DuanEcommerce.DbMigrator/DuanEcommerce.DbMigrator.csproj" />
-        <Project Path="src/DuanEcommerce.EntityFrameworkCore/DuanEcommerce.EntityFrameworkCore.csproj" />
+        <Project Path="src/common/infrastructure/DuanEcommerce.DbMigrator/DuanEcommerce.DbMigrator.csproj" />
+        <Project Path="src/common/infrastructure/DuanEcommerce.EntityFrameworkCore/DuanEcommerce.EntityFrameworkCore.csproj" />
     </Folder>
     <Folder Name="/src/public/">
-        <Project Path="src/DuanEcommerce.Public.Application.Contracts/DuanEcommerce.Public.Application.Contracts.csproj" />
-        <Project Path="src/DuanEcommerce.Public.Application/DuanEcommerce.Public.Application.csproj" />
-        <Project Path="src/DuanEcommerce.Public.HttpApi.Client/DuanEcommerce.Public.HttpApi.Client.csproj" />
-        <Project Path="src/DuanEcommerce.Public.HttpApi/DuanEcommerce.Public.HttpApi.csproj" />
-        <Project Path="src/DuanEcommerce.Public.Web/DuanEcommerce.Public.Web.csproj" />
+        <Project Path="src/public/DuanEcommerce.Public.Application.Contracts/DuanEcommerce.Public.Application.Contracts.csproj" />
+        <Project Path="src/public/DuanEcommerce.Public.Application/DuanEcommerce.Public.Application.csproj" />
+        <Project Path="src/public/DuanEcommerce.Public.HttpApi.Client/DuanEcommerce.Public.HttpApi.Client.csproj" />
+        <Project Path="src/public/DuanEcommerce.Public.HttpApi/DuanEcommerce.Public.HttpApi.csproj" />
+        <Project Path="src/public/DuanEcommerce.Public.Web/DuanEcommerce.Public.Web.csproj" />
     </Folder>
     <Folder Name="/test/" />
     <Folder Name="/test/admin/">

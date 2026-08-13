@@ -1,6 +1,7 @@
 {
   "culture": "vi",
   "text": {
+    "AppName": "Dự án bán hàng",
     "Permission:Catalog": "Danh mục",
     "Permission:Catalog.Product": "Sản phẩm",
     "Permission:Catalog.Product.Create": "Tạo mới sản phẩm",

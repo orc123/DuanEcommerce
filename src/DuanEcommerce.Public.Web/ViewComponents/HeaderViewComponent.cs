@@ -21,20 +21,22 @@ public class HeaderViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var cacheItem = await _distributedCache.GetOrAddAsync(
-            DuanEcommercePublicConsts.CacheKeys.HeaderData, async () =>
-            {
-                var model = await _productCategoriesAppService.GetListAllAsync();
-                return new HeaderCacheItem
-                {
-                    Categories = model
-                };
-            },
-            () => new DistributedCacheEntryOptions
-            {
-                AbsoluteExpiration = DateTimeOffset.Now.AddHours(12)
-            }
-        );
-        return View(cacheItem.Categories);
+        //var cacheItem = await _distributedCache.GetOrAddAsync(
+        //    DuanEcommercePublicConsts.CacheKeys.HeaderData, async () =>
+        //    {
+        //        var model = await _productCategoriesAppService.GetListAllAsync();
+        //        return new HeaderCacheItem
+        //        {
+        //            Categories = model
+        //        };
+        //    },
+        //    () => new DistributedCacheEntryOptions
+        //    {
+        //        AbsoluteExpiration = DateTimeOffset.Now.AddHours(12)
+        //    }
+        //);
+
+        var model = await _productCategoriesAppService.GetListAllAsync();
+        return View(model);
     }
 }

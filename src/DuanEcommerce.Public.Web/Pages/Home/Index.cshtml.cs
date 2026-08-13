@@ -23,6 +23,7 @@ public class IndexModel(IProductCategoriesAppService productCategoriesAppService
 
     public async Task OnGetAsync()
     {
+        /*
         var cacheItem = await _distributedCache.GetOrAddAsync(DuanEcommercePublicConsts.CacheKeys.HomeData, async () =>
         {
             var allCategories = await _productCategoriesAppService.GetListAllAsync();
@@ -44,9 +45,18 @@ public class IndexModel(IProductCategoriesAppService productCategoriesAppService
         {
             AbsoluteExpiration = DateTimeOffset.Now.AddHours(12)
         });
+        */
 
-        TopSellerProducts = cacheItem.TopSellerProducts;
-        Categories = cacheItem.Categories;
+        var allCategories = await _productCategoriesAppService.GetListAllAsync();
+        var rootCategories = allCategories.Where(x => x.ParentId == null).ToList();
+        foreach (var category in rootCategories)
+        {
+            category.Children = rootCategories.Where(x => x.ParentId == category.Id).ToList();
+        }
+
+        var topSellerProducts = await _productsAppService.GetListTopSellerAsync(10);
+        TopSellerProducts = topSellerProducts;
+        Categories = rootCategories;
 
     }
 }

@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+  <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\admin\DuanEcommerce.Admin.Application\DuanEcommerce.Admin.Application.csproj" />
-    <ProjectReference Include="..\DuanEcommerce.Domain.Tests\DuanEcommerce.Domain.Tests.csproj" />
+    <ProjectReference Include="..\..\..\src\admin\DuanEcommerce.Admin.Application\DuanEcommerce.Admin.Application.csproj" />
+    <ProjectReference Include="..\..\shared\DuanEcommerce.Domain.Tests\DuanEcommerce.Domain.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

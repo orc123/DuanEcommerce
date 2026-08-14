@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\admin\DuanEcommerce.Admin.HttpApi.Client\DuanEcommerce.Admin.HttpApi.Client.csproj" />
+    <ProjectReference Include="..\..\..\src\admin\DuanEcommerce.Admin.HttpApi.Client\DuanEcommerce.Admin.HttpApi.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>

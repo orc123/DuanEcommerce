@@ -25,16 +25,16 @@
     </Folder>
     <Folder Name="/test/" />
     <Folder Name="/test/admin/">
-        <Project Path="test/DuanEcommerce.Admin.Application.Tests/DuanEcommerce.Admin.Application.Tests.csproj" />
-        <Project Path="test/DuanEcommerce.Admin.HttpApi.Client.ConsoleTestApp/DuanEcommerce.Admin.HttpApi.Client.ConsoleTestApp.csproj" />
+        <Project Path="test/admin/DuanEcommerce.Admin.Application.Tests/DuanEcommerce.Admin.Application.Tests.csproj" />
+        <Project Path="test/admin/DuanEcommerce.Admin.HttpApi.Client.ConsoleTestApp/DuanEcommerce.Admin.HttpApi.Client.ConsoleTestApp.csproj" />
     </Folder>
     <Folder Name="/test/public/">
-        <Project Path="test/DuanEcommerce.Public.Application.Tests/DuanEcommerce.Public.Application.Tests.csproj" />
-        <Project Path="test/DuanEcommerce.Public.TestBase/DuanEcommerce.Public.TestBase.csproj" />
+        <Project Path="test/public/DuanEcommerce.Public.Application.Tests/DuanEcommerce.Public.Application.Tests.csproj" />
+        <Project Path="test/public/DuanEcommerce.Public.HttpApi.Client.ConsoleTestApp/DuanEcommerce.Public.HttpApi.Client.ConsoleTestApp.csproj" />
     </Folder>
     <Folder Name="/test/shared/">
-        <Project Path="test/DuanEcommerce.Domain.Tests/DuanEcommerce.Domain.Tests.csproj" />
-        <Project Path="test/DuanEcommerce.EntityFrameworkCore.Tests/DuanEcommerce.EntityFrameworkCore.Tests.csproj" />
-        <Project Path="test/DuanEcommerce.TestBase/DuanEcommerce.TestBase.csproj" />
+        <Project Path="test/shared/DuanEcommerce.Domain.Tests/DuanEcommerce.Domain.Tests.csproj" />
+        <Project Path="test/shared/DuanEcommerce.EntityFrameworkCore.Tests/DuanEcommerce.EntityFrameworkCore.Tests.csproj" />
+        <Project Path="test/shared/DuanEcommerce.TestBase/DuanEcommerce.TestBase.csproj" />
     </Folder>
 </Solution>

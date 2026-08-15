@@ -70,16 +70,16 @@ public class ProductsAppService : ReadOnlyAppService
         return ObjectMapper.Map<List<Product>, List<ProductDto>>(data);
     }
 
-    public async Task<PagedResultDto<ProductDto>> GetListFilterAsync(ProductListFilterDto input)
+    public async Task<PagedResult<ProductDto>> GetListFilterAsync(ProductListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
         query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
         query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId.Value);
 
         var totalCount = await AsyncExecuter.LongCountAsync(query);
-        var data = await AsyncExecuter.ToListAsync(query.OrderByDescending(x => x.CreationTime).Skip(input.SkipCount).Take(input.MaxResultCount));
+        var data = await AsyncExecuter.ToListAsync(query.Skip((input.CurrentPage - 1) * input.PageSize).Take(input.PageSize));
 
-        return new PagedResultDto<ProductDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductDto>>(data));
+        return new PagedResult<ProductDto>(ObjectMapper.Map<List<Product>, List<ProductDto>>(data), totalCount, input.CurrentPage, input.PageSize);
     }
 
     public async Task<List<ProductDto>> GetListTopSellerAsync(int numberOfRecords)
@@ -206,7 +206,7 @@ public class ProductsAppService : ReadOnlyAppService
         return await AsyncExecuter.ToListAsync(combinedQuery);
     }
 
-    public async Task<PagedResultDto<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input)
+    public async Task<PagedResult<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input)
     {
         var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
 
@@ -257,11 +257,8 @@ public class ProductsAppService : ReadOnlyAppService
                     };
         var totalCount = await AsyncExecuter.LongCountAsync(query);
         var data = await AsyncExecuter.ToListAsync(
-            query.OrderByDescending(x => x.Label)
-            .Skip(input.SkipCount)
-            .Take(input.MaxResultCount)
-            );
-        return new PagedResultDto<ProductAttributeValueDto>(totalCount, data);
+            query.OrderByDescending(x => x.Label).Skip((input.CurrentPage - 1) * input.PageSize).Take(input.PageSize));
+        return new PagedResult<ProductAttributeValueDto>(data, totalCount, input.CurrentPage, input.PageSize);
     }
 
 }

@@ -9,6 +9,7 @@ namespace DuanEcommerce.Public.ProductCategories;
 public interface IProductCategoriesAppService 
     : IReadOnlyAppService<ProductCategoryDto, Guid, PagedAndSortedResultRequestDto>
 {
-    Task<PagedResultDto<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input);
+    Task<PagedResult<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input);
     Task<List<ProductCategoryDto>> GetListAllAsync();
+    Task<ProductCategoryDto?> GetByCodeAsync(string code);
 }

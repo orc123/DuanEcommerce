@@ -13,9 +13,9 @@ public interface IProductsAppService : IReadOnlyAppService
     PagedAndSortedResultRequestDto
     >
 {
-    Task<PagedResultDto<ProductDto>> GetListFilterAsync(ProductListFilterDto input);
+    Task<PagedResult<ProductDto>> GetListFilterAsync(ProductListFilterDto input);
     Task<List<ProductDto>> GetListAllAsync();
     Task<List<ProductAttributeValueDto>> GetProductAttributeAllAsync(Guid productId);
-    Task<PagedResultDto<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input);
+    Task<PagedResult<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input);
     Task<List<ProductDto>> GetListTopSellerAsync(int numberOfRecords);
 }

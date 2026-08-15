@@ -26,7 +26,7 @@ public class ProductAttributesAppService : ReadOnlyAppService
         return ObjectMapper.Map<List<ProductAttribute>, List<ProductAttributeDto>>(data);
     }
 
-    public async Task<PagedResultDto<ProductAttributeDto>> GetListFilterAsync(BaseListFilterDto input)
+    public async Task<PagedResult<ProductAttributeDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
 
@@ -34,8 +34,8 @@ public class ProductAttributesAppService : ReadOnlyAppService
 
         var totalCount = await AsyncExecuter.CountAsync(query);
 
-        var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
+        var data = await AsyncExecuter.ToListAsync(query.Skip((input.CurrentPage - 1) * input.PageSize).Take(input.PageSize));
 
-        return new PagedResultDto<ProductAttributeDto>(totalCount, ObjectMapper.Map<List<ProductAttribute>, List<ProductAttributeDto>>(data));
+        return new PagedResult<ProductAttributeDto>(ObjectMapper.Map<List<ProductAttribute>, List<ProductAttributeDto>>(data), totalCount, input.CurrentPage, input.PageSize);
     }
 }

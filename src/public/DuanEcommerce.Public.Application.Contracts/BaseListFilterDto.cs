@@ -2,7 +2,7 @@
 
 namespace DuanEcommerce.Public;
 
-public class BaseListFilterDto : PagedResultRequestDto
+public class BaseListFilterDto : PagedResultRequestBase
 {
     public string? Keyword { get; set; } = null;
 }

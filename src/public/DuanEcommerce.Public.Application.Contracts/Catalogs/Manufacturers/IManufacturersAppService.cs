@@ -9,6 +9,6 @@ namespace DuanEcommerce.Public.Manufacturers;
 public interface IManufacturersAppService
     : IReadOnlyAppService<ManufacturerDto, Guid, PagedAndSortedResultRequestDto>
 {
-    Task<PagedResultDto<ManufacturerDto>> GetListFilterAsync(BaseListFilterDto input);
+    Task<PagedResult<ManufacturerDto>> GetListFilterAsync(BaseListFilterDto input);
     Task<List<ManufacturerDto>> GetListAllAsync();
 }

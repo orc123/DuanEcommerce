@@ -27,7 +27,7 @@ public class ManufacturersAppService : ReadOnlyAppService
     }
 
 
-    public async Task<PagedResultDto<ManufacturerDto>> GetListFilterAsync(BaseListFilterDto input)
+    public async Task<PagedResult<ManufacturerDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
 
@@ -35,8 +35,10 @@ public class ManufacturersAppService : ReadOnlyAppService
 
         var totalCount = await AsyncExecuter.CountAsync(query);
 
-        var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
+        var data = await AsyncExecuter
+            .ToListAsync(query.Skip((input.CurrentPage - 1) * input.PageSize).Take(input.PageSize));
 
-        return new PagedResultDto<ManufacturerDto>(totalCount, ObjectMapper.Map<List<Manufacturer>, List<ManufacturerDto>>(data));
+        return new PagedResult<ManufacturerDto>
+            (ObjectMapper.Map<List<Manufacturer>, List<ManufacturerDto>>(data), totalCount, input.CurrentPage, input.PageSize);
     }
 }

@@ -18,6 +18,17 @@ public class ProductCategoriesAppService : ReadOnlyAppService
     {
     }
 
+    public async Task<ProductCategoryDto?> GetByCodeAsync(string code)
+    {
+        var category = await Repository.FirstOrDefaultAsync<ProductCategory>(x => x.Code == code);
+
+        if (category == null)
+        {
+            return null;
+        } 
+        return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
+    }
+
     public async Task<List<ProductCategoryDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();
@@ -27,7 +38,7 @@ public class ProductCategoriesAppService : ReadOnlyAppService
         return ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data);
     }
 
-    public async Task<PagedResultDto<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input)
+    public async Task<PagedResult<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input)
     {
         var query = await Repository.GetQueryableAsync();
 
@@ -35,8 +46,8 @@ public class ProductCategoriesAppService : ReadOnlyAppService
 
         var totalCount = await AsyncExecuter.CountAsync(query);
 
-        var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
+        var data = await AsyncExecuter.ToListAsync(query.Skip((input.CurrentPage - 1) * input.PageSize).Take(input.PageSize));
 
-        return new PagedResultDto<ProductCategoryDto>(totalCount, ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data));
+        return new PagedResult<ProductCategoryDto>(ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryDto>>(data), totalCount, input.CurrentPage, input.PageSize);
     }
 }

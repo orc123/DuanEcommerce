@@ -143,8 +143,8 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
                     OpenIddictConstants.GrantTypes.RefreshToken
                 },
                 scopes: clientScopes,
-                redirectUris: new List<string> { appClientRootUrl },
-                postLogoutRedirectUris: new List<string> { appClientRootUrl },
+                redirectUris: new List<string> { appClientRootUrl, $"{appClientRootUrl}/signin-oidc" },
+                postLogoutRedirectUris: new List<string> { appClientRootUrl, $"{appClientRootUrl}/signout-callback-oidc" },
                 clientUri: appClientRootUrl,
                 logoUri: "/images/clients/angular.svg"
             );

@@ -61,6 +61,33 @@ public class ProductsAppService : ReadOnlyAppService
 
     }
 
+    public async Task<ProductDto?> GetBySlugAsync(string slug)
+    {
+        var product = await Repository.FirstOrDefaultAsync(x => x.Slug == slug);
+
+        if (product == null)
+        {
+            return null;
+        }
+        return ObjectMapper.Map<Product, ProductDto>(product);
+    }
+
+    public async Task<string> GetThumbnailImageAsync(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return null;
+        }
+        var thumbnailContent = await _fileContainer.GetAllBytesOrNullAsync(fileName);
+
+        if (thumbnailContent is null)
+        {
+            return null;
+        }
+        var result = Convert.ToBase64String(thumbnailContent);
+        return result;
+    }
+
     public async Task<List<ProductDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();

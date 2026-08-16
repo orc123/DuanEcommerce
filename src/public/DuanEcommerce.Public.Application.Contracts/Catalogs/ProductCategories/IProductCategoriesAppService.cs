@@ -12,4 +12,5 @@ public interface IProductCategoriesAppService
     Task<PagedResult<ProductCategoryDto>> GetListFilterAsync(BaseListFilterDto input);
     Task<List<ProductCategoryDto>> GetListAllAsync();
     Task<ProductCategoryDto?> GetByCodeAsync(string code);
+    Task<ProductCategoryDto?> GetBySlugAsync(string slug);
 }

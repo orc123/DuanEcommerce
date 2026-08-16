@@ -18,4 +18,6 @@ public interface IProductsAppService : IReadOnlyAppService
     Task<List<ProductAttributeValueDto>> GetProductAttributeAllAsync(Guid productId);
     Task<PagedResult<ProductAttributeValueDto>> GetProductAttributesAsync(ProductAttributeListFilterDto input);
     Task<List<ProductDto>> GetListTopSellerAsync(int numberOfRecords);
+    Task<ProductDto?> GetBySlugAsync(string slug);
+    Task<string> GetThumbnailImageAsync(string fileName);
 }

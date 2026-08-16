@@ -29,6 +29,17 @@ public class ProductCategoriesAppService : ReadOnlyAppService
         return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
     }
 
+    public async Task<ProductCategoryDto?> GetBySlugAsync(string slug)
+    {
+        var category = await Repository.FirstOrDefaultAsync<ProductCategory>(x => x.Slug == slug);
+
+        if (category == null)
+        {
+            return null;
+        }
+        return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
+    }
+
     public async Task<List<ProductCategoryDto>> GetListAllAsync()
     {
         var query = await Repository.GetQueryableAsync();

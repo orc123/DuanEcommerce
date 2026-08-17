@@ -166,6 +166,11 @@ public class PublicWebModule : AbpModule
         {
             options.CheckLibs = false;
         });
+
+        context.Services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(30);
+        });
     }
 
 
@@ -330,6 +335,8 @@ public class PublicWebModule : AbpModule
             app.UseErrorPage();
             app.UseHsts();
         }
+
+        app.UseSession();
 
         app.UseCorrelationId();
         app.UseRouting();

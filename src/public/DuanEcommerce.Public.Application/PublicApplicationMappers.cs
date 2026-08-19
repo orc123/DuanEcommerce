@@ -1,8 +1,10 @@
 using DuanEcommerce.Manufacturers;
+using DuanEcommerce.Orders;
 using DuanEcommerce.ProductAttributes;
 using DuanEcommerce.ProductCategories;
 using DuanEcommerce.Products;
 using DuanEcommerce.Public.Manufacturers;
+using DuanEcommerce.Public.Orders;
 using DuanEcommerce.Public.ProductAttributes;
 using DuanEcommerce.Public.ProductCategories;
 using DuanEcommerce.Public.Products;
@@ -80,3 +82,10 @@ public partial class CreateUpdateProductAttributeDtoToProductAttribute : MapperB
     public override partial void Map(CreateUpdateProductAttributeDto source, ProductAttribute destination);
 }
 
+[Mapper]
+public partial class OrderToOrderDtoMapper : MapperBase<Order, OrderDto>
+{
+    public override partial OrderDto Map(Order source);
+
+    public override partial void Map(Order source, OrderDto destination);
+}

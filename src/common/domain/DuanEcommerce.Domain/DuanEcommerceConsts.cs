@@ -12,4 +12,7 @@ public static class DuanEcommerceConsts
     public const string ProductIdentitySettingId = "Product";
     public const string ProductIdentitySettingPrefix = "P";
     public const string Cart = "Cart";
+
+    public const string OrderIdentitySettingId = "Order";
+    public const string OrderIdentitySettingPrefix = "O";
 }
